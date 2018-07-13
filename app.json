@@ -7,8 +7,7 @@
     "pages/preview/preview",
     "pages/my/my",
     "pages/commentList/commentList",
-    "pages/web/web",
-    "components/dio/dio"
+    "pages/web/web"
   ],
   "subPackages": [
     {
