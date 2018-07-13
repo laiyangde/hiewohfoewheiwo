@@ -1,0 +1,10 @@
+/* rewardList.wxss */
+.data-list-view{position: relative;}
+.data-list-view .buy-flag,.data-list-view.iphonex .buy-flag{
+  width: 104rpx;
+  height: 36rpx;
+  position: absolute;
+  top: 8rpx;
+  left: 6rpx;
+  background: none;
+}

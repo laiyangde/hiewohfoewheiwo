@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "multi-fn-btn-item": "../multiFnBtnItem/multi-fn-btn-item"
+  }
+}

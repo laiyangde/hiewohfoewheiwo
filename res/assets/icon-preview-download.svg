@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="104" height="104" viewBox="0 0 104 104">
+  <defs>
+    <linearGradient id="下载icon-c" x1="26.524%" x2="85.988%" y1="0%" y2="90.553%">
+      <stop offset="0%" stop-color="#49AFFF"/>
+      <stop offset="100%" stop-color="#1091F6"/>
+    </linearGradient>
+    <circle id="下载icon-b" cx="46" cy="46" r="46"/>
+    <filter id="下载icon-a" width="122.8%" height="122.8%" x="-11.4%" y="-8.2%" filterUnits="objectBoundingBox">
+      <feOffset dy="3" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="3"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0.485289905   0 0 0 0 0.762050015   0 0 0 0 0.981265944  0 0 0 0.423375226 0"/>
+    </filter>
+    <filter id="下载icon-d" width="116.3%" height="116.3%" x="-8.2%" y="-4.9%" filterUnits="objectBoundingBox">
+      <feOffset dx="-3" dy="-2" in="SourceAlpha" result="shadowOffsetInner1"/>
+      <feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"/>
+      <feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.0752094656 0"/>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(6 3)">
+    <g opacity=".85">
+      <use fill="#000" filter="url(#下载icon-a)" xlink:href="#下载icon-b"/>
+      <use fill="url(#下载icon-c)" xlink:href="#下载icon-b"/>
+      <use fill="#000" filter="url(#下载icon-d)" xlink:href="#下载icon-b"/>
+    </g>
+    <path fill="#FFF" d="M68,57 L68,62 C68,64.7614237 65.7614237,67 63,67 L30,67 C27.2385763,67 25,64.7614237 25,62 L25,57 C25,55.8954305 25.8954305,55 27,55 C28.1045695,55 29,55.8954305 29,57 L29,62 C29,62.5522847 29.4477153,63 30,63 L63,63 C63.5522847,63 64,62.5522847 64,62 L64,57 C64,55.8954305 64.8954305,55 66,55 C67.1045695,55 68,55.8954305 68,57 Z M48.5795494,50.2116402 L54.6545639,44.1366257 C55.4356125,43.3555771 56.7019424,43.3555771 57.482991,44.1366257 C58.2640396,44.9176743 58.2640396,46.1840042 57.482991,46.9650528 L47.9977097,56.4503342 C47.3252449,57.122799 46.2930501,57.2162871 45.5205638,56.7307986 C45.3593353,56.6419491 45.2077688,56.5291738 45.0710678,56.3924728 L35.5857864,46.9071915 C34.8047379,46.1261429 34.8047379,44.8598129 35.5857864,44.0787643 C36.366835,43.2977158 37.633165,43.2977158 38.4142136,44.0787643 L44.5795494,50.2441002 L44.5795494,27 C44.5795494,25.8954305 45.4749799,25 46.5795494,25 C47.6841189,25 48.5795494,25.8954305 48.5795494,27 L48.5795494,50.2116402 Z"/>
+  </g>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="28" height="43" viewBox="0 0 28 43">
+  <defs>
+    <path id="rectangle--b" d="M36.9692037,96.9562415 L20.0430906,79.9989102 C19.9862653,79.6888975 19.985011,79.3139831 20.0430906,79.0014201 L36.9692037,62.0440888 C37.0998417,61.9870858 37.4679276,61.9835483 37.9648574,62.0440888 L39.9561649,64.0390689 C40.0128888,64.5600435 40.0155937,64.9358092 39.9561649,65.036559 L26.0170129,79.0014201 C25.8170653,79.3102689 25.8130916,79.6873189 26.0170129,79.9989102 L39.9561649,93.9637712 C40.0116201,94.0617786 40.0175287,94.4368697 39.9561649,94.9612613 L37.9648574,96.9562415 C37.4725676,97.013365 37.1010961,97.0157947 36.9692037,96.9562415 Z"/>
+    <filter id="rectangle--a" width="170%" height="140%" x="-35%" y="-14.3%" filterUnits="objectBoundingBox">
+      <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(-16 -60)">
+    <use fill="#000" filter="url(#rectangle--a)" xlink:href="#rectangle--b"/>
+    <use fill="#FFF" xlink:href="#rectangle--b"/>
+  </g>
+</svg>

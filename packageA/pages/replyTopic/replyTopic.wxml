@@ -1,0 +1,29 @@
+<!--pages/replyTopic/replyTopic.wxml-->
+<import src="../../../utils/tpl.wxml" />
+<form class='{{model}}' bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+<view class='container header-seize'>
+    <textarea placeholder="壁友们等你说两句呐~" auto-focus class='topic-textarea' auto-height maxlength="500" bindinput="inputHandle" value='{{textareaValue}}' />
+
+    <view class='upload-image-container'>
+      <view wx:for="{{uploadImages}}" wx:key="{{item}}" class='uploadImages-list'>
+        <image src="{{item}}" mode="aspectFill" class='uploadImage' bindtap='preview' data-index="{{index}}"></image>
+        <image src="https://minibizhi.313515.com/BiZhiStatic/close2.svg" mode="aspectFill" class='delete' bindtap='deleteImage' data-index="{{index}}"></image>
+      </view>
+      <image src="{{uploadImages.length === 9 ? '' : 'https://minibizhi.313515.com/BiZhiStatic/addImage.svg'}}" mode="aspectFill" bindtap="addImage"></image>
+      <image wx:if="{{uploadImages.length % 4 > 0}}"></image>
+      <image wx:if="{{uploadImages.length % 4 === 1}}"></image>
+    </view>
+
+    <button bindgetuserinfo="login" data-callback="publish.auto" wx:if="{{!isLogin}}" open-type="getUserInfo" hover-class="none" class="publish-btn" data-type='话题发布'>
+      发布
+    </button>
+    <button class='publish-btn' bindtap='publish' wx:else>发布</button>
+<template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'replyTopic',isHideBackTop:true,reTry,isHideShare:true}}" />
+    <!-- <view class='header pr86' >
+      <view class='header-wrap'>
+        <button class='back-btn' bindtap='back' hover-class='none'></button>
+        <view class='header-title'>{{suspensionInfo.title}}</view>
+      </view>
+    </view> -->
+</view>
+</form>

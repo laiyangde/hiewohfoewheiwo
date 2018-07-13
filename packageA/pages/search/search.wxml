@@ -1,0 +1,89 @@
+<!--pages/search/search.wxml-->
+<import src="../../../utils/tpl.wxml" />
+
+<!-- 搜索关键词 -->
+<template name="keyword-list">
+  <view class="recent-search search-keys" wx:if="{{keyword.recent.length!= 0}}">
+    <text>最近搜索</text>
+    <button class="keyClear" data-event="clearRecentKey" formType="submit"></button>
+    <view class="key-btns">
+      <button data-event="keySearch" formType="submit" wx:for="{{keyword.recent}}" data-value="{{item}}" wx:key="{{item}}"> {{item}} </button>
+    </view>
+  </view>
+  <view class="hot-search search-keys">
+    <text>热门搜索</text>
+    <view class="key-btns">
+      <button data-event="keySearch" formType="submit" wx:for="{{keyword.hot}}" data-value="{{item}}" wx:key="{{item}}"> {{item}} </button>
+      <button data-event="toMiniEmote" formType="submit" class='toMiniEmote'>
+          <image src='{{emoteUrl}}'></image>
+          <text>{{emoteName}}</text>
+      </button>
+    </view>
+  </view>
+</template>
+<template name="search-ad">
+  <block  wx:for="{{adData}}" wx:key="{{index}}">
+    <button formType="submit" hover-class="none" wx:if="{{item.JumpType != 2}}" data-jumptype="{{item.JumpType}}" data-jumpurl="{{item.JumpUrl}}" data-adid="{{item.AdId}}" data-appid="{{item.AppID}}" data-event="adJump" class='multi-fn-btn'>
+        <image src="{{item.ProductIcon}}" mode="aspectFill" class="icon"></image>
+        <view class='right'>
+            <text>{{item.ProductName}}</text>
+            <text>{{item.Describe}}</text>
+        </view>
+    </button>
+    <button open-type="contact" hover-class="none" session-from="{{item.AdId}}" wx:else class='multi-fn-btn'>
+        <image src="{{item.ProductIcon}}" mode="aspectFill" class="icon"></image>
+        <view class='right'>
+            <text>{{item.ProductName}}</text>
+            <text>{{item.Describe}}</text>
+        </view>
+    </button>
+  </block>
+</template>
+
+<template name="search-header">
+   <view class="search-wrap header pr200" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+      <view class='header-wrap'>
+        <button hover-class="none" class="header-share" open-type="share" wx:if="{{!isBack || isShareEntry}}">分享</button>
+        <button class='back-btn' data-event="back" formType="submit" hover-class='none' wx:else></button>     
+        <view class="search-box">
+          <input name="searchKey" placeholder="搜索你想要的{{navArr[currentIndex].CategoryTitle || ''}}" confirm-type="search" placeholder-class="placeholder" bindconfirm="searchHandle" bindinput="inputHandle" value="{{searchKey}}" focus="{{isFocus}}" maxlength="30"/>
+          <button formType="reset" class="clearSearchKey" wx:if="{{isCloseShow}}" hover-class='none'>
+              <image src='https://minibizhi.313515.com/BiZhiStatic/close2.svg'></image>
+          </button>
+        </view>
+      </view>
+  </view>
+</template>
+
+<form class="search-form hasBottomNav {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" bindreset="resetHandle" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+  <!-- 搜索框 -->
+  <template is="search-header" data="{{navArr,currentIndex,searchHandle,inputHandle,searchKey,isFocus,isCloseShow,isBack:true,suspensionInfo}}" />
+  <view class="container header-seize2">
+    <view class="keywrod-wrap">
+      <!-- 顶部滚动导航 -->
+      <template is="base-top-nav" data="{{navArr,currentIndex,suspensionInfo}}" /> 
+      <swiper duration="300" class="swiper-list" bindchange="change" current="{{currentIndex}}">
+        <swiper-item wx:for="{{keyWords}}" wx:for-item="keyword" wx:key="{{index}}">
+          <scroll-view scroll-y>
+            <view class='content'>
+              <template is="keyword-list" data="{{keyword,emoteUrl,emoteName}}" />
+              <!-- 搜索广告 -->
+              <template is="search-ad" data="{{adData}}" />
+            </view>
+          </scroll-view>
+        </swiper-item>
+      </swiper>
+    </view>
+    <view class="result-wrap header-seize" hidden="{{isHideResult}}">
+      <scroll-view scroll-y bindscrolltolower="onReachBottom_" lower-threshold="150" enable-back-to-top scroll-top="{{baseData.scollTop}}" bindscroll="onPageScroll_">
+        <!-- 壁纸列表 -->
+        <view class='content'>
+          <template is="{{currentIndex === 0 ? 'base-wallpaper-list2' : 'avatar-emote-list'}}" data="{{baseData,reTry}}" />
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <block wx:if="{{!isHideResult}}">
+    <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'search',isHideBackTop,reTry,isHideShare:true}}" />
+  </block>
+</form>

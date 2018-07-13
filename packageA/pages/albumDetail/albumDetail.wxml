@@ -1,0 +1,51 @@
+<import src="../../../utils/tpl.wxml" />
+
+<form class="search-form hasBottomNav {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+  <view class="container {{isShowInput && 'active'}} header-seize">
+    <scroll-view scroll-y bindscrolltolower="onReachBottom_" lower-threshold="150" enable-back-to-top scroll-top="{{baseData.scollTop}}" bindscroll="onPageScroll_">
+      <view class='content'>
+        <view class="top-banner">
+          <image src="{{AlbumObj.ImgUrl}}" mode="widthFix" />
+          <view class="albumDesc">{{AlbumObj.Desc}}</view>
+        </view>
+        <!-- 壁纸列表 -->
+        <template is="base-wallpaper-list" data="{{baseData,reTry}}" />
+        <!-- 评论列表 -->
+        <block wx:if="{{isAlbumComplete}}">
+        <template is="comment-list" data="{{commentArrs,totalCount,isShowInput,isLogin,login,listName:'commentArrs',title:'热门'}}" />
+        </block>
+      </view>
+    </scroll-view>
+    <!-- <template is="comment-input" data="{{totalCount,isShowTextArea,isShowInput,isLogin,login,isIphoneX}}" /> -->
+<view class="bottom-nav-container" wx:if="{{isShowInput}}">
+     <button formType="submit" hover-class="none" data-event="entryIndexHandle">
+        <image src='https://minibizhi.313515.com/BiZhiStatic/icon-bottom-nav-home.svg'></image>
+        <text>首页</text> 
+    </button>
+    <!-- <button formType="submit" hover-class="none" data-event="entryIndexHandle">
+        <image src='https://minibizhi.313515.com/BiZhiStatic/icon-all-poster.svg'></image>
+        <text>海报</text> 
+    </button> -->
+    <button hover-class="none" formType="submit" open-type="share">
+        <image src='https://minibizhi.313515.com/BiZhiStatic/icon-bottom-nav-share.svg'></image>
+        <text>分享</text>
+    </button>    
+    <button formType="submit" hover-class="none" data-event="moreComment">
+        <image src='https://minibizhi.313515.com/BiZhiStatic/icon-bottom-nav-comment.svg'></image>
+        <text>{{totalCount}}</text> 
+    </button>
+    <button formType="submit" hover-class="none" data-event="openPoster" data-index="{{index}}">
+        <image src='https://minibizhi.313515.com/BiZhiStatic/icon-all-poster.svg'></image>
+        <text>海报</text>
+    </button> 
+    <button formType="submit" class='say' hover-class="none" data-event="commentHandle">
+        留言
+    </button> 
+
+  </view>
+    <template is="comment-textarea" data="{{isShowTextArea,textAreaFocus,textareaIphut,isTextAreaEmpty,cancle,publish,textareaVal,login,isLogin,commentPlaceholder}}" />
+  </view>
+  <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'albumDetail',isHideBackTop,reTry,isHideShare:true}}" />
+  <template is="poster-popup" data="{{isShowPoster,poster,isClose}}"/>  
+  <canvas canvas-id="myCanvas" class='myCanvas'/>
+</form>

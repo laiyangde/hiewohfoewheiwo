@@ -1,0 +1,16 @@
+<!--pages/setting/setting.wxml-->
+<import src="../../../utils/tpl.wxml" />
+<form class="search-form {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+<view class="container header-seize" >
+
+  <view class='notify-switch'>
+      <view>每日推荐消息，开启推送</view>
+      <switch checked="{{isNotify}}" bindchange="switch1Change" color="#239EFE"/>
+  </view>
+     <!-- <button bindtap='gameTest'>游戏测试</button>    -->
+ <!-- <template is="test" data="{{a:1}}" />  -->
+</view>
+
+<template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'setting',isHideBackTop,reTry,isHideShare:true,isIphoneX}}" />
+<view class='innerUser' bindlongpress='toggleCopy'></view>
+</form>

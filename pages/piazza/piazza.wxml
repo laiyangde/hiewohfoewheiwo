@@ -1,0 +1,66 @@
+<import src="../../utils/tpl.wxml" />
+
+
+<!-- 社区（广场）列表 -->
+<template name="piazza-list" >
+  <view class='wonderful-topic'>
+    <button class='module-title' hover-class='none' formType="submit" data-event="toPage" data-page="wonderfulTopic">精彩话题</button>
+    <scroll-view scroll-x style='width:100%;white-space:nowrap;'>
+      <button formType="submit" data-event="toTopicDetail" hover-class='none' data-topicid="{{item.AlbumID}}" wx:key="{{index}}" wx:for="{{wonderfulTopic}}">
+        <image src="{{item.ImgUrl}}" mode="aspectFill" />
+        <text class='single-ellipsis'>#{{item.AlbumName}}#</text>
+        <view class='act' wx:if="{{item.AlbumType===4}}">活动</view>
+        <view class='act pinpai' wx:if="{{item.AlbumType===5}}">品牌活动</view>
+      </button>
+    </scroll-view>
+  </view>
+  
+  <view class='wallpaper-mask'>
+    <button class='module-title' hover-class='none' formType="submit" data-event="toINOTCH" >壁纸刘海</button>
+    <scroll-view scroll-x style='width:100%;white-space:nowrap;'>
+      <button formType="submit" data-event="toINOTCH" hover-class='none' wx:for="{{wallpaperMask}}" data-index="{{index}}" wx:key="{{index}}" >
+        <image src="{{item.PicThumb}}" mode="widthFix" />
+        <image src="{{item.StyleImg}}" mode="widthFix" />
+      </button>
+    </scroll-view>  
+  </view>
+
+  <template is="follow-nav" data="{{suspensionInfo,title:'社区参与'}}" />
+  <view class='topic-list'>
+    <template is='topic-image-text-list' data="{{isHideBackTop,reTry,baseData,login,isLogin,android}}" />
+  </view>
+
+</template>
+
+
+
+<form class="search-form {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+  <!-- 顶部滚动导航 -->
+  <template is="top-nav" data="{{navArr,currentIndex,suspensionInfo}}" />
+  <view class="container header-seize">
+    <!-- 多列表 -->
+    <swiper duration="300" class="swiper-list" bindchange="change" current="{{currentIndex}}">
+      <swiper-item wx:for="{{baseDatas}}" wx:for-item="baseData" wx:key="{{index}}">
+        <scroll-view scroll-y bindscrolltolower="onReachBottom_" lower-threshold="150" enable-back-to-top scroll-top="{{baseData.scollTop}}" bindscroll="onPageScroll_">
+          <template is="{{template[index]}}" data="{{isHideBackTop,reTry,baseData,login,isLogin,wonderfulTopic,toReplyDetail,toTopicDetail,moreComment,wallpaperMask,suspensionInfo}}" />
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+    <!-- 悬浮按钮 -->
+    <view class="suspension-btn">
+      <button class="backTop circle" data-event="backTop" formType="submit" hidden="{{isHideBackTop}}"></button>
+      <button bindgetuserinfo="login" data-callback="toPublish.auto" wx:if="{{!isLogin}}" open-type="getUserInfo" hover-class="none" class="publish-btn">
+        <image src='https://minibizhi.313515.com/BiZhiStatic/reply-btn.svg'></image>
+        <text>发布</text>
+      </button>
+      <button wx:else formType="submit" data-event="toPublish" hover-class='none' class="publish-btn" data-type="广场发布">
+        <image src='https://minibizhi.313515.com/BiZhiStatic/reply-btn.svg'></image>
+        <text>发布</text>
+      </button>
+    </view>
+  </view>
+  <template is="poster-popup" data="{{isShowPoster,poster,isClose}}"/>  
+  <canvas canvas-id="myCanvas" class='myCanvas'/>
+</form>
+
+

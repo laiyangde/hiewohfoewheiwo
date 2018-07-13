@@ -1,0 +1,59 @@
+<import src="../../../utils/tpl.wxml" />
+<form class="search-form {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" >
+  <view class="container">
+    <!-- <scroll-view scroll-y bindscrolltolower="onReachBottom_" lower-threshold="150" enable-back-to-top scroll-top="{{scroll}}" bindscroll="onPageScroll_"> -->
+      <view class="user-info">
+        <image src="https://minibizhi.313515.com/BiZhiStatic/my-bg.svg" mode="aspectFill" class="user-info-bg" style='{{self && "height:336rpx;"}}'></image>
+        <view class="user-info-view" style='{{self && "padding-bottom:0;"}}'>
+          <image wx:if="{{WxUser.avatarUrl}}" src="{{WxUser.avatarUrl}}" mode="aspectFill" class="avatar"></image>
+          <image wx:else src="https://minibizhi.313515.com/BiZhiStatic/default.svg" mode="aspectFill" class="avatar"></image>
+          <view class="nickName">{{WxUser.nickName || '游客'}}</view>
+          <image src="https://minibizhi.313515.com/BiZhiStatic/userHome-attention{{IsAttention ? '-acitve':''}}.svg" mode="aspectFill" class="attention" bindtap='attentionUser' wx:if="{{!self}}" data-status="{{isAttention==0 ? '关注' : '取消关注'}}"></image>
+
+          <view class='fans-attention'>
+            <button class='fans-count' hover-class="none" data-event="toPage" formType="submit" data-page="pureListPage" data-pageindex="3" data-userid="{{WxUser.userID}}">粉丝 {{FansCount}}</button>
+            <button class='attention-count' hover-class="none" data-event="toPage" formType="submit" data-page="pureListPage" data-pageindex="4" data-userid="{{WxUser.userID}}">已关注 {{AttentionCount}}</button>
+          </view>
+        </view>
+      </view>
+       <!-- <template is="top-nav" data="{{navArr,currentIndex,addClass:'icon-nav'}}" />  -->
+      <template is="base-top-nav" data="{{navArr,currentIndex}}" />
+      <template is="base-wallpaper-list" data="{{baseData,reTry}}" wx:if="{{currentIndex == 0}}" />
+      <template is="topic-image-text-list" data="{{isHideBackTop,reTry,baseData,login,isLogin,toReplyDetail,toTopicDetail,moreComment}}" wx:else />
+
+      <!-- <view class='switch-container'>
+        <view class='userHome-collect' hidden='{{currentIndex!==0}}'>
+          <button class='wallpaper module' data-event="toPage" formType="submit" hover-class="none" data-userid="{{WxUser.userID}}" data-username="{{WxUser.nickName}}" data-currentindex="{{0}}" data-page="collectList" wx:if="{{WallpaperCollection.length>0}}">
+            <view class='title'>壁纸</view>
+            <view class='image-wrap'>
+                <image wx:for="{{WallpaperCollection}}" src="{{item.ThumbImage}}" mode="aspectFill" wx:key="{{index}}"></image>
+            </view>
+          </button>
+          <button class='emote module' data-event="toPage" formType="submit" hover-class="none" data-userid="{{WxUser.userID}}" data-username="{{WxUser.nickName}}" data-currentindex="{{1}}" data-page="collectList" wx:if="{{ExpressionCollection.length>0}}">
+            <view class='title'>表情</view>
+            <view class='image-wrap'>
+                <image wx:for="{{ExpressionCollection}}" src="{{item.Image}}" mode="aspectFill" wx:key="{{index}}"></image>
+            </view>
+          </button>
+          <button class='avatar module' data-event="toPage" formType="submit" hover-class="none" data-userid="{{WxUser.userID}}" data-username="{{WxUser.nickName}}" data-currentindex="{{2}}" data-page="collectList" wx:if="{{PortraitCollection.length>0}}">
+            <view class='title'>头像</view>
+            <view class='image-wrap'>
+                <image wx:for="{{PortraitCollection}}" src="{{item.Image}}" mode="aspectFill" wx:key="{{index}}"></image>
+            </view>
+          </button>
+          <view class='noView' wx:if="{{PortraitCollection.length === 0 && ExpressionCollection.length===0 && WallpaperCollection.length === 0}}">
+                <image  src="https://minibizhi.313515.com/BiZhiStatic/userHome-collect-none.png"></image>
+                <text>TA还未有任何收藏！</text>
+          </view>
+        </view>
+        <view hidden='{{currentIndex!==1}}'>
+          <template is="topic-image-text-list" data="{{isHideBackTop,reTry,baseData,login,isLogin,toReplyDetail,toTopicDetail,moreComment}}" />
+        </view>
+      </view> -->
+    <!-- </scroll-view> -->
+  </view>
+    <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'userHome',isHideBackTop,reTry,isHideShare:false}}" />
+    <template is="header-back" data="{{suspensionInfo,class:'white'}}"/>
+      <template is="poster-popup" data="{{isShowPoster,poster,isClose}}"/>  
+  <canvas canvas-id="myCanvas" class='myCanvas'/>
+</form>

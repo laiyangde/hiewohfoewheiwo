@@ -1,0 +1,817 @@
+
+<wxs module="common">
+  module.exports.random = function(max) {
+    return Math.floor(Math.random()*max)
+  };
+  module.exports.isExist = function(arr,value) {
+    return arr.indexOf(value) > -1
+  };
+</wxs>
+<!-- 包含跳h5 壁纸小程序 客服 -->
+<template name="multi-fn-btn">
+      <block wx:if="{{adData.length == 1}}">
+        <block  wx:for="{{adData}}" wx:key="{{index}}">
+          <button formType="submit" hover-class="none" wx:if="{{item.JumpType != 2}}" data-jumptype="{{item.JumpType}}" data-jumpurl="{{item.JumpUrl}}" data-appid="{{item.AppID}}" data-event="adJump" data-adid="{{item.AdId}}" class='multi-fn-btn'>
+              <template is="{{template}}" data="{{icon:item.ProductIcon,title:item.ProductName,desc:item.Describe}}" />
+          </button>
+          <button open-type="contact" hover-class="none" session-from="{{item.AdId}}" wx:else class='multi-fn-btn'>
+              <template is="{{template}}" data="{{icon:item.ProductIcon,title:item.ProductName,desc:item.Describe}}" />
+          </button>
+        </block> 
+      </block>
+      <swiper autoplay interval="{{switchTime}}" duration="500" class="multi-btn-swiper" current='{{common.random(adData.length)}}' wx:else>
+        <swiper-item wx:for="{{adData}}" wx:key="{{index}}">
+          <button formType="submit" hover-class="none" wx:if="{{item.JumpType != 2}}" data-jumptype="{{item.JumpType}}" data-jumpurl="{{item.JumpUrl}}" data-appid="{{item.AppID}}" data-event="adJump" data-adid="{{item.AdId}}" class='multi-fn-btn'>
+              <template is="{{template}}" data="{{icon:item.ProductIcon,title:item.ProductName,desc:item.Describe}}" />
+          </button>
+          <button open-type="contact" hover-class="none" session-from="{{item.AdId}}" wx:else class='multi-fn-btn'>
+              <template is="{{template}}" data="{{icon:item.ProductIcon,title:item.ProductName,desc:item.Describe}}" />
+          </button>
+        </swiper-item>
+      </swiper>
+</template>
+
+<!-- 图文 -->
+<template name="img-word-view">
+    <image src="{{icon}}" mode="aspectFill" class="icon"></image>
+    <text>{{title}}</text>
+</template>
+<template name="img-view">
+    <image src="{{icon}}" mode="aspectFill" class="icon"></image>
+</template>
+
+<!-- ...infoAd.adList[infoAd.current] -->
+<!-- <template name="info-ad">
+  <view class='info-ad-container'>
+    <view class='info-ad-wrap'>
+      <view class='info-ad-img'>
+        <view style="{{'transform:translateY(-'+infoAd.current/infoAd.adList.length*100+'%) translateZ(0)'}}">
+          <block wx:for="{{infoAd.adList}}" wx:key="{{index}}">
+            <button open-type="contact" hover-class="none" session-from="{{item.AdId}}" wx:if="{{item.JumpType == 2}}">
+              <image src='{{item.ProductIcon}}' mode='aspectFill'></image> 
+            </button>       
+            <button formType="submit" hover-class="none"  wx:elif="{{item.JumpType == 5}}" data-jumptype="{{item.JumpType}}" data-jumpurl="{{item.JumpUrl}}" data-appid="{{item.JumpType == 5 ? item.BroadPointID : item.AppID}}" data-event="adJump">
+              <ad wx:if="{{item.BroadPointID}}" unit-id="{{item.BroadPointID}}"></ad>
+            </button>
+            <button formType="submit" hover-class="none" wx:else data-jumptype="{{item.JumpType}}" data-jumpurl="{{item.JumpUrl}}" data-appid="{{item.JumpType == 5 ? item.BroadPointID : item.AppID}}" data-event="adJump">
+              <image src='{{item.ProductIcon}}' mode='aspectFill'></image>
+            </button>
+          </block>
+        </view>  
+      </view>
+       <view class='info-ad-desc single-ellipsis'>
+          <text>{{infoAd.adList[infoAd.current].BroadPointText || infoAd.adList[infoAd.current].Describe}}</text>
+          <button formType="submit" hover-class="none" data-event="closeInfoAd"></button> 
+      </view>
+    </view>
+  </view>
+</template> -->
+<template name="info-ad">
+  <view class='info-ad-container'>
+    <view class='info-ad-wrap'>
+      <view class='info-ad-img'>
+            <button open-type="contact" hover-class="none" session-from="{{item.AdId}}" wx:if="{{item.JumpType == 2}}">
+              <image src='{{item.ProductIcon}}' mode='aspectFill'></image> 
+            </button>       
+            <button formType="submit" hover-class="none"  wx:elif="{{item.JumpType == 5}}" data-jumptype="{{item.JumpType}}" data-jumpurl="{{item.JumpUrl}}" data-appid="{{item.JumpType == 5 ? item.BroadPointID : item.AppID}}" data-event="adJump">
+              <ad wx:if="{{item.BroadPointID}}" unit-id="{{item.BroadPointID}}"></ad>
+            </button>
+            <button formType="submit" hover-class="none" wx:else data-jumptype="{{item.JumpType}}" data-jumpurl="{{item.JumpUrl}}" data-appid="{{item.JumpType == 5 ? item.BroadPointID : item.AppID}}" data-event="adJump">
+              <image src='{{item.ProductIcon}}' mode='aspectFill'></image>
+            </button>
+      </view>
+       <view class='info-ad-desc single-ellipsis'>
+          <text>{{item.BroadPointText || item.Describe}}</text>
+          <button formType="submit" hover-class="none" data-event="closeInfoAd"></button> 
+      </view>
+    </view>
+  </view>
+</template>
+    
+
+
+<!-- 基本壁纸列表 -->
+<template name="base-wallpaper-list">
+  <view class="data-list-box">
+    <view class="data-list-view">
+      <button hover-class="none" data-index="{{index}}" formType="submit" data-event="preview" wx:for="{{baseData.dataList}}" wx:key="{{item.PicInfoID}}">
+        <image src="{{item.ThumbImage}}" mode="aspectFill" ></image>
+        <image wx:if="{{item.StyleImg}}" src='{{item.StyleImg}}' class='inotch-style' mode='widthFix'></image>
+      </button>
+      <image src="" wx:if="{{baseData.dataList.length % 3 === 2}}" style='background:none'></image>
+    </view>
+    <view class="loading" wx:if="{{baseData.LoadingText}}">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </button>
+  </view>
+</template>
+
+
+<!-- 基本壁纸列表优化版 -->
+<!-- <template name="base-wallpaper-list2">
+  <view class="data-list-box">
+    <view class="data-list-view" style='padding-top:{{baseData.paddingTop}}px'>
+      <button hover-class="none" data-index="{{index}}" formType="submit" data-event="preview" wx:for="{{baseData.dataList}}" wx:key="{{item.PicInfoID}}"  class='{{index % baseData.every ===0 ? "benchmark"+ baseData.listIndex : "" }}' wx:if="{{index>=baseData.beforeIndex && index < baseData.afterIndex}}">
+        <image src="{{item.ThumbImage}}" mode="aspectFill" ></image>
+        <image wx:if="{{item.StyleImg}}" src='{{item.StyleImg}}' class='inotch-style' mode='widthFix'></image>
+      </button>
+      <image src="" wx:if="{{baseData.afterIndex >= baseData.dataList.length && baseData.dataList.length % 3 === 2}}" style='background:none'></image>
+    </view>
+    <view class="loading" wx:if="{{baseData.LoadingText}}">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </button>
+  </view>
+</template> -->
+
+
+
+
+<!-- 基本壁纸列表2 -->
+<template name="base-wallpaper-list2">
+  <view class="data-list-box">
+    <view class="data-list-view" style='padding-top:{{baseData.paddingTop}}px'>
+      <block wx:for="{{baseData.dataList}}" wx:key="{{item.PicInfoID}}" wx:if="{{index>=baseData.beforeIndex && index<baseData.afterIndex}}">
+        <button hover-class="none" data-index="{{index}}" formType="submit" data-event="preview" class='{{index % baseData.every ===0 ? "benchmark"+ baseData.listIndex : "" }}'>
+          <image src="{{item.ThumbImage}}" mode="aspectFill" ></image>
+          <image wx:if="{{item.StyleImg}}" src='{{item.StyleImg}}' class='inotch-style' mode='widthFix'></image>
+        </button>
+         <!-- <block wx:if="{{infoAd && (index - 23) % 30 === 0}}">
+           <template is="info-ad" data="{{item:infoAd.adList[(index - 23)/30 % infoAd.adList.length]}}" /> 
+        </block>     -->
+      </block>
+      <image src="" wx:if="{{baseData.afterIndex >= baseData.dataList.length && baseData.dataList.length % 3 === 2}}" style='background:none'></image>
+    </view>
+    <view class="loading" wx:if="{{baseData.LoadingText}}">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </ button>
+  </view>
+</template>
+
+
+
+<!-- 原创壁纸列表 -->
+<template name="original-wallpaper-list">
+  <view class="data-list-box">
+    <view class="data-list-view" style='padding-top:{{baseData.paddingTop}}px'>
+      <button hover-class="none" data-index="{{index}}" formType="submit" data-event="oriWallPaperPreview" wx:for="{{baseData.dataList}}" wx:key="{{item.PicInfoID}}" class='{{index % baseData.every ===0 ? "benchmark"+ baseData.listIndex : "" }}' wx:if="{{index>=baseData.beforeIndex && index<baseData.afterIndex}}">
+        <image src="{{item.ThumbImage}}" mode="aspectFill"></image>
+        <image wx:if="{{item.PriceType}}" src="{{item.noBuy?'https://minibizhi.313515.com/BiZhiStatic/original-nobuy.svg' : 'https://minibizhi.313515.com/BiZhiStatic/original-buy.svg'}}" mode="aspectFill" class="buy-flag"></image>
+      </button>
+      <image src="" wx:if="{{baseData.afterIndex >= baseData.dataList.length && baseData.dataList.length % 3 === 2}}" style='background:none'></image>
+    </view>
+    <view class="loading">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </button>
+  </view>
+</template>
+
+
+<!-- 可删除壁纸列表 -->
+<template name="can-delete-wallpaper-list">
+  <view class="data-list-box">
+    <view class="data-list-view" style='padding-top:{{baseData.paddingTop}}px'>
+      <button hover-class="none" data-index="{{index}}" formType="submit" data-event="clickImage" wx:for="{{baseData.dataList}}" wx:key="{{item.PicInfoID}}">
+        <image src="{{item.ThumbImage}}" mode="aspectFill"></image>
+        <view class="circle deleteSelect {{item.deleteSelected && 'deleteSelected'}}" hidden="{{!isOpenDelete}}"></view>
+      </button>
+      <image src="" wx:if="{{baseData.dataList.length % 3 === 2}}" style='background:none'></image>
+    </view>
+    <view class="loading">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </button>
+  </view>
+</template>
+
+
+<!-- 可删除上传壁纸列表 -->
+<template name="can-delete-uploadWallpaper-list">
+  <view class="data-list-box">
+    <view class="data-list-view" style='padding-top:{{baseData.paddingTop}}px'>
+      <button hover-class="none" data-index="{{index}}" formType="submit" data-event="clickImage" wx:for="{{baseData.dataList}}" wx:key="{{item.PicInfoID}}">
+        <image src="{{item.ThumbImage}}" mode="aspectFill"></image>
+        <view class='examine-status {{item.StatusClass}}'>{{item.StatusText}}</view>
+        <view class="circle deleteSelect {{item.deleteSelected && 'deleteSelected'}}" hidden="{{!isOpenDelete}}"></view>
+      </button>
+      <image src="" wx:if="{{baseData.dataList.length % 3 === 2}}" style='background:none'></image>
+    </view>
+    <view class="loading">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </button>
+  </view>
+</template>
+
+
+
+
+<!-- <template name="album-list">
+  <view class="data-list-box">
+    <view class="data-list-view" style='padding-top:{{baseData.paddingTop}}px'>
+      <button data-index="{{index}}" formType="submit" data-event="albumDetail" wx:for="{{baseData.dataList}}" wx:key="{{item.AlbumID}}" hover-class='none' class='{{index % baseData.every ===0 ? "benchmark"+ baseData.listIndex : "" }}' wx:if="{{index>=baseData.beforeIndex && index<baseData.afterIndex}}">
+        <image src="{{item.ImgUrl}}" mode="aspectFill"></image>
+        <text>{{item.AlbumName}}</text>
+        <view wx:if="{{item.AlbumType === 3 || item.AlbumType === 4}}" class='AlbumName'>#{{item.AlbumName}}#</view>
+      </button>
+    </view>
+    <view class="loading">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </button>
+  </view>
+</template> -->
+
+
+<!-- 头像表情列表 -->
+<template name="avatar-emote-list">
+  <view class="data-list-box">
+    <view class="flexWarp avatar-emote-view" style='padding-top:{{baseData.paddingTop}}px'>
+      <button hover-class="none" data-index="{{index}}" formType="submit" data-event="preview" wx:for="{{baseData.dataList}}" wx:key="{{item.ID}}" class='{{index % baseData.every ===0 ? "benchmark"+ baseData.listIndex : "" }}' wx:if="{{index>=baseData.beforeIndex && index<baseData.afterIndex}}">
+        <image src="{{item.Image}}" mode="aspectFill"></image>
+      </button>
+      <image src="" wx:if="{{baseData.afterIndex >= baseData.dataList.length && baseData.dataList.length % 3 === 2}}" style='background:none'></image>
+    </view>
+    <view class="loading">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </button>
+  </view>
+</template>
+
+
+
+<!-- 可删除头像列表 -->
+<template name="can-delete-avatar-emote-list">
+  <view class="data-list-box">
+    <view class="flexWarp avatar-emote-view">
+      <button hover-class="none" data-index="{{index}}" formType="submit" data-event="clickImage" wx:for="{{baseData.dataList}}" wx:key="{{item.ID}}">
+        <image src="{{item.Image}}" mode="aspectFill"></image>
+        <view class="circle deleteSelect {{item.deleteSelected && 'deleteSelected'}}" hidden="{{!isOpenDelete}}"></view>
+      </button>
+      <image src="" wx:if="{{baseData.dataList.length % 3 === 2}}" style='background:none'></image>
+    </view>
+    <view class="loading">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </button>
+  </view>
+</template>
+
+
+
+
+
+
+
+<!-- 头像表情分类列表 -->
+<template name="avatar-emote-catetory-list">
+  <view class="data-list-box">
+    <view class="data-list-view-y">
+      <button hover-class="none" formType="submit" data-event="toAvatarEmoteList" wx:for="{{baseData.dataList}}" wx:for-item="cateData" wx:key="{{cateData.CateModel.ID}}" data-index="{{index}}" class="catetory-list-item">
+        <view class="catetroy-title">
+          {{cateData.CateModel.Title}}
+        </view>
+        <view class="catetory-images">
+          <image src="{{item.Image}}" mode="aspectFill" wx:for="{{cateData.MiniEmojiInfoList}}" wx:key="{{item.ID}}"></image>
+        </view>
+      </button>
+    </view>
+    <view class="loading">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </button>
+  </view>
+</template>
+
+
+<!-- 专辑列表 -->
+<template name="album-list">
+  <view class="data-list-box">
+    <view class="flexWarp album-list" style='padding-top:{{baseData.paddingTop}}px'>
+      <button data-index="{{index}}" formType="submit" data-event="albumDetail" wx:for="{{baseData.dataList}}" wx:key="{{item.AlbumID}}" hover-class='none' class='{{index % baseData.every ===0 ? "benchmark"+ baseData.listIndex : "" }}' wx:if="{{index>=baseData.beforeIndex && index<baseData.afterIndex}}">
+        <image src="{{item.ImgUrl}}" mode="aspectFill"></image>
+        <text>{{item.AlbumName}}</text>
+        <view wx:if="{{item.AlbumType === 3 || item.AlbumType === 4}}" class='AlbumName'>#{{item.AlbumName}}#</view>
+      </button>
+    </view>
+    <view class="loading">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </button>
+  </view>
+</template>
+
+
+<!-- 多列表 -->
+<template name="multi-list">
+  <swiper duration="300" class="swiper-list" bindchange="change" current="{{currentIndex}}">
+    <swiper-item wx:for="{{baseDatas}}" wx:for-item="baseData" wx:key="{{index}}">
+      <scroll-view scroll-y bindscrolltolower="onReachBottom_" lower-threshold="150" enable-back-to-top scroll-top="{{baseData.scollTop}}" bindscroll="onPageScroll_">
+        <template is="{{diffrentTemplate ? template[index] : template}}" data="{{isHideBackTop,reTry,baseData,isOpenDelete,login,isLogin,toReplyDetail,toTopicDetail,moreComment}}" />
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+</template>
+
+<!-- 用户信息展示 -->
+<template name="user-view">
+  <view class='user-info-wrap'>
+    <button formType="submit" data-page="userHome" data-event="toPage" data-userid="{{userid}}" hover-class='none' class='userInfo'>
+      <image wx:if="{{AvatarUrl}}" src="{{AvatarUrl}}" mode="aspectFill" />
+      <image wx:else src='https://minibizhi.313515.com/BiZhiStatic/default.svg' mode="aspectFill" />
+      <view>
+        <text>{{NickName || '游客'}}</text>
+        <text>{{CreateDate}}</text>
+      </view>
+    </button>
+    <button formType="submit" data-event="attention" hover-class='none' class='attention-btn' wx:if="{{isshowAttention && isLogin}}" data-index="{{index}}" data-status="{{isAttention==0 ? '关注' : '取消关注'}}">
+      <image src="https://minibizhi.313515.com/BiZhiStatic/{{isAttention==0?'attention.svg':'attention-active.svg'}}" mode="widthFix" />
+    </button>
+    <button bindgetuserinfo="login" data-callback="attention.auto" hover-class='none' class='attention-btn' wx:if="{{isshowAttention && !isLogin}}" open-type="getUserInfo" data-index="{{index}}" data-status="{{isAttention==0 ? '关注' : '取消关注'}}">
+      <image src="https://minibizhi.313515.com/BiZhiStatic/{{isAttention==0?'attention.svg':'attention-active.svg'}}" mode="widthFix" />
+    </button>
+  </view>
+</template>
+
+<!-- 话题图文列表 -->
+<template name="topic-image-text-list">
+  <view class="data-list-box">
+    <view class="data-list-column-view" style='padding-top:{{baseData.paddingTop}}px'>
+      <view wx:for="{{baseData.dataList}}" wx:key="{{item.PartID}}" class='list-item {{index % baseData.every ===0 ? "benchmark"+ baseData.listIndex : "" }}' wx:if="{{index>=baseData.beforeIndex && index<baseData.afterIndex}}">
+        <view class='item-top'>
+          <view class='reply-time' wx:if="{{isHideUserInfo}}">.{{item.CreateDate}}</view>
+          <block wx:else>
+            <template is="user-view" data="{{isshowAttention:!item.isHideAttention,AvatarUrl:item.AvatarUrl,NickName:item.NickName,CreateDate:item.CreateDate,login,isLogin,index,isAttention:item.IsAttention,userid:item.UserID}}" />
+          </block>
+        </view>
+        <view class='item-center' bindtap='toReplyDetail' data-index="{{index}}">
+          <view class='topic-word-wrap multi-ellipsis'>
+            <view catchtap="toTopicDetail" data-topicid="{{item.TopicID}}" class='toTopicBtn single-ellipsis' wx:if="{{!isHiddenToTopicBtn && item.TopicTitle}}">#{{item.TopicTitle}}#</view>
+            <view class='topic-word'>{{item.PartTitle}}</view>
+          </view>
+          <view class='topic-image-wrap {{item.addClass}}'>
+
+            <image catchtap='viewOriginImage' data-idx="{{0}}" data-index="{{index}}" wx:if="{{item.TopicPartPicResultInfoList.length === 1}}" src="{{item.TopicPartPicResultInfoList[0].Thumb}}" style='{{item.TopicPartPicResultInfoList[0].style}}' mode="aspectFill"
+            />
+            <block wx:else>
+              <image wx:for="{{item.TopicPartPicResultInfoList}}" wx:for-index="idx" catchtap='viewOriginImage' data-idx="{{idx}}" wx:key="{{idx}}" data-index="{{index}}" src="{{item.Thumb}}" mode="aspectFill" />
+            </block>
+          </view>
+          <view class="comment-list" wx:if="{{item.CommentInfoList.length>0}}" catchtap="moreComment" data-index='{{index}}'>
+            <view wx:for="{{item.CommentInfoList}}" wx:key="{{index}}" class='multi-ellipsis'>
+              <text class='blue'>{{item.UserObject.nickName||'游客'}}</text><text wx:if="{{item.ReplyComment}}"> 回复 <text class='blue'>{{item.ReplyComment.ReplyNickName||'游客'}}</text></text>：{{item.Content}}
+            </view>
+          </view>
+        </view>
+        <view class='item-bottom'>
+          <view class='btns topic-btns'>
+            <button bindgetuserinfo="login" data-callback="topicReplythumbUp.auto" wx:if="{{!isLogin}}" open-type="getUserInfo" hover-class='none' data-index="{{index}}" class='topic-btn {{item.IsPraise && "active"}}' data-type="点赞">
+              {{item.DiggCount == 0 ? '点赞' : item.DiggCount}}
+            </button>
+            <button formType="submit" data-event="topicReplythumbUp" hover-class='none' data-index="{{index}}" class='topic-btn {{item.IsPraise && "active"}}' wx:else data-type="点赞">
+              {{item.DiggCount == 0 ? '点赞' : item.DiggCount}}
+            </button>
+            <button formType="submit" data-event="moreComment" hover-class='none' data-index='{{index}}' class='topic-btn' data-type="评论">{{item.CommentCount==0?'评论':item.CommentCount}} </button>
+            <button formType="submit" hover-class="none" data-event="openPoster" data-index="{{index}}">海报</button> 
+            <button hover-class="none" open-type="share" data-index="{{index}}" class='topic-btn' data-type="分享"></button>
+          </view>
+        </view>
+        <button class='delete-selected-box' wx:if="{{isOpenDelete}}" formType="submit" data-event="selectToggle" hover-class='none' data-index="{{index}}">
+        <view  class="circle deleteSelect {{item.deleteSelected && 'deleteSelected'}}"  ></view>
+        </button>
+        
+      </view>
+    </view>
+    <view class="loading">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </button>
+  </view>
+</template>
+
+
+
+
+
+<!-- 话题图片列表 -->
+<template name="topic-image-list">
+  <view class="data-list-box">
+    <view class="data-list-view">
+      <block wx:for="{{baseData.dataList}}" wx:for-item="imgs" wx:for-index="idx" wx:key="{{imgs.PartID}}">
+        <button hover-class="none" formType="submit" data-event="replyImagePreview" wx:for="{{imgs.TopicPartPicResultInfoList}}" wx:key="{{item.PicID}}" data-url="{{item.PicUrl}}">
+          <image src="{{item.Thumb}}" mode="aspectFill"></image>
+        </button>
+      </block>
+    </view>
+    <view class="loading">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </button>
+  </view>
+</template>
+
+<!--顶部滚动导航-->
+<template name="scroll-nav">
+  <view class="scroll-nav {{class || ''}}" style='{{class ? "margin-top:"+ suspensionInfo.statusBarHeight +"px" : ""}}'>
+    <scroll-view scroll-x style="width: 100%" scroll-with-animation scroll-left="{{scrollLeft}}">
+      <button formType="submit" data-event="navSwitch" hover-class='none' wx:for="{{navArr}}" wx:key="{{item.CategoryID}}" data-index="{{index}}">
+        <text class="nav-text {{currentIndex == index && 'active'}}">{{item.CategoryName}}</text>
+        <text class='nav-red-point' wx:if="{{item.IsRedDot}}"></text>
+      </button>
+    </scroll-view>
+    <view class='nav-view {{isShowNavView && "active"}}' wx:if="{{hasNavView}}">
+      <view class='top' style='padding-top:{{suspensionInfo.statusBarHeight}}px'>标签</view>
+      <view class='bottom'>
+        <button formType="submit" data-event="navSwitch" hover-class='none' wx:for="{{navArr}}" wx:key="{{item.CategoryID}}" data-index="{{index}}" wx:if="{{item.CategoryIcon}}">
+          <image src='{{item.CategoryIcon}}'></image>
+          <text class="title single-ellipsis">{{item.CategoryName}}</text>
+        </button>
+      </view>
+    </view>
+    <button class='show-nav-btn {{isShowNavView && "active"}}' formType="submit" data-event="toggleNavView" hover-class='none' wx:if="{{hasNavView}}"></button>
+  </view>
+</template>
+
+<!--顶部导航-->
+<template name="top-nav">
+  <view class="header" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+    <view class='header-wrap top-nav {{addClass}}'>
+    <button formType="submit" data-event="navSwitch" hover-class='none' wx:for="{{navArr}}" wx:key="{{index}}" data-index="{{index}}" class="{{currentIndex == index && 'active'}}">
+      <image wx:if="{{item.icon}}" src='{{item.icon}}'></image>
+      <text>{{item.CategoryTitle}}</text>
+    </button>
+    </view>
+  </view>
+</template>
+
+<!--顶部导航2-->
+<template name="base-top-nav">
+  <view class="base-top-nav {{class || ''}}" style='margin-top:{{suspensionInfo.statusBarHeight}}px'>
+    <button formType="submit" data-event="navSwitch" hover-class='none' wx:for="{{navArr}}" wx:key="{{index}}" data-index="{{index}}" class="{{currentIndex == index ? 'active' : ''}}">
+       <!-- <image wx:if="{{item.icon}}" src='{{item.icon}}'></image>  -->
+      <text>{{item.CategoryTitle}}</text>
+    </button>
+  </view>
+</template>
+
+
+
+<!-- 顶部进入搜索按钮 -->
+<template name="top-enter-search-btn">
+  <view class="search-wrap add-bg">
+    <button formType="submit" class="search-box" data-event="toSearch">{{placehold || '搜索你想要的壁纸'}}</button>
+     <button hover-class="none" formType="submit" open-type="share" class='search-share'>分享</button>  
+  </view>
+</template>
+
+
+<!-- 顶部搜索 -->
+<template name="header-search">
+    <view class="header pr200" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+      <view class='header-wrap'>
+        <button hover-class="none" class="header-share" open-type="share" wx:if="{{!isBack}}">分享</button>
+        <button class='back-btn' data-event="back" formType="submit" hover-class='none' wx:elif="{{!suspensionInfo.isShareEntry}}"></button>
+        <button class='home' data-event="entryIndexHandle" formType="submit" hover-class='none' wx:else>首页</button>
+        <button formType="submit" class="search-btn" data-event="toSearch">
+            <view></view>
+            <text>{{placehold || '搜索壁纸'}}</text>
+        </button>
+      </view>
+    </view>
+</template>
+
+
+<!-- 悬浮按钮 -->
+<template name="suspension">
+  <view class="suspension-btn">
+    <button class="backTop circle" data-event="backTop" formType="submit" hidden="{{isHideBackTop}}"></button>
+    <button hover-class="none" class="share" open-type="share" wx:if="{{!isHideShare}}"></button>
+  </view>
+</template>
+  <!-- module.exports.indexEntry = function(suspensionPage) {//右上角不需要不需要分享的页面
+     return 'index,category,commentList,preview,albumDetail,search,topicDetail,avatarEmote,original,albumList,categoryList,chatBg,authors,userHome,'.indexOf(suspensionPage + ',') === -1
+  }; -->
+<wxs module="suspensionFn">
+  module.exports.bottomNavInclude = function(suspensionPage) {//底部需要首页及分享的页面
+     return 'authors,search,avatarEmote,categoryList,chatBg,original,albumList,wonderfulTopic,'.indexOf(suspensionPage + ',') !== -1
+  };
+
+  module.exports.topTitle = function(suspensionPage) {//顶部标题不需要
+     return 'index,category,avatarEmote,categoryList,albumList,authors,search,myPublish,downloadList,userHome,authorHome,collectList,'.indexOf(suspensionPage + ',') === -1
+  };
+</wxs>
+
+<!-- 悬浮相关 -->
+<template name="suspension-container">
+  <view class="suspension-btn">
+    <button class="backTop circle" hover-class="none" data-event="backTop" formType="submit" hidden="{{isHideBackTop}}"></button>
+    <button hover-class="none" class="share" open-type="share" wx:if="{{!isHideShare}}"></button>
+    <view class='suspension-ad' wx:if="{{suspensionInfo.ad && suspensionAd.adList && suspensionAd.adList.length > 0}}">
+        <template is="multi-fn-btn" data="{{adData:suspensionAd.adList,switchTime:suspensionAd.SwitchTime,template:'img-view'}}" />
+        <button class="close-suspension-ad" data-event="closeSuspensionAd" formType="submit"></button>
+    </view> 
+  </view>
+  <!-- <button class="indexEntry" hover-class='none' data-event="entryIndexHandle" formType="submit" wx:if="{{suspensionInfo.isShareEntry && suspensionFn.indexEntry(suspensionPage)}}"></button> -->
+
+  <view class="noNetWorkPage" wx:if="{{!suspensionInfo.netWork}}">
+    <image src="/res/noWork.png" mode="aspectFill" />
+    <text>网络无法连接，请刷新重试</text>
+    <view class="button" catchtap="reTry">刷新网络</view>
+  </view>
+  <!-- 排序 -->
+  <block wx:if="{{suspensionFn.bottomNavInclude(suspensionPage)}}">
+    <view class="bottom-nav-container"  >
+        <button formType="submit" hover-class="none" data-event="entryIndexHandle">
+            <image src='https://minibizhi.313515.com/BiZhiStatic/icon-bottom-nav-home.svg'></image>
+            <text>首页</text> 
+        </button>
+        <button formType="submit" hover-class="none" data-event="toggleSelected" wx:if="{{suspensionInfo.isSelectedNav!= undefined}}">
+            <image src='https://minibizhi.313515.com/BiZhiStatic/icon-all-bottom-order.svg'></image>
+            <text>{{suspensionInfo.selectedNavItems[suspensionInfo.currentNavIndex]}}</text> 
+        </button>
+        <button hover-class="none" formType="submit" open-type="share">
+            <image src='https://minibizhi.313515.com/BiZhiStatic/icon-bottom-nav-share.svg'></image>
+            <text>分享</text>
+        </button>
+    </view>
+    <button class='order-mask' formType="submit" hover-class="none" data-event="toggleSelected" wx:if="{{suspensionInfo.isSelectedNav}}"></button>
+    <view class='order-select-btns {{suspensionInfo.isSelectedNav ? "active" : ""}}' style='height:{{suspensionInfo.selectedNavItems.length * 85}}rpx'>
+        <view class='order-select-wrap'>
+            <button wx:for="{{suspensionInfo.selectedNavItems}}" wx:key="{{index}}" formType="submit" data-event="navItemSelected" class='{{suspensionInfo.currentNavIndex === index ? "active" : ""}}' hover-class='none' data-index="{{index}}">{{item}}</button>        
+        </view>
+    </view>
+  </block>
+  
+  <view class='header {{suspensionInfo.isNavBack && !suspensionInfo.isShareEntry ? " pr86" : ""}}' wx:if="{{suspensionFn.topTitle(suspensionPage)}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+      <view class='header-wrap'>
+      <button class='back-btn' data-event="back" formType="submit" hover-class='none' wx:if="{{suspensionInfo.isNavBack && !suspensionInfo.isShareEntry}}"></button>
+      <view class='header-title'>{{suspensionInfo.title}}</view>
+      </view>
+  </view>
+
+</template>
+<template name="header-back">
+  <view class="header-back" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+    <view class='header-back-wrap'>
+      <button class='back-btn {{class || ""}}' data-event="back" formType="submit" hover-class='none' wx:if="{{!suspensionInfo.isShareEntry}}"></button>
+      <button class='home {{class || ""}}' data-event="entryIndexHandle" formType="submit" hover-class='none' wx:else>首页</button>
+    </view>
+  </view>
+</template>
+
+
+<!--无网络-->
+<template name="noNetWorkPage">
+  <view class="noNetWorkPage" wx:if="{{!netWork}}">
+    <image src="/res/noWork.png" mode="aspectFill" />
+    <text>网络无法连接，请刷新重试</text>
+    <view class="button" catchtap="reTry">刷新网络</view>
+  </view>
+</template>
+
+<!--删除控制-->
+<template name="delete-ctrl">
+  <view class="delete-box" wx:if="{{isShowDelete !== undefined ? isShowDelete : baseDatas[currentIndex].dataList.length != 0}}">
+    <view class="delete-ctrl" hidden="{{!isOpenDelete}}">
+      <view class="delete-cancle" bindtap="deleteCancle">取消</view>
+      <view class="delete-submit" bindtap="deleteSubmit">删除</view>
+    </view>
+    <view class="delete-entry" wx:if="{{!isOpenDelete}}" bindtap="openDelete"></view>
+  </view>
+</template>
+
+
+
+
+<!-- 评论列表 -->
+<template name="comment-list">
+  <view class="comment-list-wrap" wx:if="{{isShowInput}}">
+    <view class="comment-title" wx:if="{{title}}">{{title}}评论</view>
+    <view class="comment-list-item" wx:for="{{commentArrs || baseData.dataList}}" wx:key="{{index}}">
+      <button class='left-avatar' data-event="toPage" data-page="userHome" formType="submit" hover-class='none' data-userid="{{item.UserObject.userID}}">
+        <image src="{{item.UserObject.avatarUrl}}" mode="aspectFill"/>
+      </button>
+      <view class='right-content'>
+          <view class='top'>
+            <button class='top-left' data-event="toPage" data-page="userHome" formType="submit" hover-class='none' data-userid="{{item.UserObject.userID}}">
+              <text>{{item.UserObject.nickName || '游客'}}</text>
+              <text>{{item.CommentDate}}</text>
+            </button>
+            <button class="top-center" data-event="commentHandle" formType="submit" data-index="{{index}}" hover-class='none' wx:if="{{isLogin}}" data-commentid="{{item.CommentID}}" data-nickname="{{item.UserObject.nickName || '游客'}}" data-userid="{{item.UserObject.userID}}" data-content="{{item.Content}}">
+                <image src="https://minibizhi.313515.com/BiZhiStatic/comment-icon-reply.svg" mode="aspectFill" />
+                <text>回复</text>
+              </button>
+              <button class="top-center" data-callback="commentHandle.auto" bindgetuserinfo="login" open-type="getUserInfo" data-index="{{index}}" hover-class='none' data-commentid="{{item.CommentID}}" nickname="{{item.UserObject.nickName || '游客'}}" data-userid="{{item.UserObject.userID}}" wx:else>
+                <image src="https://minibizhi.313515.com/BiZhiStatic/comment-icon-reply.svg" mode="aspectFill" />
+                <text>回复</text>
+              </button>           
+
+            <button class="top-right" data-event="thumbUp" formType="submit" data-index="{{index}}" hover-class='none' wx:if="{{isLogin}}" data-commentid="{{item.CommentID}}" data-likecount="{{item.LikeCount}}" data-ispraise="{{item.IsPraise}}" data-listname="{{listName || 'dataList'}}">
+              <text style="{{item.IsPraise && 'color: #2E93C4'}}">{{item.LikeCount}}</text>
+              <image src="https://minibizhi.313515.com/BiZhiStatic/{{item.IsPraise ? 'thumb-up-active':'thumb-up'}}.svg" mode="aspectFill" />
+            </button>
+            <button class="top-right" data-callback="thumbUp.auto" bindgetuserinfo="login" open-type="getUserInfo" data-index="{{index}}" hover-class='none' data-commentid="{{item.CommentID}}" data-likecount="{{item.LikeCount}}" data-ispraise="{{item.IsPraise}}" data-listname="{{listName || 'dataList'}}" wx:else>
+              <text style="{{item.IsPraise && 'color: #2E93C4'}}">{{item.LikeCount}}</text>
+              <image src="https://minibizhi.313515.com/BiZhiStatic/{{item.IsPraise ? 'thumb-up-active':'thumb-up'}}.svg" mode="aspectFill" />
+            </button>
+          </view>
+          <view class='center'>
+            <text wx:if="{{item.ReplyComment}}">回复<text class='blue'>@{{item.ReplyComment.ReplyNickName || '游客'}}：</text></text><text>{{item.Content}}</text>
+          </view>
+          <view class='bottom' wx:if="{{item.ReplyComment}}">
+              <text class='blue'>{{item.ReplyComment.ReplyNickName || '游客'}}：</text>
+              <text>{{item.ReplyComment.ReplyContent}}</text>
+          </view>
+      </view>
+
+    </view>
+    <view class="loading" wx:if="{{baseData && baseData.LoadingText !== undefined && baseData.dataList.length > 0}}">{{baseData.LoadingText}}</view>
+    <view class="no-comment-tip" wx:if="{{totalCount === 0 || baseData && baseData.dataList.length === 0}}">{{'就等你发表看法了~'}}</view> 
+  </view>
+  <button wx:if="{{totalCount > (threshold || 50) && !baseData}}" data-event="moreComment" class="more-comment" formType="submit" hover-class="none">查看全部{{title || '最新'}}评论 ></button>
+</template>
+
+
+<!-- 评论框 -->
+<template name="comment-input">
+  <view class="comment-input" wx:if="{{isShowInput}}">
+    <button bindtap="commentHandle" hover-class="none" class="comment-input-btn">说说你的想法吧！</button>
+    <button data-event="moreComment" formType="submit" hover-class="none" class="comment-input-more">
+      <image src="https://minibizhi.313515.com/BiZhiStatic/icon-commet-count.svg" mode="aspectFill" />
+      <text>{{totalCount}}</text>
+    </button>
+  </view>
+</template>
+
+
+
+<template name="comment-textarea">
+  <view class="comment-textarea-wrap" hidden="{{!isShowTextArea}}">
+    <view class="comment-textarea-btn">
+      <button class="cancle" bindtap='cancle' hover-class='none'>取消</button>
+      <view>{{commentPlaceholder === "说说你的想法吧" ? "评论" : "回复评论"}}</view>
+      <button class="publish {{!isTextAreaEmpty && 'blue'}}" disabled="{{isTextAreaEmpty}}" bindtap="publish" hover-class='none' wx:if="{{isLogin}}">发表</button>
+      <button bindgetuserinfo="login" data-callback="publish.auto" disabled="{{isTextAreaEmpty}}" wx:else open-type="getUserInfo" hover-class="none" class="publish {{!isTextAreaEmpty && 'blue'}}">
+        发表
+      </button>
+    </view>
+    <textarea placeholder="{{commentPlaceholder}}" fixed="true" focus="{{textAreaFocus}}" maxlength="500" bindinput="textareaIphut" value="{{textareaVal}}" />
+  </view>
+</template>
+
+
+
+<!-- 粉丝列表 -->
+<template name="fans-list">
+  <view class="data-list-box fans-list">
+    <view class="data-list-column-view">
+      <view class='user-info-wrap bottom-border' wx:for="{{baseData.dataList}}" wx:key="{{index}}">
+        <button formType="submit" data-page="userHome" data-event="toPage" hover-class='none' class='userInfo' data-userid="{{item.UserID}}">
+          <image src="{{item.AvatarUrl || 'https://minibizhi.313515.com/BiZhiStatic/default.svg'}}" mode="aspectFill" />
+          <view>
+            <text>{{item.NickName || '游客'}}</text>
+          </view>
+        </button>
+        <button formType="submit" data-event="attention" hover-class='none' class='attention-btn' data-index="{{index}}" wx:if="{{!hideAttention}}" data-status="{{item.isAttention==0 ? '关注' : '取消关注'}}">
+          <image src="https://minibizhi.313515.com/BiZhiStatic/{{item.IsAttention==0?'attention.svg':'attention-active.svg'}}" mode="widthFix" />
+        </button>
+      </view>
+    </view>
+    <view class="loading" wx:if="{{baseData.LoadingText}}">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </button>
+  </view>
+</template>
+
+<!-- 关注列表 -->
+<template name="attention-list">
+  <view class="data-list-box attention-list">
+    <view class="data-list-column-view">
+      <view class='user-info-wrap bottom-border' wx:for="{{baseData.dataList}}" wx:key="{{index}}">
+        <button formType="submit" data-event="toPage" data-page="userHome" hover-class='none' class='userInfo' data-userid="{{item.UserID}}">
+          <image src="{{item.AvatarUrl || 'https://minibizhi.313515.com/BiZhiStatic/default.svg'}}" mode="aspectFill" />
+          <view>
+            <text>{{item.NickName || '游客'}} </text>
+            <text>关注了你</text>
+          </view>
+        </button>
+        <view class='attention-time'>{{item.CreateDate}}</view>
+      </view>
+    </view>
+    <view class="loading" wx:if="{{baseData.LoadingText}}">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </button>
+  </view>
+</template>
+
+<!-- 评论我的列表 -->
+
+<template name="comment-me-list">
+  <view class="data-list-box comment-me-list">
+    <view class="data-list-column-view">
+      <view class='comment-me-list-item bottom-border' wx:for="{{baseData.dataList}}" wx:key="{{index}}">
+        <template is="user-view" data="{{AvatarUrl:item.AvatarUrl,NickName:item.NickName,CreateDate:item.CreateDate,userid:item.OperationUserID,isLogin,login}}" />
+        <button class='comment-wrap' formType="submit" data-event="toCommentPage" hover-class='none' data-index='{{index}}'>
+          <view class='comment-content'>{{item.Content}}</view>
+          <view class='comment-target'>
+            <image src="{{item.TopicPartPicResultInfoList[0].Thumb}}" wx:if="{{item.TopicPartPicResultInfoList[0].Thumb}}" mode="aspectFill" />
+            <text wx:if="{{item.PartTitle}}">{{item.PartTitle}}</text>
+          </view>
+        </button>
+      </view>
+    </view>
+    <view class="loading" wx:if="{{baseData.LoadingText}}">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </button>
+  </view>
+</template>
+<!-- 赞我的列表 -->
+<template name="thump-up-me-list">
+  <view class="data-list-box thump-up-me-list">
+    <view class="data-list-column-view">
+      <view class='comment-me-list-item bottom-border' wx:for="{{baseData.dataList}}" wx:key="{{index}}">
+        <template is="user-view" data="{{AvatarUrl:item.AvatarUrl,NickName:item.NickName,CreateDate:item.CreateDate,userid:item.OperationUserID,isLogin,login}}" />
+        <button class='comment-wrap' formType="submit" data-event="toThumpUpPage" hover-class='none' data-index='{{index}}'>
+          <!-- <view class='comment-content'>{{item.Content}}</view> -->
+          <view class='comment-target'>
+            <image src="{{item.TopicPartPicResultInfoList[0].Thumb}}" wx:if="{{item.TopicPartPicResultInfoList[0].Thumb}}" mode="aspectFill" />
+            <text wx:if="{{item.Content}}">{{item.Content}}</text>
+          </view>
+        </button>
+      </view>
+    </view>
+    <view class="loading" wx:if="{{baseData.LoadingText}}">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </button>
+  </view>
+</template>
+
+
+<!-- 精彩话题列表 -->
+<template name="wonderful-topic-list">
+  <view class="data-list-box wonderful-topic-list">
+    <view class="data-list-column-view">
+      <button formType="submit" data-event="toTopicDetail" class='wonderful-topic-list-item' wx:for="{{baseData.dataList}}" wx:key="{{item.PartID}}" data-index="{{index}}">
+        <view class='top'>
+          <view class='single-ellipsis'>#{{item.TopicTitle}}#</view>
+          <image src='https://minibizhi.313515.com/BiZhiStatic/pureListPage-eye.svg'></image>
+          <text>{{item.ViewCount}}</text>
+          <image src='https://minibizhi.313515.com/BiZhiStatic/pureListPage-photo-count.svg'></image>
+          <text>{{item.PhotoCount}}</text>
+        </view>
+        <image src='{{item.TopicIcon}}' mode='aspectFill'></image>
+      </button>
+    </view>
+    <view class="loading" wx:if="{{baseData.LoadingText}}">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </button>
+  </view>
+</template>
+
+
+
+
+<!-- 活动话题列表 -->
+<template name="activity-topic-list">
+  <view class="data-list-box activity-topic-list" style='padding-top:{{baseData.paddingTop}}px'>
+    <view class="data-list-column-view">
+      <view wx:for="{{baseData.dataList}}" wx:key="{{item.TopicID}}" class='activity-topic-list-item {{index % baseData.every ===0 ? "benchmark"+ baseData.listIndex : "" }}' wx:if="{{index>=baseData.beforeIndex && index<baseData.afterIndex}}">
+        <button formType="submit" data-event="toTopicDetail"  data-topicid="{{item.TopicID}}" class='top'>
+            <image src='{{item.TopicIcon}}' class='bg'></image>
+            <view class='title'>#{{item.TopicTitle}}#</view>
+            <view class='counts'>
+              <view>
+                <image src="https://minibizhi.313515.com/BiZhiStatic/topicDetail-icon-eye.svg" mode="widthFix" />
+                <text>{{item.BrowseCount != undefined ?item.BrowseCount:item.ViewCount}}</text>
+              </view>
+              <view>
+                <image src="https://minibizhi.313515.com/BiZhiStatic/topicDetail-icon-join.svg" mode="widthFix" />
+                <text>{{item.PartakeCount != undefined ? item.PartakeCount : item.PhotoCount}}参与</text>
+              </view>
+            </view>
+            <view class='logos' wx:if="{{item.CategoryTypeID==3}}">
+                <image src='{{item.BrandIcon}}' class='logo'></image>
+                <image src='https://minibizhi.313515.com/BiZhiStatic/topicDetail-icon-x-white.svg' class='x'></image>
+                <image src='{{item.OfficialIcon}}' class='logo'></image>            
+            </view>
+        </button>
+        <view data-event="toPage" data-page="intro" data-index="{{index}}" class='bottom'  data-brandid="{{item.BrandID}}">
+            <view wx:if="{{item.CategoryTypeID==3}}">品牌活动</view>
+            <view wx:elif="{{item.CategoryTypeID==2}}" class='bgyellow'>活动</view>
+            <view wx:else class='bgblue'>精彩话题</view>
+            <view class='empty'></view>
+            <view class='status' wx:if="{{item.CategoryTypeID != 1}}">
+                <text>{{item.activityState1}}</text>
+                <text wx:if="{{item.activityState2}}"><text  class='color'>{{item.activityState2}}</text>天</text>
+            </view>
+        </view>        
+      </view>
+    </view>
+    <view class="loading" wx:if="{{baseData.LoadingText}}">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </button>
+  </view>
+</template>
+
+
+<template name="follow-nav">
+  <view class='follow-nav-container'>
+    <view class="follow-nav-wrap">
+      <view class='nav-title'>{{title || '所有参与'}}</view>
+      <button class='nav-order {{suspensionInfo.isSelectedNav && "active"}}' formType="submit" data-event="toggleSelected" hover-class='none'>{{suspensionInfo.selectedNavItems[suspensionInfo.currentNavIndex]}}</button>
+      <view class='select-nav-item-view {{suspensionInfo.isSelectedNav && "active"}}'>
+        <view class='select-nav-item-wrap'>
+          <button class='select-item' wx:for="{{suspensionInfo.selectedNavItems}}" wx:key="{{index}}" formType="submit" data-event="navItemSelected" hover-class='none' data-index="{{index}}">{{item}}</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!-- 海报弹窗 -->
+<template name="poster-popup">
+    <view class='poster-container popup-container mask flexHV' wx:if="{{isShowPoster}}">
+        <view class='poster'>
+          <image wx:if="{{poster}}" src='{{poster}}'></image>
+        </view>
+        <text wx:if="{{!isClose}}">保存后可分享朋友圈</text>
+        <text wx:else></text>
+        <view class='poster-btn flexV'>
+            <button formType="submit" hover-class="none" data-event="closePoster">取消</button>
+            <button formType="submit" hover-class="none" data-event="savePoster">保存</button>
+        </view>
+    </view>
+    
+</template>

@@ -1,0 +1,18 @@
+<!--pages/commentList/commentList.wxml-->
+<import src="../../utils/tpl.wxml" />
+<form class="search-form {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+  <view class="container header-seize {{isShowInput && 'active'}}">
+    <scroll-view scroll-y bindscrolltolower="onReachBottom_" lower-threshold="150" enable-back-to-top scroll-top="{{baseData.scollTop}}" bindscroll="onPageScroll_">
+      <!-- 评论列表 -->
+      <template is="comment-list" data="{{baseData,totalCount,isShowInput,isLogin,login}}" />
+      <!-- 悬浮按钮 -->
+      <!-- <template is="suspension" data="{{isHideBackTop,isHideShare:'true'}}" /> -->
+    </scroll-view>
+    <template is="comment-input" data="{{totalCount,isShowTextArea,isShowInput,isLogin,commentHandle,login}}" />
+    <template is="comment-textarea" data="{{isShowTextArea,textAreaFocus,textareaIphut,isTextAreaEmpty,cancle,publish,textareaVal,login,isLogin,commentPlaceholder}}" />
+  </view>
+    <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'commentList',isHideBackTop,reTry,isHideShare:true}}" />
+
+</form>
+
+ 

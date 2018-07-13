@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+  <defs>
+    <circle id="加v-a" cx="8" cy="8" r="8"/>
+    <polygon id="加v-d" points="3 4 3 5.5 4 5.5 9 13 13 5.5 14 5.5 14 4 12 4 9.5 9 6.5 4"/>
+    <filter id="加v-c" width="118.2%" height="144.4%" x="-9.1%" y="-11.1%" filterUnits="objectBoundingBox">
+      <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feColorMatrix in="shadowOffsetOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.302507926 0"/>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(1 1)">
+    <mask id="加v-b" fill="#fff">
+      <use xlink:href="#加v-a"/>
+    </mask>
+    <circle cx="8" cy="8" r="8.5" stroke="#FFF"/>
+    <g mask="url(#加v-b)">
+      <use fill="#000" filter="url(#加v-c)" xlink:href="#加v-d"/>
+      <use fill="#FFF" xlink:href="#加v-d"/>
+    </g>
+  </g>
+</svg>

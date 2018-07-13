@@ -1,0 +1,237 @@
+<!--preview.wxml-->
+<import src="../../utils/tpl.wxml" />
+
+<!-- 引导图 -->
+<template name="guide">
+    <view class='guide-container popup-container' wx:if="{{!isHideGuide}}">
+        <button formType="submit" hover-class="none" data-event="guideNext" class='mask' ></button>
+        <view class='guide guide1 flexHV'>
+            <text>分享好友或者群</text>
+            <text>免费下载原创专栏壁纸</text>
+            <view class='img'>
+                <image mode='widthFix' src="http://filebz001.313515.com/g2/M00/81/3D/EScAAFj3Ab6Absi2ABPFUaaIA1Y782_300x533.jpg"></image>
+                <image src='https://minibizhi.313515.com/BiZhiStatic/icon-preview-guide2.svg'></image>
+            </view>
+            <text>原价：￥1.00</text>
+            <view class='highLighter'>
+               <view >
+                  <image src='https://minibizhi.313515.com/BiZhiStatic/icon-bottom-nav-share.svg'></image>
+                  <text>分享</text>
+                </view>
+            </view>
+            <image class='guide-pointer' src='https://minibizhi.313515.com/BiZhiStatic/icon-preview-guide1.svg'></image>
+
+        </view>
+
+    </view>
+</template>
+
+
+<!-- 预览页悬浮广告 -->
+<template name="preview-suspension-ad">
+    <view class='suspension-ad' wx:if="{{suspensionInfo.ad && suspensionAd.adList && suspensionAd.adList.length > 0}}">
+        <template is="multi-fn-btn" data="{{adData:suspensionAd.adList,switchTime:suspensionAd.SwitchTime,template:'img-view'}}" />
+        <button class="close-suspension-ad" data-event="closeSuspensionAd" formType="submit"></button>
+    </view> 
+</template>
+
+<!-- 底部导航 -->
+<template name="preview-buttom-nav">
+    <view class="bottom-nav-container" wx:if="{{!noBuy}}">
+        <button formType="submit" hover-class="none" data-event="entryIndexHandle" class="btn-home btn">
+            <image src='https://minibizhi.313515.com/BiZhiStatic/icon-bottom-nav-home.svg'></image>
+            <text>首页</text> 
+        </button>
+        <button formType="submit" hover-class="none" data-event="collectHandle" class="btn-collect btn">
+            <image src='https://minibizhi.313515.com/BiZhiStatic/icon-bottom-nav-collect{{isCollected ? "-active" : ""}}.svg'></image>
+            <text style='{{isCollected ? "color: #F32B2B;": ""}}'>{{collectTxt}}</text> 
+        </button>
+        <button formType="submit" hover-class="none" data-event="downloadInit" class="btn-download btn">
+            <view></view>
+            <image src='https://minibizhi.313515.com/BiZhiStatic/icon-preview-download.svg'></image> 
+            <text>下载</text> 
+        </button>
+        <button formType="submit" hover-class="none" data-event="openPoster">
+            <image src='https://minibizhi.313515.com/BiZhiStatic/icon-all-poster.svg'></image>
+            <text>海报</text> 
+        </button> 
+        <button hover-class="none" class="btn-share btn" open-type="share" data-type="2">
+            <image src='https://minibizhi.313515.com/BiZhiStatic/icon-bottom-nav-share.svg'></image>
+            <text>分享</text>
+        </button>
+    </view>
+
+    <view class="open-buy-btn-box {{isShareUnlock ? 'shareUnlock' : ''}}" wx:else>
+        <button open-type='share' data-type="1" wx:if="{{isShareUnlock}}">
+            <image src="https://minibizhi.313515.com/BiZhiStatic/icon-preview-unlock-share.svg" />
+            <text>分享解锁</text>
+        </button>
+        <!-- <button formType="submit" hover-class="none" data-event="openBuyPanel">
+            <image src="https://minibizhi.313515.com/BiZhiStatic/icon-preview-unlock-reward.svg" />
+            <text>赞赏解锁</text>
+        </button> -->
+    </view>
+</template>
+<!-- 头像表情预览 -->
+<template name="preview-avatar-emote">
+  <swiper duration="300" class="swiper-preview" bindchange="change" current="{{currentIndex}}" >
+    <swiper-item wx:for="{{baseData.dataList}}" wx:key="{{item.PicInfoID}}" class="avatar-emote-preview flexHV">
+        <image src="{{item.Image}}" class="preview-image" mode="widthFix" data-index="{{index}}" bindtap="previewImage" />
+    </swiper-item>
+  </swiper>
+</template>
+<!-- 壁纸预览 -->
+<template name="preview-wallpaper">
+  <swiper duration="300" class="swiper-preview" bindchange="change" current="{{currentIndex}}" >
+    <swiper-item wx:for="{{baseData.dataList}}" wx:key="{{item.PicInfoID}}">
+      <scroll-view scroll-y >
+         <view class='preview-box'>
+            <image src="{{item.ThumbImage}}" class="preview-image" mode="widthFix" wx:if="{{!loadedArr[index] && !item.hideThumbImage}}" />
+            <image src="{{item.Image || item.ThumbImage}}" class="preview-image" mode="widthFix" data-index="{{index}}" bindtap="previewImage" bindload="loadedHandle" binderror="loadedHandle" hidden="{{!loadedArr[index]}}" wx:if="{{loadingArr[index]}}" />
+            <image src="{{item.StyleImg}}" wx:if="{{item.CategoryID}}" class="wallPapermask" mode='widthFix'/>
+            <image src="https://minibizhi.313515.com/BiZhiStatic/loading.svg" wx:if="{{!loadedArr[index]}}" class="loading" />
+            <view wx:if="{{item.PriceType == 0}}" class='cite' bindlongpress="longpressHandle">图片来源于网友上传</view>
+            <view class='labels'>
+                
+            </view>
+          </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+</template>
+
+
+<!-- 海报弹窗 -->
+<template name="poster-popup">
+    <view class='poster-container popup-container mask flexHV' wx:if="{{isShowPoster}}">
+        <view class='poster'>
+          <image wx:if="{{poster}}" src='{{poster}}'></image>
+        </view>
+        <text wx:if="{{!isClose}}">保存后可分享朋友圈</text>
+        <text wx:else></text>
+        <view class='poster-btn flexV'>
+            <button formType="submit" hover-class="none" data-event="closePoster">取消</button>
+            <button formType="submit" hover-class="none" data-event="savePoster">保存</button>
+        </view>
+    </view>
+</template>
+
+<!-- 分享奖励弹窗 -->
+<template name="share-reward-popup">
+    <view class='share-reward-popup popup-container mask flexHV' wx:if="{{show}}">
+        <view class='bg'>
+          <image src='../../res/share-reward-bg.png' mode='widthFix'></image>
+          <image wx:if="{{ThumbImage || Image}}" src='{{ThumbImage || Image}}'></image>
+        </view>
+        <!-- <image></image> -->
+        <button formType="submit" hover-class="none" data-event="clickReceive" class='btn-down flexHV'>
+            <text>点击领取</text>
+            <text>原价：￥{{PriceType}}</text>
+        </button>
+        <view class='tip'>今日领取次数剩余{{remain}}次</view>
+        <button formType="submit" hover-class="none" data-event="closeRewardPopup" class='btn-close'>
+            <image src='https://minibizhi.313515.com/BiZhiStatic/icon-preview-share-reward-close.svg'></image>
+        </button>
+    </view>
+</template>
+
+<!-- 成功提示弹窗 -->
+<template name="success-popup">
+    <view class='success-container' style="{{isShowSuccess ? 'transform:translate(0)' : 'transform:translate(100%)' }}">
+       <button formType="submit" hover-class="none" data-event="closeSuccessTip" class='mask' ></button>
+       <view class='body' style='{{successWidth ? "width:"+successWidth+"px" : ""}}'>
+          <view class='title'>{{successText}}成功</view>
+          <view class='ad-border'>广告轻悄悄</view>
+          <block wx:if="{{appid == 0}}">
+            <view class='ad1 flexH' wx:if="{{adSwitchFlag}}" wx:key="ad1">
+              <ad unit-id="adunit-4fc69594a8ea4ad6" class="ad-view"></ad>
+            </view>
+            <view class='ad2 flexH'  wx:if="{{!adSwitchFlag}}" wx:key="ad2">
+              <ad unit-id="adunit-2a311d7db17a507d" class="ad-view"></ad>
+            </view>
+          </block>
+          <block wx:if="{{appid == 2}}">
+            <view class='ad1 flexH' wx:if="{{adSwitchFlag}}" wx:key="ad1">
+              <ad unit-id="adunit-ddf6172514db6608" class="ad-view"></ad>
+            </view>
+            <view class='ad2 flexH'  wx:if="{{!adSwitchFlag}}" wx:key="ad2">
+              <ad unit-id="adunit-ea667d82f60ee1f6" class="ad-view"></ad>
+            </view>
+          </block>
+          <button formType="submit" hover-class="none" data-event="closeSuccessTip" class="success-ad-close">
+          </button>
+       </view>
+    </view>
+</template>
+
+<!-- 免费次数解锁弹窗 -->
+<template name="free-unlock-popup">
+    <view class='free-unlock-popup' wx:if="{{isShowFreeUnlock}}">
+        <button formType="submit" hover-class="none" data-event="closeFreeUnlock" class='wallPapermask'></button>
+        <view class='body'>
+          <view class='title'>分享好心情</view>
+          <view class='tip'>今日免费{{freeCount}}次下载已用完，转发壁纸精选小程序后即可无限次下载壁纸</view>
+          <button open-type='share' data-type="0" class='share-unlock'>
+              <image src="https://minibizhi.313515.com/BiZhiStatic/icon-preview-unlock-share.svg" />
+              <text>分享解锁</text>
+          </button>
+        </view>
+    </view>
+</template>
+
+
+
+
+<form class="search-form {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}">
+
+    <template is="{{suffix === 'bz'?'preview-wallpaper':'preview-avatar-emote'}}" data="{{baseData,currentIndex,loadedArr,previewImage,loadingArr}}"/>
+    <template is="preview-buttom-nav" data="{{noBuy,isCollected,collectTxt,isShareUnlock}}"/>
+
+    <template is="poster-popup" data="{{isShowPoster,poster,collectTxt,isClose}}"/>
+    <template is="share-reward-popup" data="{{...rewardWallPaper}}"/>
+    <template is="success-popup" data="{{isShowSuccess,successText,suffix,adSwitchFlag,successWidth,appid}}"/> 
+    <template is="free-unlock-popup" data="{{isShowFreeUnlock,freeCount}}"/> 
+
+    <view class="buyPanel-container" hidden="{{isHideBuyPanel}}">
+        <view class="buyPanel">
+            <image src="https://minibizhi.313515.com/BiZhiStatic/icon-close.svg" catchtap="closeBuyPanel" class="closeBuyPanel" />
+            <image src="{{AuthorAvatar}}" class="author-image" />
+            <text class="author-nickName">{{AuthorName}}</text>
+            <view class="copyright">
+                应版权方要求不能免费下载，可通过以下方式获得：
+                <image src="https://minibizhi.313515.com/BiZhiStatic/icon-copyright.svg" />
+            </view>
+            <button formType="submit" hover-class="none" data-event="pay" class="pay-btn">
+                赞赏 ¥{{PriceType}}
+            </button>
+            <text class="tip">支持原创，原创作者会收到您的全额赞赏</text>
+        </view>
+    </view>
+
+    <view class='p-ad' hidden='{{!is_p_ad_show}}'>
+        <view class='p-ad-content'>
+            <text>今日免费{{limitCount}}张下载已用完</text>
+            <text>点击广告后可无限次下载壁纸</text>
+            <view class='p-ad-view' bindtap='setVip'>
+                <view class='p-ad-wrap'>
+                   <ad wx:if="{{adid}}" unit-id="{{adid}}"></ad> 
+                </view>
+                 <view class='p-ad-btn'>
+                  <image src="https://minibizhi.313515.com/BiZhiStatic/icon-lock.svg" />
+                  <text>点击广告解锁</text>
+                </view> 
+            </view>
+            <image src="https://minibizhi.313515.com/BiZhiStatic/preview-p-ad-close.svg" bindtap='close_p_ad'/>
+        </view>
+        <view class='p-ad-mask mask' bindtap='close_p_ad'></view>
+    </view>
+
+    
+
+    <image class='toINOTCH-btn' bindtap='toINOTCH' src="https://minibizhi.313515.com/BiZhiStatic/toINOTCH-btn.png" wx:if="{{isShow2INOTCH}}"></image>
+    <template is="guide" data="{{isHideGuide}}"/>
+    <template is="header-back" data="{{suspensionInfo,class:'white'}}"/>
+    <template is="preview-suspension-ad" data="{{suspensionInfo,suspensionAd}}"/>
+    <canvas canvas-id="myCanvas" class='myCanvas'/>
+</form>
+

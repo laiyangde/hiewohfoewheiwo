@@ -1,0 +1,162 @@
+/* pages/pureListPage/pureListPage.wxss */
+.indexEntry{
+  top: 40rpx;
+}
+.fans-list .data-list-column-view, .attention-list .data-list-column-view {
+  padding-left: 30rpx;
+}
+
+.attention-list .userInfo text {
+  display: inline;
+  font-size: 28rpx;
+}
+
+.fans-list .attention-btn {
+  margin-right: 30rpx;
+}
+
+.attention-list .user-info-wrap .userInfo text,
+.fans-list .user-info-wrap .userInfo text {
+  font-size: 28rpx;
+}
+
+.bottom-border {
+  position: relative;
+}
+
+.bottom-border::after {
+  display: block;
+  content: '';
+  width: 624rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.attention-time {
+  font-size: 22rpx;
+  color: #949494;
+  display: flex;
+  align-items: center;
+  margin-right: 30rpx;
+}
+
+.comment-me-list-item {
+  padding-left: 30rpx;
+  padding-bottom: 40rpx;
+  position: relative
+}
+
+.thump-up-me-list .comment-me-list-item::before{
+  content: '+1';
+  display: block;
+  position: absolute;
+  font-size: 24rpx;
+  color: #2E93C4;
+  line-height:33rpx;
+  height: 33rpx;
+  width: 80rpx;
+  top: 70rpx;
+  right: 0;
+  background:url('https://minibizhi.313515.com/svg/thumb-up-active.svg') 0 center no-repeat;
+  background-size:31rpx 33rpx;
+  padding-left: 36rpx;
+  pointer-events: none
+} 
+
+.comment-wrap {
+  padding-left: 96rpx;
+  text-align: left;
+  padding-right: 30rpx;
+}
+
+.comment-wrap .comment-content {
+  font-size: 28rpx;
+  color: #4c4c4c;
+  line-height: 1.1;
+  margin-bottom: 30rpx;
+}
+
+.comment-me-list .user-info-wrap .userInfo wx-text:last-child {
+  font-size: 22rpx;
+}
+
+.comment-me-list .user-info-wrap {
+  height: 140rpx;
+}
+
+.comment-wrap .comment-target {
+  padding: 10rpx;
+  background: #f7f7f7;
+  display: flex;
+  align-items: center
+}
+
+.comment-wrap .comment-target image {
+  width: 100rpx;
+  height: 178rpx;
+  display: block;
+  margin-right: 10rpx;
+}
+
+.comment-wrap .comment-target text {
+  font-size: 28rpx;
+  color: #949494;
+  line-height: 40rpx;
+  display: block;
+  flex: 1;
+  padding: 10rpx;
+}
+
+
+
+
+/* 精彩话题 5 */
+.wonderful-topic-list .data-list-column-view{
+}
+.wonderful-topic-list-item{
+  text-align: left;
+  padding: 0 16rpx 40rpx;
+  position: relative
+}
+.wonderful-topic-list-item::before {
+  display: block;
+  content: '';
+  width: 734rpx;
+  border-bottom: 1rpx solid #f3f3f3;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.wonderful-topic-list-item .top{
+  height: 88rpx;
+  padding-top: 22rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center
+}
+
+.wonderful-topic-list-item .top view{
+  font-size: 36rpx;
+  color: #3C3D40;
+  flex: 1;
+  font-weight: 500;
+}
+.wonderful-topic-list-item .top image{
+  width: 30rpx;
+  height: 30rpx;
+  display: block;
+  margin-left: 40rpx;
+}
+.wonderful-topic-list-item .top text{
+  font-size: 24rpx;
+  color: #949494;
+  margin-left: 12rpx;
+}
+.wonderful-topic-list-item > image{
+  height: 380rpx;
+  width: 100%;
+  display: block
+}

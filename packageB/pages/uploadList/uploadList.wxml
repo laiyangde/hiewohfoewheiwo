@@ -1,0 +1,33 @@
+<!--packageB/pages/uploadList/uploadList.wxml-->
+<import src="../../../utils/tpl.wxml" />
+<!--删除控制-->
+<template name="ctrl">
+  <view class="delete-box" wx:if="{{isShowDelete !== undefined ? isShowDelete : baseDatas[currentIndex].dataList.length != 0}}">
+    <view class="delete-ctrl" hidden="{{!isOpenDelete}}">
+      <view class="delete-cancle" bindtap="deleteCancle">取消</view>
+      <view class="delete-submit" bindtap="deleteSubmit">删除</view>
+    </view>
+    <view class="upload-nav" wx:if="{{!isOpenDelete}}">
+        <button class="login-btn" bindgetuserinfo="login2" open-type="getUserInfo" data-callback="toUpload">上传</button>
+        <button formType="submit" hover-class="none" data-event="openDelete">删除</button>
+        <button formType="submit" hover-class="none" data-event="openExplain">声明</button>
+    </view>
+  </view>
+</template>
+
+
+<form class="search-form {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+    <!-- 顶部滚动导航 -->
+    <template is="top-nav" data="{{navArr,currentIndex,suspensionInfo}}" />
+    
+    <view class="container header-seize">
+        <scroll-view scroll-y bindscrolltolower="onReachBottom_" lower-threshold="150" enable-back-to-top scroll-top="{{baseData.scollTop}}" bindscroll="onPageScroll_">
+            <template is="can-delete-uploadWallpaper-list" data="{{baseData,reTry,isOpenDelete}}" />
+        </scroll-view>
+        <!-- 悬浮按钮 -->
+        <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'uploadList',isHideBackTop,reTry,isHideShare:true}}" />
+        <!--删除控制-->
+        <template is="ctrl" data="{{baseData,currentIndex,openDelete,isOpenDelete,deleteCancle,deleteSubmit}}" />
+    </view>
+</form>
+

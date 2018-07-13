@@ -1,0 +1,61 @@
+/* packageB/pages/uploadList/uploadList.wxss */
+
+.examine-status{
+  line-height: 60rpx;
+  height: 60rpx;
+  font-size: 28rpx;
+  color: #4C4C4C;
+  text-align: left;
+}
+
+.examine-status.success{
+  padding-left: 30rpx;
+  color: #239EFE;
+  background: url(https://testminibizhi.313515.com/BiZhiStatic/uploadList-content-verify-success.svg) left center no-repeat;
+  background-size: 22rpx 22rpx;
+}
+.examine-status.fail{
+  padding-left: 30rpx;
+  color: #FF6168;
+  background: url(https://testminibizhi.313515.com/BiZhiStatic/uploadList-content-verify-failed.svg) left center no-repeat;
+  background-size: 22rpx 22rpx;
+}
+
+.data-list-view image:first-child,.data-list-view>image{
+  margin-bottom: 0;
+}
+.data-list-view>button{
+  margin-bottom: 16rpx;
+}
+.delete-box{
+  height: 98rpx;
+}
+
+.delete-cancle,.delete-submit{
+  line-height: 98rpx;
+}
+.upload-nav{
+  display: flex;
+  box-sizing: border-box;
+  padding: 0 28rpx;
+}
+.upload-nav button{
+  font-size: 24rpx;
+  color: #4C4C4C;
+  line-height: 28rpx;
+  padding-top: 60rpx;
+  box-sizing: border-box;
+  /* width: 142rpx; */
+  flex: 1;
+  background: url(https://testminibizhi.313515.com/BiZhiStatic/uploadList-bottom-nav-upload.svg) center 13rpx no-repeat;
+  background-size: 46rpx 46rpx;
+}
+.upload-nav button:nth-child(2){
+  background-image: url(https://testminibizhi.313515.com/BiZhiStatic/uploadList-bottom-nav-delete.svg);
+  
+}
+
+.upload-nav button:nth-child(3){
+  background-image: url(https://testminibizhi.313515.com/BiZhiStatic/upload-bottom-nav-statement.svg);
+  margin-left: 268rpx;
+}

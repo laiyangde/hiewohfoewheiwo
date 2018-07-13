@@ -1,0 +1,110 @@
+<!--my.wxml-->
+<form class="search-form {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}">
+  <view class="user-info">
+    <image src="https://minibizhi.313515.com/BiZhiStatic/my-bg.svg" mode="aspectFill" class="user-info-bg"></image>
+    <view class="user-info-view">
+      <image src="{{avatarUrl}}" mode="aspectFill" class="avatar" wx:if="{{avatarUrl}}"></image>
+      <image src="https://minibizhi.313515.com/BiZhiStatic/default.svg" mode="aspectFill" class="avatar" wx:else></image>
+      <button class="login-btn" bindgetuserinfo="login" wx:if="{{!isLogin}}" open-type="getUserInfo" data-callback="loginSuccess">点击登录</button>
+      <view class="nickName" wx:else bindlongpress='clearUserInfo'>{{nickName}}</view>
+      <view class='fans-attention' wx:if="{{isLogin}}">
+        <button class='fans-count' hover-class="none" data-event="toPage" formType="submit" data-page="pureListPage" data-pageindex="3">粉丝 {{fansCount}}</button>
+        <button class='attention-count' hover-class="none" data-event="toPage" formType="submit" data-page="pureListPage" data-pageindex="4">已关注 {{UserAttentionCount}}</button>
+      </view>
+    </view>
+
+    <button data-event="toMessageCenter" formType="submit" hover-class="none" class="message" wx:if="{{isLogin}}" style='margin-top:{{suspensionInfo.statusBarHeight}}px'>
+      <image src="https://minibizhi.313515.com/BiZhiStatic/message.svg" ></image>
+      <view class='red-point' wx:if="{{newMessage}}"></view>
+    </button>
+  </view>
+
+  <view class="my-btns">
+    <button data-event="toPage" formType="submit" hover-class="button-hover" data-page="collectList">
+      <view class="btn-box">
+        <image src="https://minibizhi.313515.com/BiZhiStatic/icon-my-collect.svg" mode="aspectFill" class="icon"></image>
+        <text>我的收藏</text>
+        <image src="https://minibizhi.313515.com/BiZhiStatic/icon-pointer.svg" mode="aspectFill" class="pointer"></image>
+      </view>
+    </button>
+    <button data-event="toPage" formType="submit" hover-class="button-hover" data-page="downloadList">
+      <view class="btn-box">
+        <image src="https://minibizhi.313515.com/BiZhiStatic/icon-my-download.svg" mode="aspectFill" class="icon"></image>
+        <text>我的下载</text>
+        <image src="https://minibizhi.313515.com/BiZhiStatic/icon-pointer.svg" mode="aspectFill" class="pointer"></image>
+      </view>
+    </button>
+    <button data-event="toPage" formType="submit" hover-class="button-hover" data-page="rewardList">
+      <view class="btn-box">
+        <image src="https://minibizhi.313515.com/BiZhiStatic/icon-my-reward.svg" mode="aspectFill" class="icon"></image>
+        <text>原创专栏</text>
+        <image src="https://minibizhi.313515.com/BiZhiStatic/icon-pointer.svg" mode="aspectFill" class="pointer"></image>
+      </view>
+    </button>
+
+    <button data-event="toPage" formType="submit" hover-class="button-hover" data-page="myPublish">
+      <view class="btn-box">
+        <image src="https://minibizhi.313515.com/BiZhiStatic/icon-my-publish.svg" mode="aspectFill" class="icon"></image>
+        <text>我发布的</text>
+        <image src="https://minibizhi.313515.com/BiZhiStatic/icon-pointer.svg" mode="aspectFill" class="pointer"></image>
+      </view>
+    </button>
+
+    <!-- <button data-event="toMiniProgram" formType="submit" hover-class="button-hover" wx:if="{{miniProgramTitle && !isClose}}">
+      <view class="btn-box">
+        <image src="https://minibizhi.313515.com/BiZhiStatic/icon-mini-program.svg" mode="aspectFill" class="icon"></image>
+        <text>{{miniProgramTitle}}</text>
+        <image src="https://minibizhi.313515.com/BiZhiStatic/icon-pointer.svg" mode="aspectFill" class="pointer"></image>
+      </view>
+    </button> -->
+
+     <block  wx:for="{{suspensionAd.adList || []}}" wx:key="{{index}}">
+      <button formType="submit" hover-class="none" wx:if="{{item.JumpType != 2}}" data-jumptype="{{item.JumpType}}" data-jumpurl="{{item.JumpUrl}}" data-appid="{{item.AppID}}" data-event="adJump">
+        <view class="btn-box">
+          <image src="{{item.ProductIcon}}" mode="aspectFill" class="icon"></image>
+          <text>{{item.ProductName}}</text>
+          <image src="https://minibizhi.313515.com/BiZhiStatic/icon-pointer.svg" mode="aspectFill" class="pointer"></image>
+        </view>        
+      </button>
+      <button open-type="contact" hover-class="none" session-from="{{item.AdId}}" wx:else>
+        <view class="btn-box">
+          <image src="{{item.ProductIcon}}" mode="aspectFill" class="icon"></image>
+          <text>{{item.ProductName}}</text>
+          <image src="https://minibizhi.313515.com/BiZhiStatic/icon-pointer.svg" mode="aspectFill" class="pointer"></image>
+        </view>      
+      </button>
+    </block>  
+
+    <button hover-class="button-hover" open-type="contact">
+      <view class="btn-box">
+        <image src="https://minibizhi.313515.com/BiZhiStatic/icon-give-feedback.svg" mode="aspectFill" class="icon"></image>
+        <text>意见反馈</text>
+        <image src="https://minibizhi.313515.com/BiZhiStatic/icon-pointer.svg" mode="aspectFill" class="pointer"></image>
+      </view>
+    </button>
+
+    <button data-event="toPage" formType="submit" hover-class="button-hover" data-page="uploadList">
+      <view class="btn-box">
+        <image src="https://minibizhi.313515.com/BiZhiStatic/icon-my-publish.svg" mode="aspectFill" class="icon"></image>
+        <text>上传壁纸</text>
+        <image src="https://minibizhi.313515.com/BiZhiStatic/icon-pointer.svg" mode="aspectFill" class="pointer"></image>
+      </view>
+    </button>
+
+    <button data-event="toPage" formType="submit" hover-class="button-hover" data-page="setting">
+      <view class="btn-box">
+        <image src="https://minibizhi.313515.com/BiZhiStatic/setting.svg" mode="aspectFill" class="icon"></image>
+        <text>设置</text>
+        <image src="https://minibizhi.313515.com/BiZhiStatic/icon-pointer.svg" mode="aspectFill" class="pointer"></image>
+      </view>
+    </button>
+    <!-- <button data-event="toPage" formType="submit" hover-class="button-hover" data-page="about">
+        <view class="btn-box">
+           <image src="https://minibizhi.313515.com/BiZhiStatic/icon-about-wallpaper.svg" mode="aspectFill" class="icon"></image>
+           <text>关于壁纸</text>
+           <image src="https://minibizhi.313515.com/BiZhiStatic/icon-pointer.svg" mode="aspectFill" class="pointer"></image>
+        </view>
+    </button> -->
+
+  </view>
+</form>

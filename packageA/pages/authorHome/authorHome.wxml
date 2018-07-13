@@ -1,0 +1,59 @@
+<!--packageA/pages/authorHome/authorHome.wxml-->
+<import src="../../../utils/tpl.wxml" />
+<template name="author-album-item">
+  <view class='author-album-item' wx:if="{{albums.Array.length > 0}}">
+    <view class='album-name'>{{albums.AlbumName}}</view>
+    <view class="data-list-view ">
+      <button hover-class="none" data-idx = "{{idx}}" data-index="{{index}}" formType="submit" data-event="oriPreview" wx:for="{{albums.Array}}" wx:key="{{item.PicInfoID}}">
+        <image src="{{item.ThumbImage}}" mode="aspectFill" ></image>
+        <image wx:if="{{item.PriceType}}" src="{{item.noBuy?'https://minibizhi.313515.com/BiZhiStatic/original-nobuy.svg' : 'https://minibizhi.313515.com/BiZhiStatic/original-buy.svg'}}" mode="aspectFill" class="buy-flag"></image>
+      </button>
+      <image src="" wx:if="{{albums.Array.length % 3 === 2}}" style='background:none'></image>
+    </view>
+    <button class='more-mask' hover-class="none" data-event="moreAlbum" formType="submit" data-page="pureListPage" data-pageindex="5" data-albumid="{{albums.AlbumID}}" data-idx="{{idx}}" data-title="{{albums.AlbumName}}" wx:if="{{albums.Array.length == 6 && albums.ImageCount-6 > 0}}">
+        <text>+{{albums.ImageCount-6}}</text>
+        <text>查看更多</text>
+    </button>
+  </view>
+</template>
+
+<template name="author-albums">
+  <view class="data-list-box">
+    <view class="data-list-column-view author-album-list">
+        <block wx:for="{{baseData.dataList}}" wx:key="{{item.AlbumID}}">
+          <template is="author-album-item" data="{{albums:item,idx:index}}" />
+        </block>
+    </view>
+    <view class="loading">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </button>
+  </view>
+</template>
+
+
+
+<form class="search-form {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" >
+  <view class="container">
+      <view class="user-info">
+        <image src="https://minibizhi.313515.com/BiZhiStatic/my-bg.svg" mode="aspectFill" class="user-info-bg"></image>
+        <view class="user-info-view">
+          <view class='avatar'>
+            <image src="{{UserObject.AvatarUrl || 'https://minibizhi.313515.com/BiZhiStatic/default.svg'}}"></image>
+            <image  src='https://minibizhi.313515.com/BiZhiStatic/icon-v.svg' mode="aspectFill"></image>
+          </view>
+          <view class="nickName">{{UserObject.UserName || '游客'}}</view>
+          <view class='author-desc multi-ellipsis'>{{UserObject.UserDesc}}</view>
+          <view class='author-attention'>
+              <image src="https://minibizhi.313515.com/BiZhiStatic/userHome-attention{{UserObject.IsFollow ? '-acitve':''}}.svg" mode="aspectFill"  bindtap='attentionUser' data-status="{{UserObject.IsFollow==0 ? '关注' : '取消关注'}}"></image>
+              <view>插画师</view>
+          </view>
+          <view class='fans-attention'>
+            <button class='fans-count' hover-class="none" data-event="toPage" formType="submit" data-page="pureListPage" data-pageindex="3" data-userid="{{UserObject.UserID}}">粉丝 <text>{{UserObject.FansCount}}</text></button>
+            <button class='attention-count' hover-class="none" data-event="toPage" formType="submit" data-page="pureListPage" data-pageindex="4" data-userid="{{UserObject.UserID}}">已关注 <text>{{UserObject.FollowCount}}</text></button>
+          </view>
+        </view>
+      </view>
+      <template is="author-albums" data="{{isHideBackTop,reTry,baseData,login,isLogin,suspensionInfo}}" />
+  </view>
+    <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'authorHome',isHideBackTop,reTry,isHideShare:true}}" />
+    <template is="header-back" data="{{suspensionInfo,class:'white'}}"/>
+</form>

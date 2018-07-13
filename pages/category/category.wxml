@@ -1,0 +1,46 @@
+<import src="../../utils/tpl.wxml" />
+
+<form class="search-form {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+    <!-- 进入搜索按钮 -->
+    <template is="header-search" data="{{suspensionInfo}}"/>
+    <view class="container header-seize">
+        <!--左边导航-->
+        <view class="left-nav">
+            <scroll-view scroll-y scroll-with-animation scroll-top="{{navScrollTop}}">
+                <button wx:for="{{Categorys}}" class="title {{currentIndex == index && 'active'}}" wx:key="{{item.CategoryID}}" data-index="{{index}}" data-event="navSwitch" formType="submit" hover-class="none">
+                    <text>{{item.CategoryTitle}}</text>
+                </button>
+            </scroll-view>
+        </view>
+
+        <!--右边内容-->
+        <view class="right-content">
+            <scroll-view scroll-y wx:for="{{Categorys}}" wx:for-item="baseData" wx:key="{{baseData.CategoryID}}" wx:if="{{currentIndex == index}}">
+                <button class="top-img categorybtn" data-event="categoryDetail" formType="submit" hover-class="none" data-index="{{0}}" data-name="{{baseData.CategoryTitle}}" data-subname="全部">
+                  <image src="{{baseData.Image}}" mode="aspectFill" ></image>
+                </button>
+                <view class="title">
+                    {{baseData.CategoryTitle}}
+                </view>
+                  <view class="flexWarp category-list-view">
+                    <block wx:if="{{adObj.adList && adObj.adList.length > 0}}">
+                    <template is="multi-fn-btn" data="{{adData:adObj.adList,switchTime:adObj.SwitchTime,template:'img-word-view'}}" />
+                    </block>
+                    <button class="categorybtn" wx:for="{{baseData.SubArray}}" wx:key="{{item.SubID}}" wx:if="{{index !==0}}" data-event="categoryDetail" formType="submit" hover-class="none" data-index="{{index}}" data-name="{{baseData.CategoryTitle}}" data-subname="{{item.SubName}}">
+                      <image src="{{item.IconUrl}}" mode="aspectFill"></image>
+                      <text>{{item.SubName}}</text>
+                    </button>
+                    <view wx:if="{{(baseData.SubArray.length + (adObj.adList && adObj.adList.length > 0 ?  1 : 0)) % 3 === 0}}">
+                        <image src="" mode="aspectFill"></image>
+                        <text></text>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+        <!-- 悬浮按钮 -->
+        <!-- <template is="suspension" data="{{isHideBackTop,reTry}}" /> -->
+        <!--无网络-->
+        <!-- <template is="noNetWorkPage" data="{{netWork,reTry}}" /> -->
+          <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'category',isHideBackTop,reTry,isHideShare:true}}" />
+    </view>
+</form>

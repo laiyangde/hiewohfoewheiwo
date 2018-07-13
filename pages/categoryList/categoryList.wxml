@@ -1,0 +1,18 @@
+<!--albumList.wxml-->
+<import src="../../utils/tpl.wxml" />
+
+<form class="search-form {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px' >
+    <view class="container header-seize2">
+      <!-- 顶部滚动导航 -->
+      <template is="header-search" data="{{isBack:true,suspensionInfo}}" /><!-- 搜索 -->
+      <template is="scroll-nav" data="{{navArr,currentIndex,scrollLeft,isShowNavView,hasNavView:true,class:'hasHeader',suspensionInfo}}" />
+      <swiper duration="300" class="swiper-list" bindchange="change" current="{{currentIndex}}">
+        <swiper-item wx:for="{{baseDatas}}" wx:for-item="baseData" wx:key="{{index}}" >
+          <scroll-view scroll-y bindscrolltolower="onReachBottom_" lower-threshold="150" enable-back-to-top scroll-top="{{baseData.scollTop}}" bindscroll="onPageScroll_" >
+            <template is="base-wallpaper-list2" data="{{isHideBackTop,reTry,baseData,isOpenDelete,login,isLogin,toReplyDetail,toTopicDetail,moreComment}}" />
+          </scroll-view>
+        </swiper-item>
+      </swiper>
+    </view>
+    <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'categoryList',isHideBackTop,reTry,isHideShare:true}}" />
+</form>

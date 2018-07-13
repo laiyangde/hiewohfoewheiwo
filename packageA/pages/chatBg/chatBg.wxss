@@ -1,0 +1,24 @@
+/* pages/chatBg/chatBg.wxss */
+
+.chat-list image {
+    width: 354rpx;
+    height: 630rpx;
+}
+.chat-list .chat-mask{
+  position: absolute;
+  left: 0;
+  top: 80rpx;
+  height: 94rpx;
+}
+.chat-list button{
+  margin-bottom: 16rpx;
+}
+.indexEntry{
+  top: 40rpx;
+}
+.suspension-btn{
+  bottom: 110rpx;
+}
+.suspension-btn.iphonex{
+  bottom: 178rpx;
+}

@@ -1,0 +1,18 @@
+<!--pages/officeNotes/officeNotes.wxml-->
+<import src="../wxParse/wxParse.wxml" />
+<import src="../../../utils/tpl.wxml" />
+<form class="search-form {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+
+  <view class="container header-seize" style="{{isShowInput && 'padding-bottom:90rpx;'}}">
+    <scroll-view scroll-y bindscrolltolower="onReachBottom_" lower-threshold="150" enable-back-to-top scroll-top="{{scollTop}}" bindscroll="onPageScroll_">
+      <view class="wxParse">
+        <view class="title">{{title}}</view>
+        <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+      </view>
+      <template is="comment-list" data="{{commentArrs,totalCount,isShowInput,login,isLogin}}" />
+    </scroll-view>
+     <template is="comment-input" data="{{totalCount,isShowTextArea,isShowInput,isLogin,commentHandle,login}}" /> 
+    <template is="comment-textarea" data="{{isShowTextArea,textAreaFocus,textareaIphut,isTextAreaEmpty,cancle,publish,textareaVal}}" />
+  </view>
+    <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'officeNotes',isHideBackTop,reTry,isHideShare:false}}" />
+</form>

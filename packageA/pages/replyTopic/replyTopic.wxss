@@ -1,0 +1,56 @@
+/* pages/replyTopic/replyTopic.wxss */
+
+.ipx.header-seize{
+  padding-top: 174rpx;
+}
+page{
+  height: auto;
+}
+.topic-textarea {
+  font-size: 32rpx;
+  color: #4c4c4c;
+  width: 690rpx;
+  margin: 0 auto;
+  display: block;
+  line-height: 45rpx;
+  min-height: 210rpx;
+  padding: 30rpx 0;
+}
+.upload-image-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 16rpx;
+}
+
+.uploadImages-list{
+  position: relative;
+}
+.uploadImages-list .delete{
+  width: 36rpx;
+  height: 36rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 6rpx;
+}
+
+.upload-image-container .uploadImage,.upload-image-container>image{
+  width: 169rpx;
+  height: 169rpx;
+  border-radius: 12rpx;
+  margin-bottom: 16rpx;
+}
+
+.publish-btn{
+  background: #239EFE;
+  border-radius: 8rpx;
+  width: 690rpx;
+  position: fixed;
+  left: 30rpx;
+  bottom: 50rpx;
+  color: #fff;
+  font-size: 32rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+}

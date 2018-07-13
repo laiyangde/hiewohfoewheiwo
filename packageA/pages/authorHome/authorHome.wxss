@@ -1,0 +1,137 @@
+/* packageA/pages/authorHome/authorHome.wxss */
+.user-info {
+  position: relative;
+}
+.user-info-bg {
+  width: 750rpx;
+  height: 580rpx;
+  display: block;
+}
+.user-info-view {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+   padding-top:10rpx; 
+}
+.user-info-view .avatar{
+  position: relative
+}
+.user-info-view .avatar image:first-child{
+  width: 124rpx;
+  height: 124rpx;
+  border-radius: 50%;
+  border: 4rpx solid #94cffe;
+  background-image: url('https://minibizhi.313515.com/svg/default.svg');
+  background-size: cover;
+  display: block;
+}
+
+.user-info-view .avatar image:last-child{
+   width: 36rpx;
+   height: 36rpx;
+   position: absolute;
+   right: 0;
+   bottom: 0;
+   background-image: linear-gradient(-159deg, #FFD068 0%, #FFAE1B 74%, #FFA300 100%);
+  border: 1rpx solid #FFFFFF;
+  border-radius: 50%;
+ }
+.user-info-view .nickName{
+  font-size: 32rpx;
+  color: #FFFFFF;
+  line-height: 64rpx;
+}
+
+.user-info-view .author-desc{
+  font-size: 24rpx;
+  color: #FFFFFF;
+  line-height: 30rpx;
+  max-width: 600rpx;
+}
+
+.user-info-view .author-attention{
+  display: flex;
+  margin-top: 28rpx;
+}
+
+.user-info-view .author-attention image,.user-info-view .author-attention view{
+  width: 131rpx;
+  height: 54rpx;
+}
+
+.user-info-view .author-attention view{
+  font-size: 24rpx;
+  color: #FFFFFF;
+  line-height: 54rpx;
+  text-align: center;
+  background: rgba(0,0,0,0.13);
+  border-radius: 8rpx;
+  margin-left: 40rpx;
+}
+
+.fans-attention {
+  display: flex;
+  font-size: 30rpx;
+  width: 100%;
+}
+
+.fans-attention > button {
+  flex: 1;
+  padding-left: 80rpx;
+  color: #fff;
+  text-align: left;
+  font-size: 30rpx;
+  line-height: 38rpx;
+  margin-top: 26rpx;
+}
+
+.fans-attention>button:first-child {
+  text-align: right;
+  padding: 0 80rpx 0 0;
+}
+
+/* .author-album-list{
+  padding:0 16rpx;
+} */
+.author-album-list .album-name{
+  font-size: 28rpx;
+  color: #949494;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding-left: 16rpx;
+}
+.author-album-item{
+  position: relative;
+  margin-top: 40rpx;
+}
+.author-album-item:first-child{
+  margin-top: 10rpx;
+}
+.more-mask{
+  position: absolute;
+  width: 230rpx;
+  height: 410rpx;
+  bottom: 16rpx;
+  right: 16rpx;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+.more-mask text{
+  color: #fff;
+  font-size: 32rpx;
+  display: block;
+  line-height: 50rpx;
+}
+.ipx .more-mask{
+  height: 498rpx;
+}

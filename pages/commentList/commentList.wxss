@@ -1,0 +1,27 @@
+/* pages/commentList/commentList.wxss */
+.container{
+  position: relative
+}
+.container.active{
+  padding-bottom: 90rpx;
+}
+.container.active.iphonex{
+  padding-bottom: 154rpx;
+}
+
+.suspension-btn{
+  bottom: 120rpx;
+}
+.suspension-btn.iphonex{
+  bottom: 174rpx;
+}
+.no-comment-tip{
+  height: auto;
+  line-height: 3
+}
+.indexEntry{
+  top: auto;
+  bottom: 100rpx;
+  left: 50%;
+  transform: translateX(-50%)
+}

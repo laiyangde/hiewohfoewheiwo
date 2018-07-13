@@ -1,0 +1,18 @@
+<!--rewardList.wxml-->
+<import src="../../../utils/tpl.wxml" />
+
+<form class="search-form {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+    <view class="container header-seize">
+        <scroll-view scroll-y bindscrolltolower="onReachBottom_" lower-threshold="150" enable-back-to-top scroll-top="{{baseData.scollTop}}" bindscroll="onPageScroll_">
+          <!-- 壁纸列表 -->
+          <template is="original-wallpaper-list" data="{{baseData,reTry}}" />
+          <!-- 悬浮按钮 -->
+          <!-- <template is="suspension" data="{{isHideBackTop,reTry,isHideShare:'true'}}" /> -->
+        </scroll-view>
+        <!--无网络-->
+        <!-- <template is="noNetWorkPage" data="{{netWork,reTry}}" /> -->
+    </view>
+      <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'rewardList',isHideBackTop,reTry,isHideShare:true}}" />
+      
+</form>
+

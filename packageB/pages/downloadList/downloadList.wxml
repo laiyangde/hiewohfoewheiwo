@@ -1,0 +1,64 @@
+<!--downloadList.wxml-->
+
+
+<import src="../../../utils/tpl.wxml" />
+<form class="search-form {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+    <!-- 顶部滚动导航 -->
+    <template is="top-nav" data="{{navArr,currentIndex,suspensionInfo}}" />
+
+    <view class="container header-seize">
+
+        <!-- 多列表 -->
+        <template is="multi-list" data="{{baseDatas,reTry,currentIndex,template,change,isHideBackTop,onPageScroll_,onReachBottom_,diffrentTemplate,isOpenDelete}}" />
+        <!-- 悬浮按钮 -->
+        <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'downloadList',isHideBackTop,reTry,isHideShare:true}}" />
+        <template is="header-back" data="{{suspensionInfo}}"/>
+        <!--删除控制-->
+        <template is="delete-ctrl" data="{{baseDatas,currentIndex,openDelete,isOpenDelete,deleteCancle,deleteSubmit}}" />
+    </view>
+</form>
+
+
+
+
+
+
+
+
+<!-- 
+<import src="../../utils/template.wxml"/>
+
+<view class="container" wx:for="{{downloadList}}" wx:for-item="listData" wx:key="{{index}}">
+  <scroll-view scroll-y="true" bindscrolltolower="scrollLower" lower-threshold="150" style="height:100%;" bindscroll="scroll" enable-back-to-top="true" scroll-top="{{listData.scollTop}}">
+    <view class="pic-list">
+      <block wx:for="{{listData.imgDatas}}" wx:key="{{item.PicInfoID}}">
+        <image src="{{item.ThumbImage}}" mode="widthFix" bindtap="preview" data-index="{{index}}">
+         <view class="circle deleteSelect {{item.deleteSelected && 'deleteSelected'}}" hidden="{{!isOpenDelete}}"></view>
+        </image>
+      </block>
+      <image src="" wx:if="{{listData.imgDatas.length % 3 === 2}}"></image>
+    </view>
+    <view class="loading">{{listData.loadText}}</view>
+    <button type="default" size="{{defaultSize}}" bindtap="refresh" wx:if="{{listData.error}}"> 刷新 </button>
+  </scroll-view>
+
+
+  <view class="delete-box" wx:if="{{baseDatas[currentIndex].length != 0}}">
+      <view class="delete-ctrl" hidden="{{!isOpenDelete}}">
+        <view class="delete-cancle"  bindtap="deleteCancle">取消</view>
+        <view class="delete-submit"  bindtap="deleteSubmit">删除</view>
+      </view>
+      <view class="delete-entry"  wx:if="{{!isOpenDelete}}" bindtap="openDelete"></view>
+  </view>
+
+
+  <view class="noSearchResult" wx:if="{{listData.imgDatas.length == 0 && isNoData}}">暂无下载的壁纸！</view>
+</view>
+ -->
+
+
+
+
+
+
+

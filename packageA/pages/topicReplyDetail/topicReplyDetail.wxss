@@ -1,0 +1,215 @@
+/* pages/topicReplyDetail/topicReplyDetail.wxss */
+
+.comment-list-wrap{
+  padding-bottom: 98rpx;
+}
+.ipx .comment-list-wrap{
+  padding-bottom: 146rpx;
+}
+
+
+.bottom-nav-container .say{
+  margin-left: 45rpx;
+}
+.bottom-nav-container button:first-child{
+  margin-left: 45rpx;
+}
+.indexEntry{
+  top: 40rpx;
+}
+.hot-comment .comment-list-wrap{
+  min-height: 340rpx;
+}
+/* .user-info-wrap {
+  height: 140rpx;
+  padding: 0 30rpx;
+} */
+.detail-content{
+  padding: 0 30rpx 0 125rpx;
+}
+
+.detail-content.item-center .topic-image-wrap.mode3 button image{
+  width: 194rpx;
+  height: 194rpx;
+}
+.detail-content.item-center .topic-image-wrap.mode3 button:nth-child(1) image,
+.detail-content.item-center .topic-image-wrap.mode3 button:nth-child(2) image{
+  width: 294rpx;
+  height: 294rpx;
+}
+
+
+
+.topic-word-wrap {
+  -webkit-line-clamp: 10;
+  /* padding: 0 14rpx; */
+}
+
+.topic-word-wrap .topic-word {
+  display: inline;
+  line-height: 46rpx;
+  text-align: left;
+  vertical-align: top;
+  font-size: 32rpx;
+  color: #4c4c4c;
+}
+
+
+/* 
+.toTopicDetail{
+  background: #F2F2F2;
+  padding-left: 36rpx;
+  color:#2e93c4;
+  width: 100%;
+}
+.toTopicDetail image{
+  right: 20rpx;
+}
+.title {
+  display: block;
+  font-size: 30rpx;
+  color: #4c4c4c;
+  line-height: 42rpx;
+  padding: 0 30rpx;
+  white-space: pre-wrap;
+}
+.topic-btns{
+  padding: 0 30rpx;
+} */
+
+
+.detail-content .topic-image-wrap {
+  margin-top: 12rpx;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-bottom: 10rpx;
+}
+
+/* 2 4 */
+
+/* .topic-image-wrap.mode1 image {
+  width: 342rpx;
+  height: 342rpx;
+} */
+
+/* 3 6 9 */
+
+/* .topic-image-wrap.mode2 image {
+  width: 226rpx;
+  height: 226rpx;
+} */
+
+/* 5 8 */
+
+/* .topic-image-wrap.mode3 image {
+  width: 226rpx;
+  height: 226rpx;
+}
+
+.topic-image-wrap.mode3 button:nth-child(1) image,
+.topic-image-wrap.mode3 button:nth-child(2) image {
+  width: 342rpx;
+  height: 342rpx;
+} */
+
+/* 7 */
+
+/* .topic-image-wrap.mode4 image {
+  width: 168rpx;
+  height: 168rpx;
+}
+
+.topic-image-wrap.mode4 button:nth-child(1) image,
+.topic-image-wrap.mode4 button:nth-child(2) image,
+.topic-image-wrap.mode4 button:nth-child(3) image {
+  width: 226rpx;
+  height: 226rpx;
+} */
+
+.topic-image-wrap image {
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+
+
+
+.comment-input{
+  background-color: #FFFFFF;
+  border-top:1rpx solid #e3e3e3;
+}
+
+
+.user-info-wrap{
+  padding: 10rpx 30rpx 0;
+}
+/* 
+ .img-wrap{
+  margin-top: 10rpx;
+} 
+
+.img-wrap image{
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 14rpx;
+} */
+.container{
+  position: relative;
+}
+.container.active{
+  padding-bottom: 90rpx;
+}
+.ipx .container.active{
+  padding-bottom: 154rpx;
+}
+.suspension-btn{
+  bottom: 120rpx;
+}
+.suspension-btn.iphonex{
+  bottom:184rpx
+}
+
+
+.topicReplyShare{
+  width: 36rpx;
+  height: 36rpx;
+  margin:0 30rpx;
+}
+.comment-input button{
+  font-size: 0
+}
+.comment-input image {
+  width: 36rpx;
+  height: 36rpx;
+}
+.comment-input .topicReplyThumbUp{
+  margin-left: 30rpx;
+}
+.comment-input .topicReplythumbUpCount {
+  font-size: 24rpx;
+  color: #949494;
+  height: 66rpx;
+  margin-left: -6rpx;
+}
+
+
+.deletePopup{
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32rpx;
+  color: #949494
+}
+
+.item-center{
+  margin-top: 0;
+}

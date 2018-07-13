@@ -1,0 +1,13 @@
+<!--albumList.wxml-->
+<import src="../../../utils/tpl.wxml" />
+<form class="search-form hasBottomNav {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+    <template is="header-search" data="{{isBack:true,suspensionInfo}}" /><!-- 搜索 -->
+    <!-- 顶部滚动导航 -->
+    <!-- <template is="scroll-nav" data="{{navArr,currentIndex,scrollLeft}}" /> -->
+    <template is="scroll-nav" data="{{navArr,currentIndex,scrollLeft,isShowNavView,class:'hasHeader',suspensionInfo}}" />
+    <view class="container header-seize2">
+        <!-- 专辑多列表 -->
+        <template is="multi-list" data="{{baseDatas,reTry,currentIndex,template,change,isHideBackTop,reTry,onPageScroll_,onReachBottom_}}" /> 
+    </view>
+    <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'albumList',isHideBackTop,reTry,isHideShare:true}}" />
+</form>

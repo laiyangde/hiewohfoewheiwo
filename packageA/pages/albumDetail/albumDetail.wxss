@@ -1,0 +1,33 @@
+/* albumDetail.wxss */
+.bottom-nav-container .say{
+  flex: 1.3;
+  margin-right:30rpx
+}
+.albumDesc{width: 100%;box-sizing: border-box;background: #F2F2F2;
+  font-size: 25rpx;
+  color: #A0A0A0;
+  line-height: 35rpx;
+  padding:15rpx 22rpx
+}
+.top-banner image{height: 398rpx;width: 100%;display: block;}
+
+.container.active .content{
+  padding-bottom: 90rpx;
+}
+.container.active.iphonex .content{
+  padding-bottom: 154rpx;
+}
+.suspension-btn{
+  bottom: 120rpx;
+}
+.suspension-btn.iphonex{
+  bottom: 184rpx;
+}
+
+.data-list-box{padding-top: 16rpx;}
+.indexEntry{
+  top: 40rpx;
+}
+.container {
+  position: relative
+}

@@ -1,0 +1,17 @@
+<!--components/multiFnBtn/multi-fn-btn.wxml-->
+
+<!--
+  跳转小程序  appid path
+  跳转h5   跳转链接
+  跳转客服  sessionform
+  跳转本小程序  path
+  -->
+
+<multi-fn-btn-item wx:for="{{extData}}">
+<slot></slot>
+</multi-fn-btn-item>
+
+<!-- 
+<button class="{{extClass}}">
+  <slot></slot>
+</button> -->

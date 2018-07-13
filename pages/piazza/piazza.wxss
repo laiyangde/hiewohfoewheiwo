@@ -1,0 +1,108 @@
+
+.wonderful-topic,.wallpaper-mask {
+  padding:0 0 24rpx 16rpx;
+  border-bottom: 20rpx solid #f2f2f2
+}
+
+.module-title {
+  margin: 35rpx 16rpx 35rpx 0;
+
+}
+
+.wonderful-topic scroll-view button,.wallpaper-mask scroll-view button {
+  display: inline-block;
+  font-size: 0;
+  margin-right: 10rpx;
+  position: relative
+}
+.wonderful-topic scroll-view button:last-child{
+  margin-right: 0;
+}
+
+.wonderful-topic scroll-view button image {
+  display: block;
+  width: 320rpx;
+  height: 170rpx;
+  
+}
+
+.wonderful-topic button text {
+  font-size: 28rpx;
+  color: #323232;
+  display: block;
+  text-align: left;
+  line-height: 60rpx;
+  width: 320rpx;
+  font-weight: 500;
+}
+.wonderful-topic .act{
+  position: absolute;
+  height: 34rpx;
+  border-radius: 13rpx;
+  background-color: #F49241;
+  right: 10rpx;
+  top: 10rpx;
+  font-size: 20rpx;
+  color: #FFFFFF;
+  line-height: 34rpx;
+  padding: 0 12rpx;
+}
+.wonderful-topic .act.pinpai{
+  background-color: #FF6D7F
+}
+
+.wallpaper-mask scroll-view button{
+  width: 180rpx;
+  height: 390rpx;
+  /* height: 105rpx; */
+  overflow: hidden;
+}
+.wallpaper-mask scroll-view button image{
+  width: 100%;
+  height: 100%;
+  display: block
+}
+.wallpaper-mask scroll-view button image:last-child{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.publish-btn{
+  width: 98rpx;
+  height: 98rpx;
+  background-color: #239efe;
+  box-shadow: 0 6rpx 10rpx 0 rgba(35,158,254,0.54);
+  /* position: fixed;
+  bottom: 30rpx;
+  right: 30rpx; */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20rpx;
+}
+.publish-btn image{
+  display: block;
+  height: 46rpx;
+  width: 46rpx;
+}
+
+.publish-btn text{
+  font-size: 20rpx;
+  color: #fff;
+  display: block;
+  line-height: 1;
+  margin-top: 10rpx;
+}
+
+/* .suspension-btn{
+right: 15rpx;
+} */
+
+
+
+.follow-nav-wrap{
+  border-bottom: 1rpx solid #eee
+}

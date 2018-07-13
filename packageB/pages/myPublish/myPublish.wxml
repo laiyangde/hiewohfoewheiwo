@@ -1,0 +1,21 @@
+<!--pages/myPublish/myPublish.wxml-->
+<import src="../../../utils/tpl.wxml" />
+<form class="search-form {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+    <!-- 顶部滚动导航 -->
+    <template is="top-nav" data="{{navArr,currentIndex,suspensionInfo}}" />
+    <view class="container header-seize">
+        <!-- 多列表 -->
+        <template is="multi-list" data="{{baseDatas,reTry,currentIndex,template,change,isHideBackTop,onPageScroll_,onReachBottom_,diffrentTemplate,isOpenDelete,login,isLogin,toReplyDetail,toTopicDetail,moreComment}}" />
+        <!-- 悬浮按钮 -->
+        <!-- <template is="suspension" data="{{isHideBackTop,reTry,isHideShare:'true'}}" />
+        <template is="noNetWorkPage" data="{{netWork,reTry}}" /> -->
+
+        <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'myPublish',isHideBackTop,reTry,isHideShare:true}}" />
+        <template is="header-back" data="{{suspensionInfo}}"/>
+        <!--删除控制-->
+         <template is="delete-ctrl" data="{{baseDatas,currentIndex,openDelete,isOpenDelete,deleteCancle,deleteSubmit,isShowDelete}}" /> 
+    </view>
+</form>
+
+
+

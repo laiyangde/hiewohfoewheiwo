@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "multi-fn-btn": "/components/multiFnBtn/multi-fn-btn"
+  }
+}

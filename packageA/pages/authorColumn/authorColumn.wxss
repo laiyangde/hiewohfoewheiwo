@@ -1,0 +1,113 @@
+/* packageA/pages/authorColumn/authorColumn.wxss */
+.data-list-column-view{
+  padding: 0 16rpx;
+}
+
+.author-item{
+  margin-top: 80rpx;
+}
+.author-item:first-child{
+  margin-top: 24rpx;
+}
+.author-item .top{
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  text-align: left;
+  background:url(https://minibizhi.313515.com/BiZhiStatic/icon-all-more.svg) right center no-repeat;
+  background-size:80rpx 36rpx;
+}
+.author-item .top .author-avatar{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.author-item .top .author-info text{
+  display: block;
+}
+.author-item .top .author-info text:first-child{
+  font-size: 28rpx;
+  color: #4C4C4C;
+  line-height: 32rpx;
+  font-weight: 500
+}
+.author-item .top .author-info text:last-child{
+  font-size: 22rpx;
+  color: #949494;
+  line-height: 24rpx;
+  margin-top: 4rpx;
+}
+.author-item .bottom{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25rpx;
+}
+
+.author-item .bottom image:first-child{
+  width: 176rpx;
+  height: auto;
+  display: block;
+}
+
+
+.author-item .bottom .buy-flag{
+  width: 70rpx;
+  /* height: 36rpx; */
+  height: auto;
+  position: absolute;
+  top: 8rpx;
+  left: 6rpx;
+  background: none;
+}
+
+
+
+.enter-info{
+  padding: 66rpx 30rpx 98rpx;
+  /* letter-spacing: 0.4rpx; */
+}
+.ipx .enter-info{
+  padding-bottom: 146rpx;
+}
+.explain{
+  font-size: 28rpx;
+  font-weight: 500;
+  line-height: 42rpx;
+}
+
+.enter-info .enter{
+  font-size: 26rpx;
+  line-height: 42rpx;
+  white-space:pre-wrap;
+}
+.recent-author .title{
+  font-size: 28rpx;
+  line-height: 42rpx;
+  margin-top: 58rpx;
+  font-weight: 500;
+}
+.recent-author .recent-author-view {
+  display: flex;
+  flex-wrap: wrap;
+}
+.recent-author .recent-author-view button{
+  width: 33.3%;
+  margin-top: 26rpx;
+}
+.recent-author .recent-author-view image{
+  width: 140rpx;
+  height: 140rpx;
+  display: block;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+.recent-author .recent-author-view text{
+  font-size: 28rpx;
+  color: #487b74;
+  display: block;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 10rpx;
+}

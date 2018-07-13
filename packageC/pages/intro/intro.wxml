@@ -1,0 +1,45 @@
+<!--pages/intro/intro.wxml-->
+<import src="../../../utils/tpl.wxml" />
+<form class="search-form {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+    <view class="container header-seize">
+        <scroll-view scroll-y bindscrolltolower="onReachBottom_" lower-threshold="150" enable-back-to-top scroll-top="{{baseData.scollTop}}" bindscroll="onPageScroll_">
+
+          <view class='top-intro-container'>
+            <view class='img-title'>
+              <image src='{{BrandIntroduce.Icon}}'></image>
+              <text class='single-ellipsis'>{{BrandIntroduce.BrandName}}</text>
+            </view>
+            <view class='desc'>
+                {{BrandIntroduce.Introduce}}
+            </view>
+
+            <!-- <button formType="submit" data-event="toTaste" class='try-btn' hover-class='none'>立即体验</button> -->
+
+
+          <button formType="submit" hover-class="none" wx:if="{{BrandIntroduce.JumpType != 2}}" data-jumptype="{{BrandIntroduce.JumpType}}" data-jumpurl="{{BrandIntroduce.JumpUrl}}" data-appid="{{BrandIntroduce.AppID}}" data-event="adJump" class='try-btn'>
+              {{BrandIntroduce.ButtonCopy}}
+          </button>
+          <button open-type="contact" hover-class="none" session-from="{{'brand,' + BrandIntroduce.BrandID}}" wx:else class='try-btn'>
+             {{BrandIntroduce.ButtonCopy}}
+          </button>
+
+          </view>
+
+          <view class='definition-image'>
+            <view class='bottom-border'></view>
+            <text>高清美图</text>
+          </view>
+          <!-- 壁纸列表 -->
+          <template is="base-wallpaper-list" data="{{baseData,reTry}}" />
+          <!-- 悬浮按钮 -->
+          <!-- <template is="suspension" data="{{isHideBackTop,reTry}}" /> -->
+        </scroll-view>
+        <!--无网络-->
+        <!-- <template is="noNetWorkPage" data="{{netWork,reTry}}" /> -->
+    </view>
+      <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'intro',isHideBackTop,reTry,isHideShare:false}}" />
+    <!-- <image src='https://minibizhi.313515.com/BiZhiStatic/indexEntry.png' class='indexEntry' bindtap='entryIndexHandle' wx:if="{{isShareEntry}}"></image> -->
+</form>
+
+
+

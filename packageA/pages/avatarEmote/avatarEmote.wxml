@@ -1,0 +1,19 @@
+<!--pages/avatarEmote/avatarEmote.wxml-->
+<import src="../../../utils/tpl.wxml" />
+
+<form class="search-form hasBottomNav {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+        <!-- 进入搜索按钮 -->
+    <!-- <block wx:if="{{addClass}}">
+        <template is="top-enter-search-btn" data="{{placehold:'搜索你想要的表情'}}"/>
+    </block>
+     -->
+    <!-- 顶部导航 -->
+    <!-- <template is="top-nav" data="{{navArr,currentIndex,addClass}}" /> -->
+    <view class="container header-seize2">
+      <template is="header-search" data="{{isBack:true,suspensionInfo,placehold:'搜索'+(title || '')}}" /><!-- 搜索 -->
+      <template is="scroll-nav" data="{{navArr,currentIndex,scrollLeft,isShowNavView,hasNavView:true,class:'hasHeader',suspensionInfo}}" />
+        <!-- 多列表 -->
+        <template is="multi-list" data="{{baseDatas,reTry,currentIndex,template,change,isHideBackTop,reTry,onPageScroll_,onReachBottom_,diffrentTemplate}}" />  
+    </view>
+    <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'avatarEmote',isHideBackTop,reTry,isHideShare:true}}" />
+</form>

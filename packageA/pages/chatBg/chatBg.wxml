@@ -1,0 +1,24 @@
+<!--pages/chatBg/chatBg.wxml-->
+<import src="../../../utils/tpl.wxml" />
+<!-- 聊天背景列表 -->
+<template name="chatBg-wallpaper-list">
+  <view class="data-list-box">
+    <view class="flexWarp chat-list" >
+      <button hover-class="none" data-index="{{index}}" formType="submit" data-event="preview" wx:for="{{baseData.dataList}}" wx:key="{{item.PicInfoID}}">
+        <image src="{{item.ThumbImage}}" mode="aspectFill"></image>
+        <image src="https://minibizhi.313515.com/BiZhiStatic/chatbg.png" mode="aspectFill" class="chat-mask"></image>
+      </button>
+    </view>
+    <view class="loading">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </button>
+  </view>
+</template>
+<form bindsubmit="formSubmit" report-submit="{{isGetFormId}}" class="search-form hasBottomNav {{model}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+    <view class="container header-seize">
+        <scroll-view scroll-y bindscrolltolower="onReachBottom_" lower-threshold="150" enable-back-to-top scroll-top="{{baseData.scollTop}}" bindscroll="onPageScroll_">
+          <!-- 壁纸列表 -->
+          <template is="chatBg-wallpaper-list" data="{{baseData,reTry}}" />
+        </scroll-view>
+    </view>
+    <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'chatBg',isHideBackTop,reTry,isHideShare:true}}" />
+</form>

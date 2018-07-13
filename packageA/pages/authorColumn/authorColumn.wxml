@@ -1,0 +1,75 @@
+<!--packageA/pages/authorColumn/authorColumn.wxml-->
+<import src="../../../utils/tpl.wxml" />
+
+
+<template name="authors">
+  <view class="data-list-box">
+    <view class="data-list-column-view">
+        <view class='author-item' wx:for-index="idx" wx:for="{{baseData.dataList}}" wx:key="{{idx}}">
+          <button class="top" formType="submit" hover-class='none' data-event="moreAlbum" data-page="authorHome" data-authorid="{{item.AuthorObject.AuthorID}}" data-idx="{{idx}}">
+              <image class='author-avatar' src='{{item.AuthorObject.AuthorAvatarUrl}}'></image>
+              <view class='author-info'>
+                  <text>{{item.AuthorObject.AuthorName}}</text>
+                  <text>{{item.AuthorObject.AuthorDesc}}</text>
+              </view>
+          </button>
+          <view class='bottom'>
+            <button hover-class="none" formType="submit" data-event="oriPreview" wx:for="{{item.MiniOriginalWallpaperInfoArray}}" wx:key="{{item.PicInfoID}}" data-index="{{index}}" data-idx="{{idx}}">
+              <image src="{{item.ThumbImage}}" mode="widthFix"></image>
+              <image wx:if="{{item.PriceType}}" src="{{item.noBuy?'https://minibizhi.313515.com/BiZhiStatic/original-nobuy.svg' : 'https://minibizhi.313515.com/BiZhiStatic/original-buy.svg'}}" mode="widthFix" class="buy-flag"></image>
+            </button>
+          </view>
+        </view>
+    </view>
+    <view class="loading">{{baseData.LoadingText}}</view>
+    <button bindtap="reTry" wx:if="{{baseData.Error}}" class='retry-btn'> 刷新重试 </button>
+  </view>
+</template>
+
+<template name="authors-enter">
+  <view class='enter-info'>
+    <view class='explain'>壁纸原创作者是通过哎喔壁纸原创平台注册的设计师，并上传作品、个人资料，且审核通过审核过的入驻的用户。</view>
+    <view class='enter-after enter'>
+
+入驻后，您可以： 
+1．在哎喔壁纸平台上上传个人原创设计作品，并进行售卖 
+2．个人原创设计作品获得的收益全部归您个人所有； 
+3．您的作品有机会被推荐到首页，获得更多的曝光机会；</view>
+    <view class='enter-method enter'>
+入驻方式： 
+1. 添加官方运营 QQ 账号：1291651584; 
+2. 发送作品到官方运营账号：Megan@gao7.com，我们会尽快和您取得联系；</view>
+    <view class='recent-author'>
+      <view class='title'>近期入驻设计师：</view>
+      <view class='recent-author-view'>
+          <button hover-class="none" formType="submit" data-event="toPage" data-page="authorHome" wx:for="{{baseData.dataList}}" wx:key="{{item.AuthorID}}" data-authorid="{{item.AuthorID}}">
+            <image src="{{item.AuthorAvatarUrl}}" ></image>
+            <text class='single-ellipsis'>{{item.AuthorName}}</text>
+          </button>          
+      </view>
+    </view>
+  </view>  
+</template>
+
+
+
+
+<form class="search-form hasBottomNav {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+  <!-- 顶部滚动导航 -->
+  <template is="top-nav" data="{{navArr,currentIndex,suspensionInfo}}" />
+  <view class="container header-seize">
+    <!-- 多列表 -->
+    <swiper duration="300" class="swiper-list" bindchange="change" current="{{currentIndex}}">
+      <swiper-item wx:for="{{baseDatas}}" wx:for-item="baseData" wx:key="{{index}}">
+        <scroll-view scroll-y bindscrolltolower="onReachBottom_" lower-threshold="150" enable-back-to-top scroll-top="{{baseData.scollTop}}" bindscroll="onPageScroll_">
+          <template is="{{template[index]}}" data="{{isHideBackTop,reTry,baseData,login,isLogin,suspensionInfo}}" />
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+  </view>
+  <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'authors',isHideBackTop,reTry,isHideShare:true}}" />
+<template is="header-back" data="{{suspensionInfo}}"/>
+
+
+
+</form>

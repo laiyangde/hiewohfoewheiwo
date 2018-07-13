@@ -1,0 +1,678 @@
+/* preview.wxss */
+/* canvas{
+  width: 466px;
+  height: 773px;
+  position: fixed;
+  top: 0;
+  left: 100%;
+
+} */
+page{
+  overflow: hidden;
+}
+.bottom-nav-container .btn-download{
+  overflow: visible
+}
+.bottom-nav-container .btn-download text{
+  margin-top: 48rpx; 
+}
+.bottom-nav-container .btn-download image{
+  position: absolute;
+  width: 92rpx;
+  height: 92rpx;
+  top: -32rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.bottom-nav-container .btn-download view{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 40rpx;
+  width: 102rpx;
+  transform: translate(-50%,-100%);
+  overflow: hidden;
+}
+.bottom-nav-container .btn-download view::after{
+  content: '';
+  display: block;
+  width: 100%;
+  padding-top: 100%;
+  height: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+}
+
+.indexEntry{
+  top: 40rpx;
+}
+.suspension-ad{
+  position: fixed;
+  bottom: 128rpx;
+  right: 30rpx;
+}
+.ipx .suspension-ad{
+  bottom: 178rpx;
+}
+
+.preview-nav, .open-buy-btn-box {
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 100%;
+    height: 120rpx;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+    display: flex;
+}
+.ipx .preview-nav, .ipx .open-buy-btn-box{
+  padding-bottom: 64rpx;
+}
+
+ .swiper-preview {
+   height: 100%;
+     /* height: 1400rpx;
+    padding-bottom: 80rpx; */
+}
+
+/* .ipx .swiper-preview{
+  height: 1692rpx;
+  padding-bottom: 144rpx;
+}  */
+.cite{
+  /* text-align: right; */
+  padding-left: 20rpx;
+  color: #969696;
+  font-size: 24rpx;
+  line-height: 86rpx;
+  /* padding-bottom: 98rpx; */
+}
+/* .ipx .cite{
+  padding-bottom: 144rpx;
+} */
+.preview-box{
+  padding-bottom: 98rpx;
+}
+.ipx .preview-box{
+  padding-bottom: 144rpx;
+}
+
+
+.swiper-preview .preview-image {
+    width: 100%;
+    height: auto;
+    /* height: 1332rpx; */
+    display: block
+}
+.swiper-preview .wallPapermask{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto
+}
+
+/* .ipx .swiper-preview .preview-image{
+  height: 1624rpx;
+} */
+.avatar-emote-preview{
+  background-color: #f2f2f2;
+  box-sizing: border-box;
+  padding-bottom: 98rpx;
+}
+.ipx .avatar-emote-preview{
+  padding-bottom: 144rpx;
+}
+/* .ipx .avatar-emote-preview{
+  padding-bottom: 144rpx;
+}
+.avatar-emote-preview .preview-image,.ipx .avatar-emote-preview .preview-image{
+  height: auto;
+} */
+
+
+
+
+
+swiper.active{background-color:#f2f2f2}
+
+
+swiper .loading {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    width: 60rpx;
+    height: 60rpx;
+    background: none;
+}
+
+.avatar-emote-preview swiper-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+}
+
+.open-buy-btn-box {
+    height: 120rpx;
+    justify-content: space-around;
+    align-items: center;
+}
+.open-buy-btn-box.isShareUnlock::after{
+  content: '';
+  display: block;
+  height: 50rpx;
+  width: 1rpx;
+  background: #FFFFFF;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%)
+}
+
+.open-buy-btn-box button {
+    background: #239efe;
+    border-radius: 200rpx;
+    width: 294rpx;
+    height: 80rpx;
+    font-size: 32rpx;
+    color: #fff;
+    line-height: 80rpx;
+    position: relative;
+    padding-left: 20rpx;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.open-buy-btn-box button:last-child{
+  background: #F5A623;
+}
+
+.open-buy-btn-box image {
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 10rpx
+}
+
+/* 赞赏面板 */
+
+.buyPanel-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+}
+
+.buyPanel {
+    width: 564rpx;
+    height: 564rpx;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 12rpx;
+    box-sizing: border-box;
+    padding: 40rpx 40rpx 30rpx;
+}
+
+.closeBuyPanel {
+    width: 58rpx;
+    height: 58rpx;
+    position: absolute;
+    top: 20rpx;
+    right: 20rpx;
+}
+
+.author-image {
+    width: 112rpx;
+    height: 112rpx;
+    margin: 0 auto; 
+    display: block;
+    border-radius: 50%;
+}
+
+.author-nickName {
+    font-size: 28rpx;
+    color: #6a7883;
+    display: block;
+    text-align: center;
+    margin: 14rpx 0 40rpx;
+    letter-spacing: 1rpx;
+}
+
+.copyright {
+    font-size: 28rpx;
+    color: #4c4c4c;
+    letter-spacing: 1rpx;
+    text-indent: 1.2em;
+    position: relative;
+}
+
+.copyright image {
+    width: 26rpx;
+    height: 26rpx;
+    position: absolute;
+    top: 6rpx;
+    left: 0;
+}
+
+.pay-btn {
+    background: #239efe;
+    border-radius: 200rpx;
+    font-size: 32rpx;
+    color: #fff;
+    letter-spacing: 1.15rpx;
+    width: 484rpx;
+    height: 88rpx;
+    margin: 60rpx auto 30rpx;
+    line-height: 88rpx;
+}
+
+.buyPanel .tip {
+    font-size: 24rpx;
+    color: #949494;
+    letter-spacing: 0.86rpx;
+    text-align: center;
+    display: block;
+}
+
+.toINOTCH-btn{
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 140rpx;
+  width: 250rpx;
+  height: 76rpx;
+}
+.ipx .toINOTCH-btn{
+  bottom: 200rpx;
+}
+
+/* 弹窗广告流量主 */
+
+.p-ad{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  
+}
+/* .p-ad-mask{
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+} */
+.p-ad-content{
+  background: #FFFFFF;
+  border-radius: 12rpx;
+  width: 564rpx;
+  padding: 50rpx 20rpx;
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-60%)
+}
+
+.p-ad-content>text{
+  font-size: 32rpx;
+  color: rgba(35,158,254,1);
+  text-align: center;
+  line-height: 46rpx;
+  display: block;
+}
+.p-ad-content>text:first-child{
+ color: #6A7883;
+}
+.p-ad-view{
+  position: relative;
+  margin-top: 40rpx;
+  height: 150rpx;
+}
+
+.p-ad-view .p-ad-btn{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 430rpx;
+  height: 71rpx;
+  background: rgba(35,158,254,0.8);
+  border-radius: 35.5rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  z-index: 2
+}
+.p-ad-view .p-ad-btn image{
+  width: 21.4rpx;
+  height: 25rpx;
+}
+.p-ad-content >image{
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  right: -5rpx;
+  top: -5rpx;
+  padding: 20rpx;
+}
+.p-ad-view .p-ad-btn text{
+  font-size: 28rpx;
+  color: #FFFFFF;
+  display: block;
+  margin-left: 20rpx;
+}
+
+.p-ad-view .p-ad-wrap{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%) scale(0.698);
+  width: 750rpx;
+  /* transform: scale(0.9); */
+  /* height: 50rpx;
+  background-color: red; */
+
+}
+
+
+/* 分享奖励弹窗 */
+
+.share-reward-popup{
+
+}
+.share-reward-popup .bg{
+    position: relative;
+}
+.share-reward-popup .bg image:first-child{
+  width: 644rpx;
+  height: auto
+}
+.share-reward-popup .bg image:last-child{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  /* background-color: red; */
+  bottom: 58rpx;
+  width: 330rpx;
+  height: 587.4rpx;
+  border-radius: 15rpx;
+  background: url(https://minibizhi.313515.com/BiZhiStatic/loading.svg) center center no-repeat;
+  background-size: 60rpx 60rpx;
+}
+.share-reward-popup .btn-down{
+  width: 328rpx;
+  height: 94rpx;
+  background: #5BEDC9;
+  border-radius: 47rpx;
+  flex-direction: column;
+  line-height: 1.2;
+  margin-top: 10rpx;
+}
+.share-reward-popup .btn-down text{
+  display: block;
+  color: #005C46;
+}
+.share-reward-popup .btn-down text:first-child{
+  font-size: 36rpx;
+  font-weight: 500;
+}
+.share-reward-popup .btn-down text:last-child{
+  font-size: 20rpx;
+  text-decoration-line: line-through
+}
+.share-reward-popup .tip{
+  font-size: 24rpx;
+  color: #FFFFFF;
+  text-shadow: 0 2rpx 4rpx rgba(0,0,0,0.50);
+  line-height: 35rpx;
+  margin: 24rpx 0 26rpx 0
+}
+.share-reward-popup .btn-close image{
+  width: 66rpx;
+  height: 66rpx;
+}
+
+
+/* 成功弹窗 */
+.success-container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 101;
+  width: 100%;
+  height:100%;
+}
+.success-container .body{
+  /* width: 586rpx; */
+  width: 80%; 
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 12rpx;
+  /* box-sizing: border-box; */
+  padding: 20rpx;
+  /* box-shadow: 0px 0px 3rpx 1rpx rgba(0, 0, 0, 0.2);   */
+}
+
+.success-container .body .title{
+  font-size: 50rpx;
+  color: #239EFE;
+  text-align: center;
+  line-height: 100rpx;
+  font-weight: 500;
+}
+.success-container .body .tip{
+  font-size: 30rpx;
+  color: #4C4C4C;
+  line-height: 42rpx;
+  text-align: center;
+}
+.success-container .ad{
+  display: flex;
+  justify-content: center;
+}
+.success-container .success-ad-close{
+    position: absolute;
+    width: 80rpx;
+    height: 80rpx;
+    right: 0rpx;
+    top: 0rpx;
+    background: url(https://minibizhi.313515.com/BiZhiStatic/icon-suspension-ad-close.svg) center center no-repeat;
+    background-size: 50rpx 50rpx;
+}
+
+.ad-border{
+  height: 42rpx;
+  width: 500rpx;
+  margin: 0 auto 12rpx;
+  /* border-bottom: 1rpx dashed #C3C3C3; */
+  position: relative;
+  text-align: center;
+  font-size: 20rpx;
+  color: #949494;
+  line-height: 42rpx;
+}
+.ad-border::before,.ad-border::after{
+  content: '';
+  display: block;
+  width: 190rpx;
+  border-bottom: 1px dashed #C3C3C3;
+  position: absolute;
+  top: 50%;
+  left: 0;
+}
+.ad-border::after{
+  left: auto;
+  right: 0;
+}
+
+
+.free-unlock-popup{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 101;
+  width: 100%;
+  height:100%;
+}
+
+.free-unlock-popup .body{
+  width: 563rpx; 
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  background-color: rgba(255, 255, 255, 0.94);
+  border-radius: 12rpx;
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+
+.free-unlock-popup .body .title{
+  font-size: 50rpx;
+  color: #4C4C4C;
+  text-align: center;
+  line-height: 130rpx;
+  font-weight: 500;
+}
+
+.free-unlock-popup .body .tip{
+  font-size: 28rpx;
+  color: #4C4C4C;
+  width: 493rpx;
+  margin: 0 auto;
+  line-height: 42rpx;
+}
+
+.free-unlock-popup .share-unlock{
+  background: #239EFE;
+  width: 384rpx;
+  height: 80rpx;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  border-radius: 40rpx;
+  margin: 50rpx auto 30rpx;
+}
+
+
+.free-unlock-popup .share-unlock image{
+  width: 32rpx;
+  height: 32rpx;
+  
+}
+
+.free-unlock-popup .share-unlock text{
+  font-size: 32rpx;
+  color: #FFFFFF;
+  margin-left: 10rpx;
+}
+
+
+/* 引导图 */
+.guide-container{
+  width: 100%;
+  height: 100%
+}
+.guide-container .guide{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  flex-direction:column;
+  box-sizing: border-box;
+  padding-bottom: 50rpx;
+  pointer-events: none;
+}
+
+.guide-container .guide1 text{
+    color: #fff;
+    display: block;
+    text-align: center;
+}
+.guide-container .guide1 text:nth-of-type(1){
+  font-size: 44rpx;
+  font-weight: bold;
+  line-height: 74rpx;
+}
+.guide-container .guide1 text:nth-of-type(2){
+  font-size: 30rpx;
+  line-height: 60rpx;
+}
+.guide-container .guide1 text:nth-of-type(3){
+  font-size: 38rpx;
+  line-height: 58rpx;
+  margin-top: 32rpx;
+  text-decoration: line-through;
+}
+.guide-container .guide1 .img{
+  position: relative;
+  margin-top: 30rpx;
+}
+.guide-container .guide1 .img image{
+  width: 360rpx;
+  border-radius: 24rpx;
+  height: auto;
+}
+.guide-container .guide1 .img image:last-child{
+  width: 106rpx;
+  height: 107rpx;
+  position: absolute;
+  right: -50rpx;
+  top: -50rpx;
+}
+.guide-container .guide1 .highLighter{
+  position: absolute;
+  width: 20%;
+  height: 98rpx;
+  right: 0;
+  bottom: 0;
+}
+.guide-container .guide1 .highLighter view{
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  display: flex;
+  margin: 0 auto;
+  height: 100%;
+  width: 98rpx;
+  background-color: #d9d9de;
+  border-radius: 50%;
+}
+.guide-container .guide1 .highLighter view image{
+  width:46rpx;
+  height:46rpx;
+  display:block;
+}
+.guide-container .guide1 .highLighter view text{
+  font-size:28rpx;
+  color:#4C4C4C;
+  line-height:30rpx;
+}
+.ipx .guide-container .guide1 .highLighter{
+  bottom: 48rpx;
+}
+.guide-container .guide1 .guide-pointer{
+  width: 239rpx;
+  height: 282rpx;
+  bottom: 50rpx;
+  right: 0;
+  position: absolute;
+}
+.ipx .guide-container .guide1 .guide-pointer{
+   bottom: 98rpx;
+}

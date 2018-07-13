@@ -1,0 +1,149 @@
+<import src="../../../utils/tpl.wxml" />
+
+<template name="topic-banner">
+  <view class="topic-banner">
+    <video wx:if="{{VideoUrl}}" style='{{isShowVideoPoster && "position:absolute;left:100%" }}' src="{{VideoUrl}}" class='top-image-text' bindfullscreenchange="videoHandle" bindended="videoHandle" bindplay="videoHandle" bindpause="videoHandle" custom-cache="{{false}}" id='top-video'>
+    </video>
+    <view class='top-image-text' hidden='{{!isShowVideoPoster}}'>
+      <image src="{{TopicIcon}}" mode="widthFix" class='top-image'/>
+      <view class='title'>
+          <image class='top' wx:if="{{VideoUrl}}" src="https://minibizhi.313515.com/BiZhiStatic/topicDetail-icon-video-play.png" mode="widthFix" bindtap='videoPlay'/>
+          <text class='bottom'>#{{TopicTitle}}#</text>
+      </view>
+      <view class='counts'>
+        <view>
+          <image src="https://minibizhi.313515.com/BiZhiStatic/topicDetail-icon-eye.svg" mode="widthFix" />
+          <text>{{ViewCount}}</text>
+        </view>
+        <view>
+          <image src="https://minibizhi.313515.com/BiZhiStatic/topicDetail-icon-join.svg" mode="widthFix" />
+          <text>{{CommentCount}}参与</text>
+        </view>
+      </view>
+    </view>
+    <view class='bottom-desc' wx:if="{{TypeID === 1}}">
+      <view class='desc-title'>详情描述</view>
+      <view class='desc-content {{isFold && "fold"}}'>{{TopicDetail}}</view>
+      <button hover-class="none" formType="submit" data-event="unFold" class='desc-fold-btn {{isFold && "active"}}'>
+        <image src="https://minibizhi.313515.com/BiZhiStatic/pointer-up.svg" mode="widthFix" />
+      </button>
+    </view>
+    <view class='activity-relative-container' wx:else>
+      <view class='activity-nav'>
+        <button wx:for="{{['活动规则','本期奖品','获奖名单']}}" hover-class="none" formType="submit" data-event="activityNavChange" class='{{activityNavIndex === index && "active"}}' data-index="{{index}}" wx:key="{{index}}">
+          {{item}}
+        </button>
+      </view>
+      <view class='activity-relative-ctn'>
+        <view class='activity-rule' wx:if="{{activityNavIndex===0}}">
+          <view class='top' wx:if="{{TypeID === 3}}">
+            <image src="https://minibizhi.313515.com/BiZhiStatic/topicDetail-icon-compare.svg" class='icon' />
+            <view class='partner'>
+              <image src="{{Icon}}" />
+              <text class='single-ellipsis'>{{BrandName}}</text>
+            </view>
+            <image src="https://minibizhi.313515.com/BiZhiStatic/topicDetail-icon-x.svg" class='x' />
+            <view class='partner'>
+              <image src="{{OfficialIcon}}" />
+              <text>壁纸</text>
+            </view>
+          </view>
+          <view class='center'>
+            <image src="https://minibizhi.313515.com/BiZhiStatic/topicDetail-icon-intro.svg" class='icon' />
+            <text>{{TopicDetail}}</text>
+          </view>
+          <view class='bottom'>
+            <image src="https://minibizhi.313515.com/BiZhiStatic/topicDetail-icon-time.svg" class='icon' />
+            <view class='time-explain'>
+              <text>活动参与时间：</text> 
+              <text>{{StartDate}}-{{EndDate}}</text>
+              <text>奖品核对时间：</text> 
+              <text>{{CheckStartDate}}-{{CheckEndDate}}</text>
+            </view>
+          </view>
+        </view>
+        <view class='activity-prize' wx:if="{{activityNavIndex===1}}">
+            <image src="https://minibizhi.313515.com/BiZhiStatic/topicDetail-icon-prize.svg" class='icon' />
+            <text>{{PrizeExplain}}</text>
+        </view>
+        <view class='activity-winner' wx:if="{{activityNavIndex===2}}">
+            <view class='prize-list' wx:if="{{WinningList.length > 0}}">
+                <button formType="submit" data-event="toPage" data-page="userHome" data-userid="{{item.UserInfo.userID}}" hover-class="none" class='prize-list-item' wx:for="{{WinningList}}" wx:key="{{index}}">
+                    <view class='winner-avatar-wrap'>
+                         <image class="winner-avatar" src='{{item.UserInfo.avatarUrl}}'></image>
+                         <image class='avatar-mask' src='https://minibizhi.313515.com/BiZhiStatic/topicDetail-icon-winbg{{index > 2 ? 3 : index}}.png'></image> 
+                        <text class='winner-rank'>NO.{{item.Ranking}}</text>
+                    </view>
+                    <text class='single-ellipsis'>{{item.UserInfo.nickName || '游客'}}</text>
+                </button>
+            </view>
+            <view class='prize-tip' wx:else>暂无获奖名单</view>
+            <view class='info-write-wrap'>
+                <view class='winner-tip'><image src='https://minibizhi.313515.com/BiZhiStatic/topicDetail-icon-plaint.svg'></image><text>请获奖的用户在<text class='red'>奖品核对时间内</text>填写个人信息，工作人员将尽快联系您发放奖品，逾期失效！</text></view>
+                <button disabled='{{!isWinner}}' hover-class="none" formType="submit" data-event="inputAddress" data-page="address" data-topicid='{{TopicID}}' class='winner-btn'>{{isWinner ? '您是获奖用户，请填写信息' : '您还未获奖'}}</button>
+            </view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{TypeID === 3 && BrandID}}" class='brand-intro-container'>
+        <view class='brand-header' bindtap="toPage" data-page="intro" data-brandid="{{BrandID}}">
+          <view class='module-title'>品牌介绍</view>
+        </view>
+        <view class='body-intro' bindtap="toPage" data-page="intro" data-brandid="{{BrandID}}">
+            <image src="{{Icon}}" />
+            <text>{{Introduce}}</text>
+        </view>
+          <button formType="submit" hover-class="none" wx:if="{{JumpType != 2}}" data-jumptype="{{JumpType}}" data-jumpurl="{{JumpUrl}}" data-appid="{{AppID}}" data-event="adJump" class='brandDownload'>
+              {{ButtonCopy}}
+          </button>
+          <button open-type="contact" hover-class="none" session-from="{{'brand,' + BrandID}}" wx:else class='brandDownload'>
+             {{ButtonCopy}}
+          </button>
+        <view class='body-image' bindtap="toPage" data-page="intro" data-brandid="{{BrandID}}">
+            <scroll-view scroll-x style='width:100%;white-space:nowrap;'>
+                <image wx:for="{{BrandPicList}}" wx:key="{{index}}" src="{{item.PicUrl}}" />
+            </scroll-view>
+        </view>
+    </view>
+  </view>
+</template>
+
+
+
+<form class="search-form hasBottomNav {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+  <view class="container header-seize">
+      <template is="topic-banner" data="{{...TopicResultInfo,...BrandInfo,isFold,activityNavIndex,WinningList,isWinner,videoHandle,videoPlay,isShowVideoPoster}}" />
+
+      <!-- <view id='target'></view> -->
+      <template is="follow-nav" data="{{suspensionInfo}}" />
+      <template is="topic-image-text-list" data="{{isHideBackTop,reTry,baseData,isHiddenToTopicBtn:true,login,isLogin,imageLoad,android,toReplyDetail,toTopicDetail,moreComment}}" />
+
+
+
+<view class="bottom-nav-container" >
+     <button formType="submit" hover-class="none" data-event="entryIndexHandle">
+        <image src='https://minibizhi.313515.com/BiZhiStatic/icon-bottom-nav-home.svg'></image>
+        <text>首页</text> 
+    </button>
+
+    <button hover-class="none" formType="submit" open-type="share">
+        <image src='https://minibizhi.313515.com/BiZhiStatic/icon-bottom-nav-share.svg'></image>
+        <text>分享</text>
+    </button>
+    <button bindgetuserinfo="login" data-callback="toReply.auto" wx:if="{{!isLogin}}" open-type="getUserInfo" hover-class="none" class="say" data-type='话题发布'>
+      留言
+    </button>
+    <button bindtap="toReply" wx:else hover-class="none" class="say" data-type='话题发布'>
+      留言
+    </button>
+    <!-- <button formType="submit" class='say' hover-class="none" data-event="commentHandle">
+        说一说
+    </button>  -->
+</view>
+
+
+  </view>
+     <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'topicDetail',isHideBackTop,reTry,isHideShare:true}}" />
+  <template is="poster-popup" data="{{isShowPoster,poster,isClose}}"/>  
+  <canvas canvas-id="myCanvas" class='myCanvas'/>
+</form>

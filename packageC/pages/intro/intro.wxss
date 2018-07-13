@@ -1,0 +1,72 @@
+/* pages/intro/intro.wxss */
+.top-intro-container{
+  padding: 0 40rpx;
+}
+.img-title{
+  display: flex;
+  align-items: center;
+  height: 190rpx;
+}
+.img-title image{
+  width: 120rpx;
+  height: 120rpx;
+  display: block;
+  border-radius: 8rpx;
+  margin-right: 40rpx;
+}
+.img-title text{
+  font-size: 38rpx;
+  color: #4C4C4C;
+  letter-spacing: 0;
+  font-weight: 550;
+  display: block;
+  flex: 1
+}
+.desc{
+  font-size: 26rpx;
+color: #4C4C4C;
+line-height: 42rpx;
+}
+
+
+.try-btn{
+  height: 88rpx;
+  width: 100%;
+  background: #239EFE;
+  border-radius: 8px;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  line-height: 88rpx;
+  margin-top: 40rpx;
+}
+
+
+.definition-image{
+  height: 93rpx;
+  width: 690rpx;
+  margin: 10rpx auto 0;
+  position: relative
+}
+.definition-image .bottom-border{
+  height: 46rpx;
+  border-bottom: 1rpx dashed #ccc;
+
+}
+.definition-image text{
+  display: block;
+  position: absolute;
+  width: 176rpx;
+  height: 100%;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  background-color: #fff;
+  font-size: 24rpx;
+  color: #949494;
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 92rpx;
+}
+.indexEntry{
+  top: 40rpx;
+}

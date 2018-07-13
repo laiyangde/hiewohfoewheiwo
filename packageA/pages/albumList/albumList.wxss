@@ -1,0 +1,52 @@
+
+.swiper-list{height: 100%;}
+
+.suspension-btn{
+  bottom: 110rpx;
+}
+.suspension-btn.iphonex{
+  bottom: 178rpx;
+}
+
+.album-list image{
+  width:354rpx;
+  box-sizing: border-box;
+  display: block;
+  height:188rpx;
+  /*transition: all .3s;*/
+  margin-top:0;
+}
+
+.album-list text{
+  font-size: 24rpx;
+  color: #9B9B9B;
+  display: block;
+  width: 354rpx;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 54rpx;
+}
+
+.album-list .AlbumName{
+    font-size: 30rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  text-shadow: 0 2rpx 6rpx rgba(0,0,0,0.29);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  font-weight: bold;
+  line-height: 188rpx;
+}
+
+.album-list button{
+  margin-bottom: 16rpx;
+}

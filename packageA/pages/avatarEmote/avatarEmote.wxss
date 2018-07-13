@@ -1,0 +1,58 @@
+/* pages/avatarEmote/avatarEmote.wxss */
+
+
+.suspension-btn{
+  bottom: 110rpx;
+}
+.suspension-btn.iphonex{
+  bottom: 178rpx;
+}
+.container.hasSearch{
+  padding-top:172rpx;
+}
+.top-nav.hasSearch{
+  top: 82rpx;
+  height: 78rpx; 
+}
+.top-nav.hasSearch button{
+  height:78rpx;
+  line-height:78rpx;
+}
+
+.avatar-emote-view image {
+    width: 230rpx;
+    height: 230rpx;
+}
+
+/* 头像表情分类列表 */
+
+.data-list-view-y {
+    padding-left: 16rpx;
+}
+
+.data-list-view-y .catetory-list-item {
+    padding-right: 16rpx;
+    padding-bottom: 40rpx;
+    margin-bottom: 20rpx;
+    border-bottom: 1rpx solid #eee
+}
+
+.catetroy-title {
+    font-size: 28rpx;
+    color: #4c4c4c;
+    text-align: left;
+    height: 80rpx;
+    line-height: 80rpx;
+    background: url(https://minibizhi.313515.com/svg/icon-more.svg) 98% center no-repeat;
+    background-size: 28rpx 6rpx;
+}
+
+.catetory-images {
+    display: flex;
+    justify-content: space-between;
+}
+
+.catetory-images image {
+    width: 230rpx;
+    height: 230rpx;
+}

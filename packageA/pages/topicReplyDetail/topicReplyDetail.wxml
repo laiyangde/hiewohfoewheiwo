@@ -1,0 +1,90 @@
+<!--pages/topicReplyDetail/topicReplyDetail.wxml-->
+<import src="../../../utils/tpl.wxml" />
+
+<form class="search-form {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+  <view class="container header-seize">
+    <scroll-view scroll-y enable-back-to-top scroll-top="{{scroll}}" bindscroll="onPageScroll_" bindscrolltolower="onReachBottom_">
+      <template is="user-view" data="{{isshowAttention:!isHideAttention,AvatarUrl:TopicPartResultInfo.AvatarUrl,NickName:TopicPartResultInfo.NickName,CreateDate:TopicPartResultInfo.CreateDate,isAttention:TopicPartResultInfo.IsAttention,userid:TopicPartResultInfo.UserID,login,isLogin}}"
+      />
+      <view class='detail-content item-center'>
+
+        <view class='topic-word-wrap multi-ellipsis'>
+          <button formType="submit" data-event="toTopicDetail" hover-class='none' class='toTopicBtn single-ellipsis' wx:if="{{TopicPartResultInfo.TopicTitle}}">#{{TopicPartResultInfo.TopicTitle}}#</button>
+          <view class='topic-word'>{{TopicPartResultInfo.PartTitle}}</view>
+        </view>
+        <view class='topic-image-wrap {{TopicPartResultInfo.addClass}}' wx:if="{{TopicPartResultInfo.TopicPartPicResultInfoList.length > 0}}">
+          <button formType="submit" data-event="viewOriginImage" hover-class='none' data-index="{{0}}" wx:if="{{TopicPartResultInfo.TopicPartPicResultInfoList.length === 1}}">
+            <image src="{{TopicPartResultInfo.TopicPartPicResultInfoList[0].Thumb}}" style='{{TopicPartResultInfo.TopicPartPicResultInfoList[0].style}}' mode="aspectFill" />
+          </button>
+          <block wx:else>
+            <button wx:for="{{TopicPartResultInfo.TopicPartPicResultInfoList}}" formType="submit" data-event="viewOriginImage" hover-class='none' data-index="{{index}}" wx:key="{{index}}">
+              <image src="{{item.Thumb}}" mode="aspectFill" />
+            </button>
+          </block>
+        </view>
+          <view class='btns topic-btns'>
+            <button bindgetuserinfo="login" data-callback="topicReplythumbUp.auto" wx:if="{{!isLogin}}" open-type="getUserInfo" hover-class='none' data-index="{{index}}" class='topic-btn {{item.IsPraise && "active"}}' data-type="点赞">
+              {{TopicPartResultInfo.DiggCount == 0 ? '点赞' : TopicPartResultInfo.DiggCount}}
+            </button>
+            <button formType="submit" data-event="topicReplythumbUp" hover-class='none' data-index="{{index}}" class='topic-btn {{TopicPartResultInfo.IsPraise && "active"}}' wx:else data-type="点赞">
+              {{TopicPartResultInfo.DiggCount == 0 ? '点赞' : TopicPartResultInfo.DiggCount}}
+            </button>
+            <button formType="submit" data-event="moreComment" hover-class='none' data-index='{{index}}' class='topic-btn' data-type="评论">{{TopicPartResultInfo.CommentCount==0?'评论':TopicPartResultInfo.CommentCount}} </button>
+            <button formType="submit" hover-class="none" data-event="openPoster">海报</button> 
+            <button hover-class="none" open-type="share" data-index="{{index}}" class='topic-btn' data-type="分享"></button>
+          </view>
+        <!-- 评论列表 -->
+
+      </view>
+
+      <view class='hot-comment' wx:if="{{hotComment.length > 0}}">
+          <template is="comment-list" data="{{commentArrs:hotComment,listName:'hotComment',totalCount,isShowInput,isLogin,login,title:'热门',threshold:10}}" />
+      </view>
+      <view class='new-comment'>
+          <template is="comment-list" data="{{baseData,totalCount,isShowInput,isLogin,login,isMoreList:true,title:'最新'}}" />
+      </view>      
+    </scroll-view>
+
+    <!-- <template is="comment-input" data="{{totalCount,isShowTextArea,isShowInput,isLogin,commentHandle,login}}" /> -->
+<view class="bottom-nav-container" wx:if="{{isShowInput}}">
+     <button formType="submit" hover-class="none" data-event="entryIndexHandle">
+        <image src='https://minibizhi.313515.com/BiZhiStatic/icon-bottom-nav-home.svg'></image>
+        <text>首页</text> 
+    </button>
+    <button hover-class="none" formType="submit" open-type="share">
+        <image src='https://minibizhi.313515.com/BiZhiStatic/icon-bottom-nav-share.svg'></image>
+        <text>分享</text>
+    </button>
+    <!-- <button formType="submit" hover-class="none" data-event="moreComment">
+        <image src='https://minibizhi.313515.com/BiZhiStatic/icon-bottom-nav-comment.svg'></image>
+        <text>{{totalCount || '评论'}}</text> 
+    </button> -->
+    <button formType="submit" hover-class="none" data-event="openPoster">
+        <image src='https://minibizhi.313515.com/BiZhiStatic/icon-all-poster.svg'></image>
+        <text>海报</text> 
+    </button> 
+    <!-- <button bindgetuserinfo="login" data-callback="topicReplythumbUp.auto" wx:if="{{!isLogin}}" open-type="getUserInfo" hover-class='none'>
+        <image src="https://minibizhi.313515.com/svg/thumb-up{{TopicPartResultInfo.IsPraise ? '-active' : ''}}.svg"></image>
+        <text>{{TopicPartResultInfo.DiggCount || '点赞'}}</text>
+    </button>
+    <button formType="submit" data-event="topicReplythumbUp" hover-class='none' class='topicReplyThumbUp' wx:else>
+      <image src="https://minibizhi.313515.com/svg/thumb-up{{TopicPartResultInfo.IsPraise ? '-active' : ''}}.svg"></image>
+      <text>{{TopicPartResultInfo.DiggCount || '点赞'}}</text>
+    </button> -->
+    <!-- <button formType="submit" hover-class="none" data-event="moreComment">
+        <image src='https://minibizhi.313515.com/BiZhiStatic/icon-bottom-nav-comment.svg'></image>
+        <text>{{totalCount}}</text> 
+    </button> -->
+    <button formType="submit" class='say' hover-class="none" data-event="commentHandle">
+        说一说
+    </button> 
+  </view>
+    <template is="comment-textarea" data="{{isShowTextArea,textAreaFocus,textareaIphut,isTextAreaEmpty,cancle,publish,textareaVal,isLogin,login,commentPlaceholder}}" />
+    <view class='deletePopup' wx:if="{{isContentDelete}}">
+        该内容已被作者删除
+    </view>
+  </view>
+     <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'topicReplyDetail',isHideBackTop,reTry,isHideShare:true}}" />
+       <template is="poster-popup" data="{{isShowPoster,poster,isClose}}"/>  
+       <canvas canvas-id="myCanvas" class='myCanvas'/>
+</form>

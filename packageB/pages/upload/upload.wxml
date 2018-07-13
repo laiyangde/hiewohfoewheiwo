@@ -1,0 +1,75 @@
+<!--packageB/pages/upload/upload.wxml-->
+<!--rewardList.wxml-->
+<import src="../../../utils/tpl.wxml" />
+<wxs module="uploadCommon">
+  module.exports.isSelect = function(indexArr,index) {
+    return indexArr.indexOf(index) > -1
+  };
+  
+</wxs>
+<!--截图页-->
+<template name="screenshot-page">
+    <view class='screenshot-page page'>
+      <canvas
+              class="cropper"
+              disable-scroll="true"
+              bindtouchstart="touchStart"
+              bindtouchmove="touchMove"
+              bindtouchend="touchEnd"
+              canvas-id="cropper">
+      </canvas>
+      <view class='cropper-btns'>
+        <button formType="submit" hover-class="none" data-event="back">取消</button>
+        <button formType="submit" hover-class="none" data-pageindex="1" data-event="changePage">确认</button>
+      </view>
+    </view>
+</template>
+<!--上传页-->
+<template name="upload-page">
+    <view class='upload-page page'>
+         <button formType="submit" hover-class="none" data-event="uploadHandle" class='upload-btn'>上传</button>
+         <view class='res-src'>
+            <image wx:if="{{resSrc}}" src='{{resSrc}}' mode='widthFix'></image>
+         </view>
+         <button formType="submit" hover-class="none" data-pageindex="2" data-event="changePage" class='add-btn'>添加标签</button>
+         <view class='labels-box'>
+              <button class='blue' hover-class="none" wx:if="{{categoryIndex > -1}}">{{category[categoryIndex]}}</button>
+              <button class='blue' wx:for="{{subCategoryIndexs}}" wx:key="{{index}}" hover-class="none">{{subCategory[item]}}</button>
+         </view>
+    </view>
+</template>
+<template name="category-select-page">
+    <view class='category-select-page select-page page'>
+        <view class='title'>所属分类</view>
+        <view class='labels-box'>
+            <button  formType="submit" wx:for="{{category}}" wx:key="{{index}}" data-index="{{index}}" class='{{categoryIndex === index ? "blue" : ""}}' hover-class="none" data-event="selectCategory" >{{item}}</button>
+        </view>
+
+        <button class='complete' formType="submit" hover-class="none" data-pageindex="3" data-event="changePage">完成</button>
+    </view>
+</template>
+<template name="labels-select-page">
+    <view class='labels-select-page select-page page'>
+        <view class='title'>具体标签</view>
+        <view class='labels-box'>
+            <button  formType="submit" wx:for="{{subCategory}}" wx:key="{{index}}" data-index="{{index}}" class='{{uploadCommon.isSelect(subCategoryIndexs,index) ? "blue" : ""}}' hover-class="none" data-event="selectSubCategory" >{{item}}</button>
+        </view>
+        <button class='complete' formType="submit" hover-class="none" data-pageindex="1" data-event="changePage">完成</button>
+    </view>
+</template>
+
+<form class="search-form {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+    <view class="container header-seize" >
+       <view class='page-wrap' style='transform: translateX(-{{pageIndex / 4 * 100}}%) translateZ(0)'>
+          <template is="screenshot-page" data="{{isScreenshot}}" />
+          <template is="upload-page" data="{{resSrc,category,categoryIndex,subCategory,subCategoryIndexs}}" />
+          <template is="category-select-page" data="{{category,categoryIndex}}" />
+          <template is="labels-select-page" data="{{subCategory,subCategoryIndexs}}" />
+          
+       </view>
+         
+
+    </view>
+      <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'rewardList',isHideBackTop,reTry,isHideShare:true}}" />
+</form>
+

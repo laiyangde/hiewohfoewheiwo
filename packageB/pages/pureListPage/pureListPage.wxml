@@ -1,0 +1,14 @@
+<!--pages/pureListPage/pureListPage.wxml-->
+<import src="../../../utils/tpl.wxml" />
+
+<form class="search-form {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+    <view class="container header-seize">
+        <scroll-view scroll-y bindscrolltolower="onReachBottom_" lower-threshold="150" enable-back-to-top scroll-top="{{baseData.scollTop}}" bindscroll="onPageScroll_">
+          <!-- 列表 -->
+          <template is="{{template}}" data="{{baseData,reTry,hideAttention}}" />
+        </scroll-view>
+    </view>
+      <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:pageName,isHideBackTop,reTry,isHideShare:true}}" />
+
+</form>
+

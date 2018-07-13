@@ -1,0 +1,20 @@
+<!--pages/message/message.wxml-->
+<!--my.wxml-->
+<import src="../../../utils/tpl.wxml" />
+<form class="search-form {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+  <view class='header-seize'>
+  <view class='msg-title'>广场消息</view>
+  <view class="my-btns">
+    <button data-event="toPage" wx:for="{{btns}}" formType="submit" hover-class="button-hover" data-index="{{index}}" wx:key="{{index}}">
+      <view class="btn-box">
+        <image src="{{'https://minibizhi.313515.com/BiZhiStatic/' + item.icon}}" mode="aspectFill" class="icon"></image>
+        <text>{{item.title}}</text>
+        <view class="red-point" wx:if="{{item.isShowRedPoint}}"></view>
+        <image src="https://minibizhi.313515.com/BiZhiStatic/icon-pointer.svg" mode="aspectFill" class="pointer"></image>
+      </view>
+    </button>
+  </view>
+  </view>
+      <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'message',isHideBackTop,reTry,isHideShare:true}}" />
+
+</form>

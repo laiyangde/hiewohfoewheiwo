@@ -1,0 +1,54 @@
+/* pages/message/message.wxss */
+
+.msg-title{
+  background: #F2F2F2;
+  font-size: 30rpx;
+  color: #4C4C4C;
+  height: 70rpx;
+  line-height: 70rpx;
+  padding-left: 30rpx;
+}
+
+.my-btns button{
+  height: 102rpx;
+  /* padding:0 30rpx; */
+  padding-left: 30rpx;
+  background-color: transparent;
+}
+.btn-box{
+  display: flex;
+  border-bottom:1rpx solid #eee;
+  align-items: center;
+  height: 100%;
+  box-sizing: border-box
+}
+.btn-box .icon{
+  width: 50rpx;
+  height: 50rpx;
+  /* padding-left: 10rpx; */
+}
+.btn-box text{
+  font-size: 30rpx;
+  color: #4C4C4C;
+  margin-left: 20rpx;
+  flex: 1;
+  text-align: left
+}
+.btn-box .pointer{
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 33rpx;
+}
+.nickName{
+  font-size: 32rpx;
+  color: #FFFFFF;
+  line-height: 1.3
+}
+
+.my-btns .button-hover{background-color: #f8f8f8}
+
+.red-point{width: 14rpx;height: 14rpx;background: #EE3C2E;
+border: 1rpx solid #FFFFFF;
+border-radius: 50%;
+margin-right: 8rpx
+}

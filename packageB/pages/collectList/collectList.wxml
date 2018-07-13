@@ -1,0 +1,15 @@
+<!--collectList.wxml-->
+
+
+<import src="../../../utils/tpl.wxml" />
+<form class="search-form {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+    <!-- 顶部滚动导航 -->
+    <template is="top-nav" data="{{navArr,currentIndex,suspensionInfo}}" />
+    <view class="container header-seize">
+        <!-- 多列表 -->
+        <template is="multi-list" data="{{baseDatas,reTry,currentIndex,template,change,isHideBackTop,reTry,onPageScroll_,onReachBottom_,diffrentTemplate}}" />
+        <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'collectList',isHideBackTop,reTry,isHideShare:true}}" />
+        
+    </view>
+    <template is="header-back" data="{{suspensionInfo}}"/>
+</form>

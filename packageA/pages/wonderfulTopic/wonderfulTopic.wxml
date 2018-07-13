@@ -1,0 +1,11 @@
+<import src="../../../utils/tpl.wxml" />
+<form class="search-form hasBottomNav {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+    <!-- 顶部滚动导航 -->
+    <template is="base-top-nav" data="{{navArr,currentIndex,suspensionInfo}}" /> 
+    <view class="container header-seize2">
+        <!-- 多列表 -->
+        <template is="multi-list" data="{{baseDatas,reTry,currentIndex,template,change,isHideBackTop,onPageScroll_,onReachBottom_,diffrentTemplate,isOpenDelete,login,isLogin,toReplyDetail,toTopicDetail,moreComment}}" />
+
+        <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'wonderfulTopic',isHideBackTop,reTry,isHideShare:true}}" />
+    </view>
+</form> 

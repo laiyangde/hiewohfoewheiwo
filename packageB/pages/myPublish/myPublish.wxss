@@ -1,0 +1,130 @@
+/* pages/myPublish/myPublish.wxss */
+
+
+
+.fans-list .data-list-column-view, .attention-list .data-list-column-view {
+  padding-left: 30rpx;
+}
+
+.delete-selected-box{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.data-list-box{
+  padding-bottom: 82rpx;
+}
+.deleteSelect{
+  top:40rpx;
+  /* transform: translateY(-50%); */
+  left: auto;
+  right: 30rpx;
+}
+/* .attention-list .userInfo text {
+  display: inline;
+  font-size: 28rpx;
+}
+
+.fans-list .attention-btn {
+  margin-right: 30rpx;
+} */
+
+/* .attention-list .user-info-wrap .userInfo text,
+.fans-list .user-info-wrap .userInfo text {
+  font-size: 28rpx;
+} */
+
+.bottom-border {
+  position: relative;
+}
+
+.bottom-border::after {
+  display: block;
+  content: '';
+  width: 624rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.attention-time {
+  font-size: 22rpx;
+  color: #949494;
+  display: flex;
+  align-items: center;
+  margin-right: 30rpx;
+}
+
+.comment-me-list-item {
+  padding-left: 30rpx;
+  padding-bottom: 40rpx;
+  position: relative
+}
+
+.thump-up-me-list .comment-me-list-item::before{
+  content: '+1';
+  display: block;
+  position: absolute;
+  font-size: 24rpx;
+  color: #2E93C4;
+  line-height:33rpx;
+  height: 33rpx;
+  width: 80rpx;
+  top: 70rpx;
+  right: 0;
+  background:url('https://minibizhi.313515.com/svg/thumb-up-active.svg') 0 center no-repeat;
+  background-size:31rpx 33rpx;
+  padding-left: 36rpx;
+  pointer-events: none
+} 
+
+.comment-wrap {
+  padding-left: 96rpx;
+  text-align: left;
+  padding-right: 30rpx;
+}
+
+.comment-wrap .comment-content {
+  font-size: 28rpx;
+  color: #4c4c4c;
+  line-height: 1.1;
+  margin-bottom: 30rpx;
+}
+
+.comment-me-list .user-info-wrap .userInfo wx-text:last-child {
+  font-size: 22rpx;
+}
+
+.comment-me-list .user-info-wrap {
+  height: 140rpx;
+}
+
+.comment-wrap .comment-target {
+  padding: 10rpx;
+  background: #f7f7f7;
+  display: flex;
+  align-items: center
+}
+
+.comment-wrap .comment-target image {
+  width: 100rpx;
+  height: 178rpx;
+  display: block;
+  margin-right: 10rpx;
+}
+
+.comment-wrap .comment-target text {
+  font-size: 28rpx;
+  color: #949494;
+  line-height: 40rpx;
+  display: block;
+  flex: 1;
+  padding: 10rpx;
+}
+
+.data-list-column-view .list-item{
+  position: relative
+}

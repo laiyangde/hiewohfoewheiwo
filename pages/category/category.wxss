@@ -1,0 +1,122 @@
+/* pages/category/category.wxss */
+
+.container{
+  display: flex;
+  /* padding-top: 82rpx; */
+}
+
+.left-nav{
+  width: 198rpx;
+  box-sizing: border-box;
+  border-right: 1px solid #e5e5e5;
+  height: 100%;
+  overflow: hidden
+}
+.left-nav .title{
+  padding: 30rpx 0;
+}
+.left-nav .title text{
+  font-size: 28rpx;
+  color: #9B9B9B;
+  text-align: center;
+  height: 40rpx;
+  line-height: 40rpx;
+  border-left: 8rpx solid transparent;
+  letter-spacing: 0.42rpx;
+  display: block;
+  padding-right:22rpx;
+}
+
+.left-nav .title:first-child{
+  /*margin-top: 30rpx;*/
+}
+.left-nav .active text{
+  border-left-color: #3399CB;
+  color: #3C3D40;
+}
+
+.left-nav scroll-view{
+  width: 220rpx
+}
+
+.right-content{
+  height: 100%;
+  flex: 1;
+  position: relative
+}
+.right-content scroll-view {position: absolute;top: 0;left: 0}
+.right-content .top-img{
+    padding: 20rpx 16rpx;
+}
+.right-content .top-img image{
+  width: 520rpx;height: 188rpx;
+  display: block;margin: 0 auto;
+}
+
+.right-content .title{
+  font-size: 28rpx;
+  color: #3C3D40;
+  height: 68rpx;
+  line-height: 68rpx;
+  width: 200rpx;
+  margin: 0 auto;
+  border-bottom: 2rpx solid #D9D9D9;
+  text-align: center;
+}
+
+
+
+.category-list-view{
+  padding: 0 56rpx;
+}
+.multi-btn-swiper{
+  width: 146rpx;
+  height: 210rpx;
+}
+.category-list-view button{
+  width: 146rpx;
+  height: 186rpx;
+  margin-top: 24rpx;
+}
+.category-list-view .multi-fn-btn{
+  background-color: #E6F4FF
+}
+
+.category-list-view image{
+  width: 122rpx;
+  height: 120rpx;
+  margin: 16rpx auto 0;
+  display: block;
+}
+
+.category-list-view text{
+  font-size: 24rpx;
+  color: #3C3D40;
+  letter-spacing: 0.36rpx;
+  text-align: center;
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 146rpx;
+  /* height: 54rpx; */
+  line-height: 38rpx;
+  margin-top: 10rpx;
+  border-bottom: 4rpx solid transparent;
+}
+.category-list-view .multi-fn-btn text{
+ color: #2E93C4;
+ font-weight: 500;
+ border-color: #2E93C4
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+
+button{
+  background-color: #fff;
+}

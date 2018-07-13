@@ -1,0 +1,92 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/piazza/piazza",
+    "pages/category/category",
+    "pages/categoryList/categoryList",
+    "pages/preview/preview",
+    "pages/my/my",
+    "pages/commentList/commentList",
+    "pages/web/web",
+    "components/dio/dio"
+  ],
+  "subPackages": [
+    {
+      "root": "packageA",
+      "pages": [
+        "pages/search/search",
+        "pages/chatBg/chatBg",
+        "pages/avatarEmote/avatarEmote",
+        "pages/albumList/albumList",
+        "pages/albumDetail/albumDetail",
+        "pages/topicDetail/topicDetail",
+        "pages/topicReplyDetail/topicReplyDetail",
+        "pages/replyTopic/replyTopic",
+        "pages/authorColumn/authorColumn",
+        "pages/authorHome/authorHome",
+        "pages/wonderfulTopic/wonderfulTopic"
+      ]
+    },
+    {
+      "root": "packageB",
+      "pages": [
+        "pages/userHome/userHome",
+        "pages/pureListPage/pureListPage",
+        "pages/message/message",
+        "pages/collectList/collectList",
+        "pages/downloadList/downloadList",
+        "pages/rewardList/rewardList",
+        "pages/myPublish/myPublish",
+        "pages/upload/upload",
+        "pages/uploadList/uploadList"
+      ]
+    },
+    {
+      "root": "packageC",
+      "pages": [
+        "pages/setting/setting",
+        "pages/intro/intro",
+        "pages/address/address",
+        "pages/officeNotes/officeNotes"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "backgroundColor": "#fff",
+    "borderStyle": "white",
+    "selectedColor": "#239EFE",
+    "color": "#6A7883",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "精选",
+        "iconPath": "res/tabImages/tab-jx-on.png",
+        "selectedIconPath": "res/tabImages/tab-jx-active.png"
+      },
+      {
+        "pagePath": "pages/piazza/piazza",
+        "text": "发现",
+        "iconPath": "res/tabImages/tab-st-on.png",
+        "selectedIconPath": "res/tabImages/tab-st-active.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "分类",
+        "iconPath": "res/tabImages/tab-fl-on.png",
+        "selectedIconPath": "res/tabImages/tab-fl-active.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "res/tabImages/tab-my-on.png",
+        "selectedIconPath": "res/tabImages/tab-my-active.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,164 @@
+<import src="../../utils/tpl.wxml" />
+<wxs module="mIndex">
+  module.exports.getFollowNavStyle = function(isCrossThreshold,isX) {
+      return isCrossThreshold ? (isX ? 'position:fixed;top:174rpx;':'position:fixed;top:116rpx;') : ''
+  };
+</wxs>
+
+<!-- 轮播 -->
+<template name="swiper">
+    <swiper autoplay interval="3000" duration="500" class="swiper" previous-margin="50rpx" next-margin="50rpx" circular="true" bindchange="carouselChange">
+      <swiper-item wx:for="{{carouselFigures}}" wx:key="{{item.AlbumId}}">
+        <button formType="submit" hover-class="none" data-index="{{index}}" data-albumId="{{item.AlbumId}}" data-event="swiperHandle" class="swiper-btn {{carouselIndex === index ? 'ori' : ''}}">
+          <image src="{{item.ImgUrl}}" class="swiper-image" mode="aspectFill" />
+        </button>
+        <text wx:if="{{item.DataType===2}}">小程序推荐</text>
+      </swiper-item>
+    </swiper>
+</template>
+
+<!-- 顶部导航 -->
+<template name="top-nav-warp">
+  <view class="top-nav-warp" wx:if="{{topNavArr.adList&&topNavArr.adList.length > 0}}">
+    <view wx:for="{{topNavArr.adList}}" wx:key="{{index}}" wx:if="{{item.length>0}}">
+        <template is="multi-fn-btn" data="{{adData:item,switchTime:topNavArr.SwitchTime,template:'img-word-view'}}" />
+    </view>
+  </view>
+</template>
+
+<!-- 热门专辑 -->
+<template name="hot-album">
+ <!-- <view class="hot-album" wx:if="{{!isClose}}">  -->
+     <view class="hot-album"> 
+      <button class="module-title" formType="submit" hover-class='none' data-event="toPage" data-page="albumList">
+        热门专辑
+      </button>
+      <view class="album-view">
+        <button formType="submit" wx:for="{{albumFigures}}" data-index="{{index}}" wx:key="{{index}}" class="hot-btn" data-event="hotAlbumHandle" hover-class='none'>
+          <image src="{{item.ImgUrl}}" class="album-item" mode="widthFix" />
+          <text wx:if="{{item.AlbumType === 3}}">话题</text>
+          <text wx:if="{{item.AlbumType === 4}}" class='act'>活动</text>
+          <view class="single-ellipsis">{{item.AlbumName}}</view>
+          <!-- <view wx:if="{{item.AlbumType === 3 || item.AlbumType === 4}}">#{{item.AlbumName}}#</view> -->
+        </button>
+      </view>
+    </view>
+</template>
+
+<!-- 热门|社区 动态 -->
+<template name="hot-dynamic">
+    <view class='hot-dynamic'>
+      <view class="module-title">
+        社区动态
+        <view class='topicLabel' wx:if="{{TopicResultInfo===null}}">话题</view>
+        <view class='topicLabel act' wx:elif="{{TopicResultInfo.TypeID === 2}}">活动</view>
+        <view class='topicLabel brandAct' wx:elif="{{TopicResultInfo.TypeID === 3}}">品牌活动</view>
+      </view>
+      <view class='dynamic-view' wx:if="{{TopicResultInfo===null}}">
+        <view class='dynamic-view-body'>
+          <image mode="aspectFill" class='left' src="{{HotTrendsArray.ObjTopicPartPicResultInfo.Thumb}}" bindtap='toTopicReplyDetail'></image>
+          <view class='right'>
+            <button formType="submit" data-event="toPage" data-userid="{{HotTrendsArray.UserID}}" hover-class='none' class='userInfo' data-page="userHome">
+              <image wx:if="{{HotTrendsArray.AvatarUrl}}" src="{{HotTrendsArray.AvatarUrl}}" mode="aspectFill" />
+              <image wx:else src='https://minibizhi.313515.com/BiZhiStatic/default.svg' mode="aspectFill" />
+              <text>{{HotTrendsArray.NickName}}</text>
+            </button>
+            <button formType="submit" data-event="toTopicReplyDetail"  hover-class='none' class='reply-word multi-ellipsis'>{{HotTrendsArray.PartTitle}}</button>
+            <button formType="submit" data-page="topicDetail" data-event="toPage" data-topicid="{{HotTrendsArray.TopicID}}" hover-class='none' class='toTopicBtn single-ellipsis'>#{{HotTrendsArray.TopicTitle}}#</button>
+          </view>
+        </view>
+        <button class="change-data" formType="submit" hover-class='none' data-event="changeData" data-type="1">
+            <image src='https://minibizhi.313515.com/BiZhiStatic/change-data.svg'></image>
+            <text>换一换</text>
+        </button>
+      </view>
+      <button class='activity-view' formType="submit" data-event="toPage" data-page="topicDetail" data-topicid="{{TopicResultInfo.TopicID}}" hover-class='none' wx:else >
+          <image src='{{TopicResultInfo.TopicIcon}}' class='bg'></image>
+          <text>#{{TopicResultInfo.TopicTitle}}#</text>
+          <view class='brand' wx:if="{{TopicResultInfo.TypeID === 3}}">
+              <image src="{{TopicResultInfo.Icon}}" />
+              <image src="https://minibizhi.313515.com/BiZhiStatic/topicDetail-icon-x-white.svg" class='x' />
+              <image src="{{TopicResultInfo.OfficialIcon}}" />
+          </view>
+      </button>
+    </view>
+</template>
+
+<!-- 作者专栏 -->
+<template name="author-column">
+  <view class='author-column'>
+    <button class="module-title" formType="submit" hover-class='none' data-event="toPage" data-page="authorColumn">
+      作者专栏<text>分享免费</text>
+    </button>
+    <view class='author-column-view'>
+      <button class='img-btn' wx:for="{{OriginalColumn.MiniOriginalWallpaperInfoArray}}" wx:key="{{item.PicInfoID}}" formType="submit" data-event="oriPreview" hover-class='none' data-index="{{index}}"> 
+          <image src='{{item.ThumbImage}}' mode="aspectFill"></image>
+          <image wx:if="{{item.PriceType > 0}}" src="{{item.noBuy?'https://minibizhi.313515.com/BiZhiStatic/original-nobuy.svg' : 'https://minibizhi.313515.com/BiZhiStatic/original-buy.svg'}}" mode="widthFix" class="buy-flag"></image> 
+      </button>
+      <view class='author'>
+        <button class='top' formType="submit" data-authorid="{{OriginalColumn.AuthorObject.AuthorID}}" data-event="toPage" hover-class='none' data-page="authorHome"> 
+            <view class='top-left'>
+              <text>{{OriginalColumn.AuthorObject.AuthorName}}</text>
+              <text>{{OriginalColumn.AuthorObject.AuthorDesc}}</text>
+            </view>
+            <view class='top-right'>
+               <image  src='{{OriginalColumn.AuthorObject.AuthorAvatarUrl}}' mode="aspectFill"></image>
+               <image  src='https://minibizhi.313515.com/BiZhiStatic/icon-v.svg' mode="aspectFill"></image>
+            </view>
+        </button>
+        <view class='bottom'>
+            <view>
+               <text class='multi-ellipsis'>{{OriginalColumn.AuthorObject.AuthorMotto}}</text>
+            </view>
+        </view>
+      </view>
+    </view>
+    <button class="change-data" formType="submit" hover-class='none' data-event="changeData" data-type="2">
+        <image src='https://minibizhi.313515.com/BiZhiStatic/change-data.svg'></image>
+        <text>换一换</text>
+    </button>
+  </view>
+</template>
+
+
+
+<!-- 版本提示 -->
+<template name="version-tip">
+  <view class="version-tip" wx:if="{{isVersionTip}}">
+    <image src="https://minibizhi.313515.com/BiZhiStatic/version.png" mode="widthFix" class='version'></image>
+    <view bindtap="closeVersionTip" >
+      <image src="https://minibizhi.313515.com/BiZhiStatic/close.svg" mode="widthFix" class='version-close'></image>
+    </view>
+  </view>
+</template>
+
+
+
+<form class="search-form {{model}}" bindsubmit="formSubmit" report-submit="{{isGetFormId}}" style='padding-top:{{suspensionInfo.statusBarHeight}}px'>
+  <view class="container header-seize">
+    <template is="header-search" data="{{suspensionInfo}}" /><!-- 搜索 -->
+    <scroll-view scroll-y bindscrolltolower="onReachBottom_" lower-threshold="150" enable-back-to-top scroll-top="{{toScollTop}}" bindscroll="onPageScroll_" class='index-scroll-view'>
+      <template is="swiper" data="{{carouselFigures,carouselChange,carouselIndex}}" /><!-- 轮播 -->
+      <template is="top-nav-warp" data="{{topNavArr}}" /><!-- 顶部导航 -->
+      <template is="hot-album" data="{{moreHotAlbum,albumFigures}}" /><!--热门专辑-->
+      <template is="hot-dynamic" data="{{TopicResultInfo,HotTrendsArray,toTopicReplyDetail}}" /><!--社区动态-->
+      <template is="author-column"  data="{{OriginalColumn}}" /><!--作者专栏-->
+        <!-- 首页列表开始 -->
+      <view class='listContainer'>
+        <view class='follow-nav-container'>
+            <view class='scroll-nav-fixed {{isCrossThreshold ? "crossFixed" : ""}}' style='{{isCrossThreshold ? "margin-top:" + suspensionInfo.statusBarHeight + "px" : ""}}'>
+                <template is="scroll-nav" data="{{navArr,currentIndex,scrollLeft,isShowNavView}}" />
+            </view>
+        </view>
+        <view wx:for="{{baseDatas}}" wx:for-item="baseData" wx:key="{{index}}" wx:if='{{currentIndex==index}}' class='{{navArr[index].CategoryID == 4 || navArr[index].CategoryID == 3 ? "row2Image" : ""}}' style='height:{{minH + 10}}px'>
+            <template is="base-wallpaper-list2" data="{{baseData,reTry,sectionIndex,everyLine,paddingTop,column:navArr[index].CategoryID == 3 || navArr[index].CategoryID == 4 ? 2 : 3,infoAd:index === 0 ? infoAd : ''}}" />
+        </view>
+      </view>      
+    </scroll-view>
+    <template is="version-tip" data="{{isVersionTip,closeVersionTip}}" /><!--更新版本提示-->
+    <template is="suspension-container" data="{{suspensionInfo,suspensionAd,suspensionPage:'index',isHideBackTop,reTry,isHideShare:true}}" />
+  </view>
+<!-- 
+  <view style='height:{{statusBarHeight}}px;width:100%;background-color:red;position:fixed;top:0;left:0;z-index:300'></view> -->
+
+</form>

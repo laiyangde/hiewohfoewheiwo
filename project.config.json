@@ -1,0 +1,309 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.0.9",
+	"appid": "wxd521f27d130179fa",
+	"projectname": "%E5%A3%81%E7%BA%B8%E7%B2%BE%E9%80%89%2B2.6%E9%A2%84%E8%A7%88%E9%A1%B5%E4%BC%98%E5%8C%96",
+	"packOptions": {
+		"ignore": [
+			{
+				"type": "folder",
+				"value": "/res/assets"
+			},
+			{
+				"type": "file",
+				"value": "/res/assets/sftp-config.json"
+			}
+		]
+	},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": [
+				{
+					"name": "test",
+					"pathName": "",
+					"title": "",
+					"cacheKey": ""
+				}
+			]
+		},
+		"conversation": {
+			"current": 0,
+			"list": [
+				{
+					"name": "test",
+					"query": "",
+					"boxQI": "",
+					"service": {}
+				}
+			]
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "专辑详情",
+					"pathName": "packageA/pages/albumDetail/albumDetail",
+					"query": "albumId=22434",
+					"scene": "1035",
+					"referrerInfo": {}
+				},
+				{
+					"id": 1,
+					"name": "专辑",
+					"pathName": "packageA/pages/albumList/albumList",
+					"query": "categoryId=0",
+					"scene": "1035",
+					"referrerInfo": {}
+				},
+				{
+					"id": 2,
+					"name": "原创专栏",
+					"pathName": "packageA/pages/original/original",
+					"query": "sort=2",
+					"scene": "1035",
+					"referrerInfo": {}
+				},
+				{
+					"id": 3,
+					"name": "头像表情",
+					"pathName": "packageA/pages/avatarEmote/avatarEmote",
+					"query": "cateid=2&categroyid=6",
+					"scene": "1001"
+				},
+				{
+					"id": 4,
+					"name": "分类内页列表",
+					"pathName": "pages/categoryList/categoryList",
+					"query": "categoryId=3&label=雨&title=风景建筑",
+					"scene": "1001"
+				},
+				{
+					"id": 5,
+					"name": "下载",
+					"pathName": "packageB/pages/downloadList/downloadList",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": 6,
+					"name": "搜索",
+					"pathName": "packageA/pages/search/search",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": 7,
+					"name": "官方手记",
+					"pathName": "packageC/pages/officeNotes/officeNotes",
+					"query": "albumId=20969",
+					"scene": "1001"
+				},
+				{
+					"id": 8,
+					"name": "设置",
+					"pathName": "packageC/pages/setting/setting",
+					"query": ""
+				},
+				{
+					"id": 9,
+					"name": "话题回复",
+					"pathName": "packageA/pages/replyTopic/replyTopic",
+					"query": "",
+					"scene": "1035",
+					"referrerInfo": {}
+				},
+				{
+					"id": 10,
+					"name": "话题",
+					"pathName": "packageA/pages/topicDetail/topicDetail",
+					"query": "topicID=40",
+					"scene": "1001"
+				},
+				{
+					"id": 11,
+					"name": "话题回复详情",
+					"pathName": "packageA/pages/topicReplyDetail/topicReplyDetail",
+					"query": "scene=23108_104_1 ",
+					"scene": "1001"
+				},
+				{
+					"id": 12,
+					"name": "图片预览",
+					"pathName": "pages/preview/preview",
+					"query": "scene=603061_0_bz",
+					"scene": "1001"
+				},
+				{
+					"id": 13,
+					"name": "我的",
+					"pathName": "pages/my/my",
+					"query": "",
+					"scene": "1043",
+					"referrerInfo": {
+						"appId": "hisoghweohgwohge"
+					}
+				},
+				{
+					"id": 14,
+					"name": "消息管场",
+					"pathName": "packageB/pages/message/message",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": 16,
+					"name": "纯列表",
+					"pathName": "pages/pureListPage/pureListPage",
+					"query": "pageindex=5",
+					"scene": "1001"
+				},
+				{
+					"id": 16,
+					"name": "用户主页",
+					"pathName": "packageB/pages/userHome/userHome",
+					"query": "userid=2",
+					"scene": "1001"
+				},
+				{
+					"id": 17,
+					"name": "晒图",
+					"pathName": "pages/piazza/piazza",
+					"query": "currentNavIndex=1&currentIndex=1",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "我的发布",
+					"pathName": "pages/myPublish/myPublish",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": 19,
+					"name": "地址",
+					"pathName": "pages/address/address",
+					"query": "topicid=34",
+					"scene": "1001"
+				},
+				{
+					"id": 20,
+					"name": "品牌介绍",
+					"pathName": "packageC/pages/intro/intro",
+					"query": "brandid=1",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": "currentIndex=1",
+					"scene": "1001"
+				},
+				{
+					"id": 22,
+					"name": "webview",
+					"pathName": "pages/web/web",
+					"query": "url=https://mact.gao7.com/acts/App/BZQDSLYXNXCX",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "头像表情分类列表",
+					"pathName": "packageA/pages/avatarEmoteList/avatarEmoteList",
+					"query": "sort=0&cateID=1&subCateID=1",
+					"scene": "1035",
+					"referrerInfo": {}
+				},
+				{
+					"id": 24,
+					"name": "聊天背景",
+					"pathName": "packageA/pages/chatBg/chatBg",
+					"query": "from=gao7",
+					"scene": "1035",
+					"referrerInfo": {}
+				},
+				{
+					"id": -1,
+					"name": "收藏",
+					"pathName": "packageB/pages/collectList/collectList",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "我的赞赏",
+					"pathName": "packageB/pages/rewardList/rewardList",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "评论列表",
+					"pathName": "pages/commentList/commentList",
+					"query": "commentTargetId=12940&totalCount=1&replyIndex=1&commentType=话题评论&releaseType=1",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "话题2",
+					"pathName": "packageA/pages/topicDetail/topicDetail",
+					"query": "topicID=40",
+					"scene": "1001"
+				},
+				{
+					"id": 29,
+					"name": "作者专栏",
+					"pathName": "packageA/pages/authorColumn/authorColumn",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": 30,
+					"name": "作者主页",
+					"pathName": "packageA/pages/authorHome/authorHome",
+					"query": "authorid=107531044",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "精彩话题",
+					"pathName": "packageA/pages/wonderfulTopic/wonderfulTopic",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "上传壁纸列表",
+					"pathName": "packageB/pages/uploadList/uploadList",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "上传壁纸",
+					"pathName": "packageB/pages/upload/upload",
+					"query": "src=http://tmp/wxd521f27d130179fa.o6zAJs6ecncKdz2thdhEyarfzigM.NRRUdWStfcTzd03a7193365c414bbd9ad3afc9954f2a.jpg",
+					"scene": "1001"
+				}
+			]
+		}
+	}
+}

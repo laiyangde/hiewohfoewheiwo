@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="104" height="36" viewBox="0 0 104 36">
+  <defs>
+    <path id="已购买-b" d="M20.5945147,19.8539857 L14.5699993,25.7278264 C14.5699993,25.7278264 14.2145306,26.8684514 14.8777386,27.4965032 C15.5409466,28.1245549 16.5491253,27.8257268 16.5491253,27.8257268 L24.5776898,19.7988713 L22.617507,17.9081496 L12.6598431,8.26371508 C12.6598431,8.26371508 11.5529025,8.07695448 10.9888226,8.64103441 C10.4247426,9.20511435 10.6077191,10.2604192 10.6077191,10.2604192 L20.5945147,19.8539857 Z"/>
+    <filter id="已购买-a" width="242.9%" height="201.7%" x="-57.1%" y="-40.7%" filterUnits="objectBoundingBox">
+      <feOffset dx="2" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="3"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.337720788 0"/>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <rect width="104" height="36" fill="#000" opacity=".35" rx="18"/>
+    <text fill="#FFF" font-family="PingFangSC-Regular, PingFang SC" font-size="20" letter-spacing=".24">
+      <tspan x="30" y="24">已解锁</tspan>
+    </text>
+    <g transform="rotate(90 17.579 18.065)">
+      <use fill="#000" filter="url(#已购买-a)" xlink:href="#已购买-b"/>
+      <use fill="#FFF" xlink:href="#已购买-b"/>
+    </g>
+  </g>
+</svg>
